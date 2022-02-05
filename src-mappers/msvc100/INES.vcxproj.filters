@@ -1,0 +1,1740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8a1cc04c-e660-4e74-8cb0-8194b0237bee}</UniqueIdentifier>
+      <Extensions>c;cpp;cxx;tli</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Hardware Source Files">
+      <UniqueIdentifier>{579f944a-7214-46cd-98f8-9761065206ba}</UniqueIdentifier>
+      <Extensions>c;cpp;cxx;tli</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Sound Source Files">
+      <UniqueIdentifier>{6d720984-0120-4398-8465-bf7e704ae109}</UniqueIdentifier>
+      <Extensions>c;cpp;cxx;tli</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Mapper Source Files">
+      <UniqueIdentifier>{1118a12b-893d-460a-867d-6438a2c981af}</UniqueIdentifier>
+      <Extensions>c;cpp;cxx;tli</Extensions>
+    </Filter>
+    <Filter Include="Source Files\DLL Source Files">
+      <UniqueIdentifier>{b1470d27-a18b-4ee0-a30d-abbaf83d0b7f}</UniqueIdentifier>
+      <Extensions>c;cpp;cxx;tli</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{68c07f21-c79d-4243-830e-a1232c01cfa8}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Hardware Header Files">
+      <UniqueIdentifier>{5d9d1e07-5a42-4aae-b839-dfc07cde3514}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Sound Header Files">
+      <UniqueIdentifier>{f8039e5a-309e-4b83-8033-bcbf43ffe6fd}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Header Files\DLL Header Files">
+      <UniqueIdentifier>{ce5f876d-9db6-4d26-a724-e14025d21927}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{98edc5e6-cee8-4ace-b84c-49b0e36ef239}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Hardware\h_FME7.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_Latch.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_MMC1.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_MMC2.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_MMC3.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_MMC4.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_MMC5.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_N118.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_MMC5.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_N163.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_SUN5.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_VRC6.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_VRC7.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper000.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper001.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper002.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper003.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper004.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper005.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper007.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper009.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper010.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper011.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper013.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper015.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper016.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper018.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper019.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper021.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper022.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper023.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper024.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper025.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper026.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper028.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper032.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper033.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper034.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper037.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper038.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper040.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper041.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper042.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper043.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper044.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper045.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper046.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper047.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper048.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper049.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper050.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper051.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper052.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper053.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper056.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper057.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper058.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper059.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper060.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper061.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper062.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper063.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper064.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper065.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper066.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper067.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper068.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper069.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper070.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper071.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper072.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper073.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper074.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper075.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper076.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper077.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper078.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper079.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper080.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper083.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper085.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper086.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper087.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper088.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper089.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper090.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper091.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper092.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper093.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper094.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper095.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper096.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper097.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper100.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper105.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper107.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper112.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper113.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper114.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper115.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper116.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper118.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper119.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper125.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper126.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper127.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper137.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper138.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper139.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper140.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper141.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper142.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper143.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper145.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper146.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper147.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper148.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper149.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper150.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper152.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper154.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper159.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper164.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper165.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper180.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper182.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper184.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper185.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper188.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper189.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper191.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper192.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper193.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper194.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper200.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper201.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper203.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper205.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper207.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper225.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper226.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper227.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper228.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper229.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper230.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper231.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper232.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper233.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper234.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper235.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper240.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper242.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper245.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper246.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper250.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper254.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\unimplemented.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\DLL\d_iNES.cpp">
+      <Filter>Source Files\DLL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper082.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper101.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper155.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper206.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper187.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper027.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper216.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper144.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper012.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper153.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper133.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper512.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper513.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper241.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper260.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper261.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper262.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper263.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper243.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper264.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper265.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper208.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper196.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper121.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper238.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper215.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper197.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper014.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper123.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper176.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper081.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper266.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper219.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper117.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper210.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper514.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper515.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper156.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper190.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper516.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper104.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper213.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_Mic.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper517.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper256.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper031.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper163.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper267.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper268.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper173.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper136.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper132.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper036.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper172.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_OneBus.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper269.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper177.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper178.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper195.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper198.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper270.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper134.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper249.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\vgmcapture.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper271.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper204.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper212.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper236.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper237.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper274.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper202.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper217.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper221.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper258.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper518.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper519.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper283.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\Butterworth.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper166.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper167.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper284.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper272.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper285.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper286.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper292.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper287.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper288.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper289.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper290.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper291.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper293.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper273.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper296.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper244.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper253.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper199.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper162.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper252.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper297.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper111.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_JV001.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_VRC4.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_VRC2.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper298.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper299.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper030.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_VRC6.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper520.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper300.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper301.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper214.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper521.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper304.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper302.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper303.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper305.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper306.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper307.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper309.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper311.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper108.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper120.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper312.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper103.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper313.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper308.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper314.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper315.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper319.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper320.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper175.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_MMC6.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper224.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper321.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper322.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper323.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper324.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper055.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper325.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper259.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper326.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper327.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper328.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper257.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper006.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper522.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper329.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper330.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper333.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper331.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper332.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_JY.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper211.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper281.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper282.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper295.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper035.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper209.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_FDS.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper334.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper524.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper335.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper336.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper337.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper338.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper339.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper340.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper341.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper525.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper342.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper343.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper344.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper345.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper526.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper527.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_VRC7.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper528.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper529.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper346.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper530.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper171.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper170.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper347.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper017.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper008.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_FCG.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_LZ93D50.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper157.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper168.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper106.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper183.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper222.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper348.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper349.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper531.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper218.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper186.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper350.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper351.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_hc55516.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper352.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper353.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper354.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper355.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper356.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\simplefdc.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper357.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Hash.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_TXCLatch.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper358.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper359.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper532.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper533.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper534.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper535.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper360.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_EEPROM_93C66.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper361.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper362.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper364.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper365.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper366.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper761.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper367.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper368.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper538.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper539.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper369.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper370.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper540.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper541.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper542.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper371.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper374.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper375.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper376.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper377.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper378.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper379.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper380.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper543.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper381.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper544.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper382.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper545.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper383.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper384.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper546.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper385.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper762.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper386.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper387.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper388.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper547.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper389.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper390.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_KS202.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper391.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper548.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper549.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper392.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper393.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper394.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper395.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper550.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper396.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper397.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper398.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper551.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper399.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper400.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper401.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_waveFile.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper373.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper372.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper169.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper759.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper402.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_PIC16C5x.cpp">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper403.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper404.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper405.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper406.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_FlashROM.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper407.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper408.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper553.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper099.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper174.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper124.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper029.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper128.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper554.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper555.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper409.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper556.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper410.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper411.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper412.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper413.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper557.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper558.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper414.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper415.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper416.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper417.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper418.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_EEPROM.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\Sound\s_ADPCM3Bit.cpp">
+      <Filter>Source Files\Sound Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper419.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_SerialDevice.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper559.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper420.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper421.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_OneBus_GPIO.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper423.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper424.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper425.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper426.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper427.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper428.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper429.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper430.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper431.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper432.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper433.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper434.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper436.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper437.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper438.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper439.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper440.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper441.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper442.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper443.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper560.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper444.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper561.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper562.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper445.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper563.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper446.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper447.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper449.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper450.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper277.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper500.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper501.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper502.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper451.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper448.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper452.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper453.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper455.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper456.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper457.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper767.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper458.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper280.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper454.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper760.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper435.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_FME7.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_Latch.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_MMC1.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_MMC2.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_MMC3.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_MMC4.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_MMC5.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_N118.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_MMC5.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_N163.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_SUN5.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_VRC6.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_VRC7.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Dll\d_iNES.h">
+      <Filter>Header Files\DLL Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\iNES\resource.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_OneBus.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\iNES\vgmcapture.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_FDS.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\Butterworth.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_JV001.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_VRC4.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_VRC2.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_VRC6.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_MMC6.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_JY.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_VRC7.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_FCG.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_EEPROM.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_LZ93D50.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_hc55516.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\simplefdc.hpp">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Hash.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_TXCLatch.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_EEPROM_93C66.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_KS202.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_waveFile.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_PIC16C5x.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_FlashROM.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\Sound\s_ADPCM3Bit.h">
+      <Filter>Header Files\Sound Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_SerialDevice.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_OneBus_GPIO.hpp">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\src\iNES\iNES.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
