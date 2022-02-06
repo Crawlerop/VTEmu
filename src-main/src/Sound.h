@@ -29,6 +29,12 @@ extern BOOL			APU2_Channel1;
 extern BOOL			APU2_Channel2;
 extern BOOL			APU2_Channel3;
 extern BOOL			APU2_Channel4;
+extern BOOL			VT32_Channel1;
+extern BOOL			VT32_Channel2;
+extern BOOL			VT369_Channel1;
+extern BOOL			VT369_Channel2;
+extern BOOL			VT369_Channel3;
+extern BOOL			VT369_Channel4;
 
 void	Init		(void);
 void	Destroy		(void);

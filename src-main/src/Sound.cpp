@@ -34,6 +34,12 @@ BOOL			APU2_Channel1;
 BOOL			APU2_Channel2;
 BOOL			APU2_Channel3;
 BOOL			APU2_Channel4;
+BOOL			VT32_Channel1;
+BOOL			VT32_Channel2;
+BOOL			VT369_Channel1;
+BOOL			VT369_Channel2;
+BOOL			VT369_Channel3;
+BOOL			VT369_Channel4;
 double			lastFiltered =0, lastUnfiltered =0;
 
 Filter::LPF_RC		LPFBandlimit(15392.0 / 1789773.0); // Mandatory low-pass filter for band-imited synthesis

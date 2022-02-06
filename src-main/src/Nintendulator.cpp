@@ -843,6 +843,36 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			Sound::APU2_Channel4 = Settings::APU2_CH4;
 			Settings::ApplySettingsToMenu();
 			break;
+		case ID_VT32_CH1:
+			Settings::VT32_CH1 = !Settings::VT32_CH1;
+			Sound::VT32_Channel1 = Settings::VT32_CH1;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VT32_CH2:
+			Settings::VT32_CH2 = !Settings::VT32_CH2;
+			Sound::VT32_Channel2 = Settings::VT32_CH2;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VT369_CH1:
+			Settings::VT369_CH1 = !Settings::VT369_CH1;
+			Sound::VT369_Channel1 = Settings::VT369_CH1;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VT369_CH2:
+			Settings::VT369_CH2 = !Settings::VT369_CH2;
+			Sound::VT369_Channel2 = Settings::VT369_CH2;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VT369_CH3:
+			Settings::VT369_CH3 = !Settings::VT369_CH3;
+			Sound::VT369_Channel3 = Settings::VT369_CH3;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VT369_CH4:
+			Settings::VT369_CH4 = !Settings::VT369_CH4;
+			Sound::VT369_Channel4 = Settings::VT369_CH4;
+			Settings::ApplySettingsToMenu();
+			break;
 		case ID_SOUND_LPF_NONE:
 			Settings::LowPassFilterAPU =0;
 			Settings::ApplySettingsToMenu();

@@ -317,9 +317,16 @@ void	APU_VT32::Run (void) {
 	
 	if (Sound::isEnabled && !Controllers::capsLock && (channels[0].playing || channels[1].playing)) {
 		int result =0;
-		for (auto& channel: channels) {
+		int c_id = 0;
+		for (auto& channel: channels) {			
 			channel.run();
-			result +=channel.output();
+			if ((c_id == 0 && Settings::VT32_CH1) || (c_id == 1 && Settings::VT32_CH2)) {
+				result += channel.output();
+			}
+			else {
+				result += 0;
+			}
+			c_id++;
 		}
 		if (Sound::isEnabled && !Controllers::capsLock) {
 		#if DISABLE_ALL_FILTERS

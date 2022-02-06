@@ -2505,6 +2505,12 @@ DWORD	WINAPI	Thread (void *param) {
 	if (!DoStop && Settings::APU2_CH2) Sound::APU2_Channel2 = TRUE;
 	if (!DoStop && Settings::APU2_CH3) Sound::APU2_Channel3 = TRUE;
 	if (!DoStop && Settings::APU2_CH4) Sound::APU2_Channel4 = TRUE;
+	if (!DoStop && Settings::VT32_CH1) Sound::VT32_Channel1 = TRUE;
+	if (!DoStop && Settings::VT32_CH2) Sound::VT32_Channel2 = TRUE;
+	if (!DoStop && Settings::VT369_CH1) Sound::VT369_Channel1 = TRUE;
+	if (!DoStop && Settings::VT369_CH2) Sound::VT369_Channel2 = TRUE;
+	if (!DoStop && Settings::VT369_CH3) Sound::VT369_Channel3 = TRUE;
+	if (!DoStop && Settings::VT369_CH4) Sound::VT369_Channel4 = TRUE;
 
 	// clear "soft start", unless we only started in order to wait until vblank
 	if (!(DoStop & STOPMODE_WAIT)) DoStop &= ~STOPMODE_SOFT;

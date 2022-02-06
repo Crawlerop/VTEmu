@@ -721,7 +721,12 @@ void	APU_VT369::Run (void) {
 					#ifdef VT_DISABLE_CHANNEL
 						if (ch != VT_DISABLE_CHANNEL) {
 					#endif
-							adpcmOutput += predictor << 7;
+							if ((ch == 0 && Sound::VT369_Channel1) || (ch == 1 && Sound::VT369_Channel2) || (ch == 2 && Sound::VT369_Channel3)) {
+								adpcmOutput += predictor << 7; // TODO: If some channels were disabled, output zeroes
+							}
+							else {
+								adpcmOutput += 0;
+							}
 					#ifdef VT_FILTER_CHANNEL
 						}
 					#endif
@@ -835,7 +840,12 @@ void	APU_VT369::Run (void) {
 						#ifdef VT_DISABLE_CHANNEL
 							if (ch != VT_DISABLE_CHANNEL) {
 						#endif
-								adpcmOutput += vt369DecodeADPCM(&vt369SoundRAM[0x1800 + ch * 8]);
+								int32_t sample = vt369DecodeADPCM(&vt369SoundRAM[0x1800 + ch * 8]);
+								if ((ch == 0 && Sound::VT369_Channel1) || (ch == 1 && Sound::VT369_Channel2) || (ch == 2 && Sound::VT369_Channel3) || (ch == 3 && Sound::VT369_Channel4)) {
+									adpcmOutput += sample; // TODO: If some channels were disabled, output zeroes
+								} else {
+									adpcmOutput += 0;
+								}
 						#ifdef VT_FILTER_CHANNEL
 							}
 						#endif
