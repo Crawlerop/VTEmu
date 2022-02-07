@@ -222,12 +222,12 @@ ATOM	MyRegisterClass (HINSTANCE hInstance)
 	wcex.cbClsExtra		= 0;
 	wcex.cbWndExtra		= 0;
 	wcex.hInstance		= hInstance;
-	wcex.hIcon		= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_NINTENDULATOR));
+	wcex.hIcon		= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_VTEMU));
 	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
 	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_NINTENDULATOR);
 	wcex.lpszClassName	= szWindowClass;
-	wcex.hIconSm		= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_SMALL));
+	wcex.hIconSm		= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_VTEMU));
 
 	return RegisterClassEx(&wcex);
 }
@@ -873,6 +873,20 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			Sound::VT369_Channel4 = Settings::VT369_CH4;
 			Settings::ApplySettingsToMenu();
 			break;
+		case ID_SOUND_VTXXAPUDETUNE:
+			Settings::VT369_60hz_Sound = !Settings::VT369_60hz_Sound;
+			//Sound::SetRegion();
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_SOUND_VTXXAPUDETUNE2:
+			Settings::VT369_60hz_Sound_Alt = !Settings::VT369_60hz_Sound_Alt;
+			//Sound::SetRegion();
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_SOUND_ALWAYSMAKEAPUFULLSPEED:
+			Settings::VT369_APU_Force_FullSpeed = !Settings::VT369_APU_Force_FullSpeed;
+			Settings::ApplySettingsToMenu();
+			break;
 		case ID_SOUND_LPF_NONE:
 			Settings::LowPassFilterAPU =0;
 			Settings::ApplySettingsToMenu();
@@ -1487,10 +1501,10 @@ void	UpdateTitlebar (void)
 {
 	TCHAR titlebar[256];
 	if (NES::Running)
-		_stprintf(titlebar, _T("Nintendulator - %i FPS (%i %sFSkip)"), GFX::FPSnum, Settings::FSkip, Settings::aFSkip?_T("Auto"):_T(""));
+		_stprintf(titlebar, _T("VTEmu - %i FPS (%i %sFSkip)"), GFX::FPSnum, Settings::FSkip, Settings::aFSkip?_T("Auto"):_T(""));
 		//_stprintf(titlebar, _T("Nintendulator"));
 	else
-		_tcscpy(titlebar, _T("Nintendulator - Stopped"));
+		_tcscpy(titlebar, _T("VTEmu - Stopped"));
 	if (TitlebarDelay > 0)
 	{
 		TitlebarDelay--;

@@ -1222,7 +1222,7 @@ BOOL	OpenFileUNIF (FILE *in) {
 	if (!strcmp(RI.UNIF_BoardName, "UNL-603-5052")) RI2.INES_MapperNum =238;
 	if (!strcmp(RI.UNIF_BoardName, "WAIXING-FW01")) { RI2.INES_MapperNum =227; }
 	if (!strcmp(RI.UNIF_BoardName, "UNL-43272")) RI2.INES_MapperNum =242;
-	if (!strcmp(RI.UNIF_BoardName, "BMC-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-DANCE")) { RI2.INES_MapperNum =256; RI2.INES2_PRGRAM=0x07; RI.ConsoleType =CONSOLE_VT03; }
+	if (!strcmp(RI.UNIF_BoardName, "BMC-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-DANCE")) { RI2.INES_MapperNum = 256; RI2.INES2_PRGRAM = 0x07; RI.ConsoleType = CONSOLE_VT03; RI2.ConsoleType = CONSOLE_VT03; }
 	if (!strcmp(RI.UNIF_BoardName, "PEC-586")) { RI2.INES_MapperNum =257;  RI2.INES2_PRGRAM=0x07; }
 	if (!strcmp(RI.UNIF_BoardName, "UNL-158B")) { RI2.INES_MapperNum =258; }
 	if (!strcmp(RI.UNIF_BoardName, "BMC-F-15")) { RI2.INES_MapperNum =259; }

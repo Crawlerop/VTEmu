@@ -898,7 +898,7 @@ void	APU_RP2A03::Run (void) {
 	if (which ==0 && NES::coinDelay1 && !--NES::coinDelay1) NES::coin1 =0;
 	if (which ==1 && NES::coinDelay2 && !--NES::coinDelay2) NES::coin2 =0;	
 	if (which ==0) PlugThruDevice::checkButton();
-	if (NES::CurRegion ==Settings::REGION_DENDY && Settings::Dendy60Hz && !(InternalClock %6))
+	if (NES::CurRegion ==Settings::REGION_DENDY && Settings::Dendy60Hz && !(InternalClock % (Settings::VT369_60hz_Sound ? (Settings::VT369_60hz_Sound_Alt ? 8 : 5) : 6)))
 		;
 	else {
 		RunFrame();

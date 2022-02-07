@@ -107,7 +107,8 @@ void	SetRegion (void) {
 		break;
 	case Settings::REGION_DENDY:
 		if (Settings::Dendy60Hz) {
-			MHz = 1773447 *60/50;
+			MHz = (1773447 *60)/50;
+			//if (Settings::VT369_60hz_Sound_Alt) MHz = 5364677;
 			WantFPS =50;
 		} else {
 			MHz = 1773447;

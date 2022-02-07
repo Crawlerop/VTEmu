@@ -425,7 +425,7 @@ int	APU_OneBus::Load (FILE *in, int version_id) {
 }
 void	APU_OneBus::Run (void) {
 	Controllers::PortExp->CPUCycle();
-	if (NES::CurRegion ==Settings::REGION_DENDY && Settings::Dendy60Hz && !(InternalClock %6))
+	if (NES::CurRegion ==Settings::REGION_DENDY && Settings::Dendy60Hz && !(InternalClock % (Settings::VT369_60hz_Sound ? (Settings::VT369_60hz_Sound_Alt ? 8 : 5) : 6)))
 		;
 	else {
 		RunFrame();

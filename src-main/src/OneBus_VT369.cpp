@@ -81,6 +81,11 @@ void CPU_VT369::RunCycle (void) {
 			if (++prescale ==3) {
 				prescale =0;
 				if (~CycleCount &1) {
+					if (!Settings::VT369_APU_Force_FullSpeed) {
+						if (APU::APU[which]) APU::APU[which]->Run();
+					}
+				}
+				if (Settings::VT369_APU_Force_FullSpeed) {
 					if (APU::APU[which]) APU::APU[which]->Run();
 				}
 				if (which ==NES::WhichScreenToShow) Sound::Run();
@@ -88,6 +93,11 @@ void CPU_VT369::RunCycle (void) {
 		} else {
 			if (~CycleCount &1) {
 				if (PPU::PPU[which]) PPU::PPU[which]->Run();
+				if (!Settings::VT369_APU_Force_FullSpeed) {
+					if (APU::APU[which]) APU::APU[which]->Run();
+				}
+			}
+			if (Settings::VT369_APU_Force_FullSpeed) {
 				if (APU::APU[which]) APU::APU[which]->Run();
 			}
 			if (which ==NES::WhichScreenToShow) Sound::Run();

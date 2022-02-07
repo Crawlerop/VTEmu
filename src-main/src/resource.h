@@ -3,8 +3,8 @@
 // Used by Nintendulator.rc
 //
 #define IDS_APP_TITLE                   101
-#define IDI_NINTENDULATOR               102
-#define IDI_SMALL                       103
+#define IDI_NINTENDULATOR               10010
+#define IDI_SMALL                       10005
 #define IDC_NINTENDULATOR               104
 #define IDR_NINTENDULATOR               105
 #define IDS_NINTENDULATOR               106
@@ -45,7 +45,7 @@
 #define IDD_EXPPORT_KONAMI_HYPER_SHOT   162
 #define IDD_APERTURE                    163
 #define IDD_SUDOKU_EXCALIBUR            164
-#define IDI_VTEMU                       164
+#define IDI_VTEMU                       10000
 #define IDD_GOLDEN_NUGGET_CASINO        165
 #define IDB_PNG1                        165
 #define IDC_ABOUTICON                   1001
@@ -495,18 +495,14 @@
 #define ID_APU_CH2                      32898
 #define ID_CHEATS                       32899
 #define ID_ENABLE_ALL                   32900
-#define ID_VTXXROMSYSTEMTYPE_VT369_1    60100
 #define ID_DISABLE_ALL                  32901
-#define ID_VTXXROMSYSTEMTYPE_VT369_2    60101
 #define ID_PPU_UP_BY_ONE                32902
-#define ID_VTXXROMSYSTEMTYPE_VT369_3    60102
 #define ID_PPU_APERTURE                 32903
-#define ID_VTXXROMSYSTEMTYPE_VT369_4    60103
 #define ID_HARD_GAME_SAVER              32904
-#define ID_VTXXROMSYSTEMTYPE_VT369_5    60104
 #define ID_REVERSE_DPCM                 32905
 #define ID_CPU_SAVESTATE_NAMED          32906
 #define ID_CPU_LOADSTATE_NAMED          32907
+#define ID_SOUND_VTXXAPUDETUNEALT       32907
 #define ID_LOAD_MEMORY_DUMP             32908
 #define ID_SAVE_MEMORY_DUMP             32909
 #define ID_VT369_SOUND_HLE              32910
@@ -544,6 +540,7 @@
 #define ID_APU1_CH4                     51002
 #define ID_APU1_CH3                     51003
 #define ID_APU1_CH5                     51004
+#define ID_SOUND_ALWAYSMAKEAPUFULLSPEED 51010
 #define ID_APU2_CH1                     51100
 #define ID_APU2_CH2                     51101
 #define ID_APU2_CH3                     51102
@@ -555,12 +552,19 @@
 #define ID_VT369_CH2                    51301
 #define ID_VT369_CH3                    51302
 #define ID_VT369_CH4                    51303
+#define ID_SOUND_VTXXAPUDETUNE          52100
+#define ID_SOUND_VTXXAPUDETUNE2         52101
 #define ID_VTXXROMSYSTEMTYPE_VT02       60000
 #define ID_VTXXROMSYSTEMTYPE_WAIXINGVT02 60001
 #define ID_VTXXROMSYSTEMTYPE_VT09       60002
 #define ID_VTXXROMSYSTEMTYPE_VT32       60003
 #define ID_VTXXROMSYSTEMTYPE_VT369      60004
 #define ID_VTXXROMSYSTEMTYPE_VT03       60010
+#define ID_VTXXROMSYSTEMTYPE_VT369_1    60100
+#define ID_VTXXROMSYSTEMTYPE_VT369_2    60101
+#define ID_VTXXROMSYSTEMTYPE_VT369_3    60102
+#define ID_VTXXROMSYSTEMTYPE_VT369_4    60103
+#define ID_VTXXROMSYSTEMTYPE_VT369_5    60104
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -569,8 +573,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        166
-#define _APS_NEXT_COMMAND_VALUE         32905
+#define _APS_NEXT_COMMAND_VALUE         32909
 #define _APS_NEXT_CONTROL_VALUE         1296
-#define _APS_NEXT_SYMED_VALUE           107
+#define _APS_NEXT_SYMED_VALUE           109
 #endif
 #endif

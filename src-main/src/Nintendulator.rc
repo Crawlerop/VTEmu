@@ -56,11 +56,11 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
+IDI_VTEMU               ICON                    "d:\\daffin\\data\\down\\vtemu_DfC_icon.ico"
+
 IDI_NINTENDULATOR       ICON                    "Nintendulator.ICO"
 
 IDI_SMALL               ICON                    "SMALL.ICO"
-
-IDI_VTEMU               ICON                    "d:\\daffin\\data\\down\\vtemu_DfC_icon.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -223,6 +223,8 @@ BEGIN
         MENUITEM "Cleaner-than-original Namco 163 Sound", ID_SOUND_CLEAN_N163
         MENUITEM "VTxx APU 1",                  ID_SOUND_VTXXAPU1
         MENUITEM "VTxx APU 2",                  ID_SOUND_VTXXAPU2
+        MENUITEM "VTxx APU Detune (Dendy 60hz)", ID_SOUND_VTXXAPUDETUNE
+        MENUITEM "VTxx APU Detune (alt)",       ID_SOUND_VTXXAPUDETUNE2
         POPUP "APU 1 Channels"
         BEGIN
             MENUITEM "Square 1",                    ID_APU1_CH1
@@ -250,6 +252,7 @@ BEGIN
             MENUITEM "Channel 3",                   ID_VT369_CH3
             MENUITEM "Channel 4",                   ID_VT369_CH4
         END
+        MENUITEM "Always make APU Full Speed (VT369)", ID_SOUND_ALWAYSMAKEAPUFULLSPEED
     END
     POPUP "&Input"
     BEGIN
@@ -2267,12 +2270,12 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "FileDescription", "Nintendulator"
+            VALUE "FileDescription", "An emulator for VTxx based systems."
             VALUE "FileVersion", "0, 9, 7, 5"
-            VALUE "InternalName", "Nintendulator"
-            VALUE "LegalCopyright", "Copyright ? 2002-2016 QMT Productions"
+            VALUE "InternalName", "VTEmu"
+            VALUE "LegalCopyright", "Copyright ? 2022 Wrapper, 2002-2016 QMT Productions"
             VALUE "OriginalFilename", "Nintendulator.exe"
-            VALUE "ProductName", "Nintendulator"
+            VALUE "ProductName", "VTEmu"
             VALUE "ProductVersion", "0, 9, 7, 5"
         END
     END
