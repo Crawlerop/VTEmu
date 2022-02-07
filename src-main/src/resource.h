@@ -3,8 +3,6 @@
 // Used by Nintendulator.rc
 //
 #define IDS_APP_TITLE                   101
-#define IDI_NINTENDULATOR               10010
-#define IDI_SMALL                       10005
 #define IDC_NINTENDULATOR               104
 #define IDR_NINTENDULATOR               105
 #define IDS_NINTENDULATOR               106
@@ -45,7 +43,6 @@
 #define IDD_EXPPORT_KONAMI_HYPER_SHOT   162
 #define IDD_APERTURE                    163
 #define IDD_SUDOKU_EXCALIBUR            164
-#define IDI_VTEMU                       10000
 #define IDD_GOLDEN_NUGGET_CASINO        165
 #define IDB_PNG1                        165
 #define IDC_ABOUTICON                   1001
@@ -349,6 +346,9 @@
 #define IDC_APERTURE_RIGHT              1298
 #define IDC_APERTURE_BOTTOM             1299
 #define IDC_PAL_EXPORT                  1300
+#define IDI_VTEMU                       10000
+#define IDI_SMALL                       10005
+#define IDI_NINTENDULATOR               10010
 #define ID_FILE_OPEN                    32768
 #define ID_FILE_CLOSE                   32769
 #define ID_FILE_HEADER                  32770
@@ -506,6 +506,8 @@
 #define ID_LOAD_MEMORY_DUMP             32908
 #define ID_SAVE_MEMORY_DUMP             32909
 #define ID_VT369_SOUND_HLE              32910
+#define ID_FILE_RELOADROM               32914
+#define ID_FILE_EXPORTROMFROMMULTICART  32915
 #define ID_PLUG_NONE                    40000
 #define ID_PLUG_GAME_GENIE              40001
 #define ID_PLUG_PRO_ACTION_REPLAY       40002
@@ -565,6 +567,13 @@
 #define ID_VTXXROMSYSTEMTYPE_VT369_3    60102
 #define ID_VTXXROMSYSTEMTYPE_VT369_4    60103
 #define ID_VTXXROMSYSTEMTYPE_VT369_5    60104
+#define ID_VTXXROMSYSTEMTYPE_JUNGLETACVT02 60105
+#define ID_VTXXROMSYSTEMTYPE_MULTICARTA 60200
+#define ID_VTXXROMSYSTEMTYPE_MULTICARTB 60201
+#define ID_VTXXROMSYSTEMTYPE_MULTICARTC 60202
+#define ID_VTXXROMSYSTEMTYPE_MULTICARDD 60203
+#define ID_VTXXROMSYSTEMTYPE_MULTICARTD 60203
+#define ID_RELOADROM                    61000
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -573,8 +582,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        166
-#define _APS_NEXT_COMMAND_VALUE         32909
+#define _APS_NEXT_COMMAND_VALUE         32916
 #define _APS_NEXT_CONTROL_VALUE         1296
-#define _APS_NEXT_SYMED_VALUE           109
+#define _APS_NEXT_SYMED_VALUE           112
 #endif
 #endif

@@ -48,6 +48,7 @@ extern  BOOL	VT369_CH4;
 extern  BOOL	VT369_60hz_Sound;
 extern  BOOL	VT369_60hz_Sound_Alt;
 extern  BOOL	VT369_APU_Force_FullSpeed;
+extern  int		VTxx_Rom_Type;
 extern	BOOL	SwapDutyCycles;
 extern	BOOL	BootlegExpansionAudio;
 extern	BOOL	CleanN163;

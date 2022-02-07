@@ -1972,6 +1972,7 @@ BOOL	OpenFileMFC (FILE *in) {
 BOOL	OpenFileBIN (FILE *in) {
 	fseek(in, 0, SEEK_END);
 	size_t fileSize =ftell(in);
+	TCHAR* SystemName = _T("VT02/VT03 Based ROM image");
 
 	// Detection step 1: File size must be a power of two. This means that only one bit in fileSize must be set.
 	int bits =0;
@@ -1988,11 +1989,85 @@ BOOL	OpenFileBIN (FILE *in) {
 	if (RI.INES_PRGSize >=64*1024*1024/16384) RI.INES_PRGSize =64*1024*1024/16384; // Use only first 64 MiB
 
 	RI.ROMType = ROM_INES;
-	RI.INES_Version = 1; // For CorrectHeader
+	RI.INES_Version = 2; // For CorrectHeader
 	RI.INES_MapperNum = 256;
 	RI.INES2_SubMapper = 0;
 	RI.INES_Flags =1; // Vertical Mirroring
 	RI.ConsoleType =CONSOLE_VT03;
+
+	switch (Settings::VTxx_Rom_Type) {
+		case 0: // VT03 			
+			break;
+		case 1: // Waixing
+			SystemName = _T("VT02/VT03 Based ROM image (Waixing)");
+			RI.INES2_SubMapper = 1;
+			break;
+		case 2: // JungleTac VT03			
+			SystemName = _T("VT02/VT03 Based ROM image (JungleTac)");
+			RI.INES2_SubMapper = 15;
+			break;
+		case 3: // VT09
+			SystemName = _T("VT09 Based ROM image");
+			RI.ConsoleType = CONSOLE_VT09;
+			break;
+		case 4: // VT32 			
+			SystemName = _T("VT32 Based ROM image");
+			RI.ConsoleType = CONSOLE_VT32;
+			RI.INES_MapperNum = 296;
+			break;
+		case 5: // VT369 (Generic)
+			SystemName = _T("VT369 Based ROM image");
+			RI.ConsoleType = CONSOLE_VT369;
+			break;
+		case 6: // VT369 (Cube Tech)			
+			SystemName = _T("VT369 Based ROM image (Cube Tech)");
+			RI.ConsoleType = CONSOLE_VT369;
+			RI.INES_MapperNum = 425;
+			RI.INES2_SubMapper = 13;
+			break;
+		case 7: // VT369 (JungleTac)
+			SystemName = _T("VT369 Based ROM image (JungleTac)");
+			RI.ConsoleType = CONSOLE_VT369;
+			RI.INES2_SubMapper = 15;
+			break;
+		case 8: // Lexibrook Compact Cyber Arcade and it's derrivatives (inc: HiQ Games)
+			SystemName = _T("VT369 Based ROM image (Lexibrook)");
+			RI.ConsoleType = CONSOLE_VT369;
+			RI.INES_MapperNum = 423;			
+			break;
+		case 9: // VT369 (Serial)
+			SystemName = _T("VT369 Based ROM image (Serial)");
+			RI.ConsoleType = CONSOLE_VT369;
+			RI.INES_MapperNum = 426;
+			break;
+		case 10: // VT369 (Inverter)
+			SystemName = _T("VT369 Based ROM image (Inverter)");
+			RI.ConsoleType = CONSOLE_VT369;
+			RI.INES_MapperNum = 427;
+			break;
+		case 11:
+			SystemName = _T("VT02/VT03 Based ROM image (Multicart A)");
+			RI.INES_MapperNum = 270;
+			RI.INES2_SubMapper = 0;
+			break;
+		case 12:
+			SystemName = _T("VT02/VT03 Based ROM image (Multicart B)");
+			RI.INES_MapperNum = 270;
+			RI.INES2_SubMapper = 1;
+			break;
+		case 13:
+			SystemName = _T("VT02/VT03 Based ROM image (Multicart C)");
+			RI.INES_MapperNum = 270;
+			RI.INES2_SubMapper = 2;
+			break;
+		case 14:
+			SystemName = _T("VT02/VT03 Based ROM image (Multicart D)");
+			RI.INES_MapperNum = 270;
+			RI.INES2_SubMapper = 3;
+			break;
+		default:
+			break;
+	}
 
 	RI.INES2_PRGRAM = 7; // 8K
 	PRGSizeRAM = 64 << (RI.INES2_PRGRAM & 0xF);
@@ -2019,7 +2094,8 @@ BOOL	OpenFileBIN (FILE *in) {
 		DestroyMachine();
 		return false;
 	}
-	EI.DbgOut(_T("VT02/VT03 ROM image loaded!"));
+	EI.DbgOut(_T("OneBus ROM image loaded!"));
+	EI.DbgOut(_T("Type: %s"), SystemName);
 	EI.DbgOut(_T("ROM: PRG %i KiB, CHR %i KiB"), RI.INES_PRGSize << 4, RI.INES_CHRSize << 3);
 	EI.DbgOut(_T("RAM: PRG %i KiB, CHR %i KiB"), PRGSizeRAM << 2, CHRSizeRAM);
 	EI.DbgOut(_T("Flags: %s%s"), RI.INES_Flags & 0x02 ? _T("Battery, ") : _T(""), RI.INES_Flags & 0x08 ? _T("Four-screen VRAM") : (RI.INES_Flags & 0x01 ? _T("Vertical mirroring") : _T("Horizontal mirroring")));

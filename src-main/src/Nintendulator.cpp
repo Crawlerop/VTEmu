@@ -277,6 +277,7 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	TCHAR FileName[MAX_PATH];
 	OPENFILENAME ofn;
 	BOOL running = NES::Running;
+	TCHAR CurrentFilename[MAX_PATH];
 	
 	// Disable pressing ALT to open the menu, so that the ALT key can effectively be mapped as a Controller Input key.
 	// This does not affect pressing e.g. ALT+F to open the File menu.
@@ -887,6 +888,76 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			Settings::VT369_APU_Force_FullSpeed = !Settings::VT369_APU_Force_FullSpeed;
 			Settings::ApplySettingsToMenu();
 			break;
+		case ID_VTXXROMSYSTEMTYPE_VT02:
+		case ID_VTXXROMSYSTEMTYPE_VT03:
+			Settings::VTxx_Rom_Type = 0;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_WAIXINGVT02:
+			Settings::VTxx_Rom_Type = 1;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_JUNGLETACVT02:
+			Settings::VTxx_Rom_Type = 2;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT09:
+			Settings::VTxx_Rom_Type = 3;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT32:
+			Settings::VTxx_Rom_Type = 4;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT369:
+			Settings::VTxx_Rom_Type = 5;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT369_1:
+			Settings::VTxx_Rom_Type = 6;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT369_2:
+			Settings::VTxx_Rom_Type = 7;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT369_3:
+			Settings::VTxx_Rom_Type = 8;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT369_4:
+			Settings::VTxx_Rom_Type = 9;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_VT369_5:
+			Settings::VTxx_Rom_Type = 10;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_MULTICARTA:
+			Settings::VTxx_Rom_Type = 11;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_MULTICARTB:
+			Settings::VTxx_Rom_Type = 12;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_MULTICARTC:
+			Settings::VTxx_Rom_Type = 13;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_VTXXROMSYSTEMTYPE_MULTICARTD:
+			Settings::VTxx_Rom_Type = 14;
+			Settings::ApplySettingsToMenu();
+			break;
+		case ID_RELOADROM:			
+			if (!NES::Running) break;
+			if (!NES::unload28()) break;
+			memcpy(CurrentFilename, NES::CurrentFilename, sizeof(CurrentFilename));
+			NES::Stop();
+			NES::CloseFile();		
+
+			if (wcslen(CurrentFilename)) NES::OpenFile(CurrentFilename);
+			break;
 		case ID_SOUND_LPF_NONE:
 			Settings::LowPassFilterAPU =0;
 			Settings::ApplySettingsToMenu();
@@ -983,7 +1054,7 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			if (DIP::windowDIP(hMainWnd, NES::dipswitchDefinition, RI.dipValue)) {
 				NES::Pause(FALSE);
 				if (Movie::Mode) Movie::Stop();
-				NES::Reset(RESET_SOFT);
+				NES::Reset(RESET_HARD); // Power-Cycle the System
 				if (running) NES::Resume();
 			}
 			break;
@@ -1066,6 +1137,7 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			if (running) NES::Start(FALSE);
 			break;
 		case ID_SAVE_FROM_MULTI:
+			if (!EI.multiCanSave || !NES::Running) break;
 			FileName[0] = 0;
 			ZeroMemory(&ofn, sizeof(ofn));
 			ofn.lStructSize = sizeof(ofn);
@@ -1308,8 +1380,7 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case ID_FASTLOAD:
 			if (MessageBox(hMainWnd, _T("Changing this setting causes a reset. Continue?"), _T("Fast-load disk images"), MB_YESNO) !=IDYES) break;
-			if (!NES::unload28()) break;
-			TCHAR CurrentFilename[MAX_PATH];
+			if (!NES::unload28()) break;			
 			memcpy(CurrentFilename, NES::CurrentFilename, sizeof(CurrentFilename));
 			NES::Stop();
 			NES::CloseFile();

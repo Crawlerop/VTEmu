@@ -73,6 +73,8 @@ BEGIN
     POPUP "&File"
     BEGIN
         MENUITEM "&Open and reboot...\tCtrl+O", ID_FILE_OPEN
+        MENUITEM "Reload ROM",                  ID_RELOADROM
+        MENUITEM "Export ROM from Multicart",   ID_SAVE_FROM_MULTI
         MENUITEM "&Close",                      ID_FILE_CLOSE
         MENUITEM "Load &2.8 inch disk set...",  ID_FILE_REPLACE
         MENUITEM "Load &3.5 inch disk...",      ID_LOAD_35
@@ -328,10 +330,11 @@ BEGIN
             MENUITEM "Write changed image to AppData\\FDS directory", ID_COMMIT35_APPDATA
             MENUITEM "Write changed image to original image file (ignore AppData\\FDS file)", ID_COMMIT35_DIRECTLY
         END
-        POPUP "VTxx ROM system type"
+        POPUP "VTxx ROM system type (Reload the ROM for the changes to take effect)"
         BEGIN
             MENUITEM "VT02/VT03",                   ID_VTXXROMSYSTEMTYPE_VT02
             MENUITEM "Waixing VT02/VT03",           ID_VTXXROMSYSTEMTYPE_WAIXINGVT02
+            MENUITEM "JungleTac VT02/VT03",         ID_VTXXROMSYSTEMTYPE_JUNGLETACVT02
             MENUITEM "VT09",                        ID_VTXXROMSYSTEMTYPE_VT09
             MENUITEM "VT32",                        ID_VTXXROMSYSTEMTYPE_VT32
             MENUITEM "VT369",                       ID_VTXXROMSYSTEMTYPE_VT369
@@ -340,6 +343,10 @@ BEGIN
             MENUITEM "VT369 (Lexibrook)",           ID_VTXXROMSYSTEMTYPE_VT369_3
             MENUITEM "VT369 (Serial)",              ID_VTXXROMSYSTEMTYPE_VT369_4
             MENUITEM "VT369 (Inverter)",            ID_VTXXROMSYSTEMTYPE_VT369_5
+            MENUITEM "Multicart A",                 ID_VTXXROMSYSTEMTYPE_MULTICARTA
+            MENUITEM "Multicart B",                 ID_VTXXROMSYSTEMTYPE_MULTICARTB
+            MENUITEM "Multicart C",                 ID_VTXXROMSYSTEMTYPE_MULTICARTC
+            MENUITEM "Multicart D",                 ID_VTXXROMSYSTEMTYPE_MULTICARTD
         END
     END
     POPUP "&Misc"
