@@ -518,7 +518,7 @@ void	MAPINT StopCPU (void) {
 
 /******************************************************************************/
 
-const TCHAR *CompatLevel[COMPAT_NUMTYPES] = {_T("Unsupported"), _T(" [Partially supported]"), _T(" [Mostly supported]"), _T("")};
+const TCHAR *CompatLevel[COMPAT_NUMTYPES] = {_T("Unsupported"), _T(" [Partially supported]"), _T(" [Mostly supported]"), _T(" [Fully supported]")};
 static uint8_t DummyOpenBus =0xFF;
 BOOL		multiCanSave;
 uint8_t*	multiPRGStart;
