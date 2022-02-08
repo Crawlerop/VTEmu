@@ -37,6 +37,8 @@ void	CPU_OneBus::PowerOn (void) {
 void	CPU_OneBus::Reset (void) {
 	CPU_RP2A03::Reset();
 	EncryptionStatus =(RI.INES2_SubMapper >=13)? true: false;
+	reg4100[0x1F] = 0x00;
+	reg4100[0x1C] = 0x00;
 }
 
 uint8_t	CPU_OneBus::GetOpcode(void) {

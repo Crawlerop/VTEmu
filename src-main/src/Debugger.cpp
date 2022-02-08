@@ -1436,6 +1436,9 @@ void	DumpCPU (void)
 	for (i = 4; i < 16; i++)
 		if (CPU::CPU[which]->PRGPointer[i])
 			fwrite(CPU::CPU[which]->PRGPointer[i], 1, 0x1000, out);
+	for (i = 0; i < 4; i++)
+		if (CPU::CPU[which]->PRGPointer[i])
+			fwrite(CPU::CPU[which]->PRGPointer[i], 1, 0x1000, out);
 	fclose(out);
 }
 
@@ -1456,14 +1459,14 @@ void	DumpPPU (void)
 	_stprintf(filename, _T("%s\\Dumps\\%s.%04i%02i%02i_%02i%02i%02i.ppumem"), DataPath, States::BaseFilename, 
 		newtime->tm_year + 1900, newtime->tm_mon + 1, newtime->tm_mday, newtime->tm_hour, newtime->tm_min, newtime->tm_sec);
 	out = _tfopen(filename, _T("wb"));
-	for (i =0; i <0x3000; i++) {
+	for (i =0; i <0x6000; i++) {
 		unsigned char Val = PPU::PPU[which]->ReadHandlerDebug[i >>10](i >>10, i &0x3FF);
 		fwrite(&Val, 1, 1, out);
 	}
 	/*for (i = 0; i < 12; i++)
 		fwrite(PPU::PPU[which]->CHRPointer[i], 1, 0x400, out);*/
-	fwrite(PPU::PPU[which]->Sprite, 1, 0x100, out);
-	fwrite(PPU::PPU[which]->Palette, 1, 0x20, out);
+	fwrite(PPU::PPU[which]->Sprite, 1, 0x1000, out);
+	fwrite(PPU::PPU[which]->Palette, 1, 0x1000, out);
 	fclose(out);
 }
 
