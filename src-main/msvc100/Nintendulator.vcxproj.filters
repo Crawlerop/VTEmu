@@ -478,14 +478,10 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\data\pics\vtemu.png" />
     <Image Include="..\src\icon1.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\src\icon2.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\data\down\vtemu_DfC_icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="..\src\vtemu.ico">

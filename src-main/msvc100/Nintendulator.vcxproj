@@ -253,8 +253,6 @@
     <ResourceCompile Include="..\src\Nintendulator.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\data\down\vtemu_DfC_icon.ico" />
-    <Image Include="..\..\..\data\pics\vtemu.png" />
     <Image Include="..\src\icon1.ico" />
     <Image Include="..\src\icon2.ico" />
     <Image Include="..\src\vtemu.ico" />
