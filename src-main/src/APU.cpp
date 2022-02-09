@@ -129,7 +129,7 @@ void	CSquare::Write (int Reg, unsigned char Val) {
 		envelope =Val &0x10;
 		next_wavehold =Val &0x20;
 		duty =(Val >>6) &0x3;
-		if (Settings::SwapDutyCycles && (duty ==1 || duty ==2)) duty ^=3; // Flip 25% and 50% duty cycles
+		if ((Settings::SwapDutyCycles && (Settings::SwapAllDutyCycles || (duty ==1 || duty ==2)))) duty ^=3; // Flip 25% and 50% duty cycles
 		Vol =envelope? volume: Envelope;
 		break;
 	case 1:	swpstep =Val &0x07;

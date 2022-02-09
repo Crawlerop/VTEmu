@@ -53,6 +53,7 @@ BOOL	VT369_60hz_Sound_Alt = FALSE;
 BOOL	VT369_APU_Force_FullSpeed = FALSE;
 int		VTxx_Rom_Type = 0;
 BOOL	SwapDutyCycles			=FALSE;
+BOOL	SwapAllDutyCycles = FALSE;
 BOOL	BootlegExpansionAudio		=TRUE;
 BOOL	CleanN163			=TRUE;
 BOOL	PreventWaveformClash		=FALSE;
@@ -150,6 +151,7 @@ void	SaveSettings (void) {
 	SAVE_SETTING(VT369_APU_Force_FullSpeed);
 	SAVE_SETTING(VTxx_Rom_Type);
 	SAVE_SETTING(SwapDutyCycles);
+	SAVE_SETTING(SwapAllDutyCycles);
 	SAVE_SETTING(BootlegExpansionAudio);
 	SAVE_SETTING(CleanN163);
 	SAVE_SETTING(RemoveDPCMBuzz);
@@ -260,6 +262,7 @@ void	LoadSettings (void) {
 	LOAD_SETTING(VT369_APU_Force_FullSpeed);
 	LOAD_SETTING(VTxx_Rom_Type);
 	LOAD_SETTING(SwapDutyCycles);
+	LOAD_SETTING(SwapAllDutyCycles);
 	LOAD_SETTING(BootlegExpansionAudio);
 	LOAD_SETTING(CleanN163);
 	LOAD_SETTING(RemoveDPCMBuzz);
@@ -364,6 +367,7 @@ void	ApplySettingsToMenu(void) {
 	CheckMenuItem(hMenu, ID_SOUND_VTXXAPUDETUNE2,	   VT369_60hz_Sound_Alt?	 MF_CHECKED: MF_UNCHECKED);
 	CheckMenuItem(hMenu, ID_SOUND_ALWAYSMAKEAPUFULLSPEED, VT369_APU_Force_FullSpeed? MF_CHECKED: MF_UNCHECKED);
 	CheckMenuItem(hMenu, ID_SOUND_SWAPDUTY,            SwapDutyCycles?           MF_CHECKED: MF_UNCHECKED);
+	CheckMenuItem(hMenu, ID_SOUND_SWAPDUTYCYCLES_ALL,  SwapAllDutyCycles?           MF_CHECKED: MF_UNCHECKED);
 	CheckMenuItem(hMenu, ID_SOUND_EXPAUDIO_BOOTLEG,    BootlegExpansionAudio?    MF_CHECKED: MF_UNCHECKED);
 	CheckMenuItem(hMenu, ID_SOUND_CLEAN_N163,          CleanN163?                MF_CHECKED: MF_UNCHECKED);
 	CheckMenuItem(hMenu, ID_SOUND_REMOVE_BUZZ,         RemoveDPCMBuzz?           MF_CHECKED: MF_UNCHECKED);

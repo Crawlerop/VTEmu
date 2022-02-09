@@ -56,7 +56,6 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-// IDI_VTEMU               ICON                    "d:\\daffin\\data\\down\\vtemu_DfC_icon.ico"
 IDI_VTEMU               ICON                    "vtemu.ico"
 
 IDI_NINTENDULATOR       ICON                    "Nintendulator.ICO"
@@ -210,6 +209,7 @@ BEGIN
         MENUITEM "&Enabled\tCtrl+S",            ID_SOUND_ENABLED
         MENUITEM "&Nonlinear Mixing",           ID_NONLINEAR_MIXING
         MENUITEM "&Swap Duty Cycles",           ID_SOUND_SWAPDUTY
+        MENUITEM "Swap All Duty Cycles",        ID_SOUND_SWAPDUTYCYCLES_ALL
         MENUITEM "&Reverse DPCM Bit Order",     ID_REVERSE_DPCM
         MENUITEM "Remove DPCM &Buzz",           ID_SOUND_REMOVE_BUZZ
         MENUITEM "Ignore writes to $&4011",     ID_SOUND_REMOVE_POPS
@@ -2292,14 +2292,6 @@ BEGIN
         VALUE "Translation", 0x409, 1200
     END
 END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// PNG
-//
-
-// IDB_PNG1                PNG                     "d:\\Daffin\\data\\pics\\vtemu.png"
 
 
 /////////////////////////////////////////////////////////////////////////////

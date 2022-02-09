@@ -982,6 +982,10 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			Settings::SwapDutyCycles =!Settings::SwapDutyCycles;
 			Settings::ApplySettingsToMenu();
 			break;
+		case ID_SOUND_SWAPDUTYCYCLES_ALL:
+			Settings::SwapAllDutyCycles = !Settings::SwapAllDutyCycles;
+			Settings::ApplySettingsToMenu();
+			break;
 		case ID_SOUND_EXPAUDIO_BOOTLEG:
 			Settings::BootlegExpansionAudio =!Settings::BootlegExpansionAudio;
 			Settings::ApplySettingsToMenu();
