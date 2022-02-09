@@ -257,6 +257,7 @@
     <Image Include="..\..\..\data\pics\vtemu.png" />
     <Image Include="..\src\icon1.ico" />
     <Image Include="..\src\icon2.ico" />
+    <Image Include="..\src\vtemu.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -488,5 +488,8 @@
     <Image Include="..\..\..\data\down\vtemu_DfC_icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\src\vtemu.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
