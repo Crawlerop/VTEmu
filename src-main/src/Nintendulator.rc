@@ -56,7 +56,8 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_VTEMU               ICON                    "d:\\daffin\\data\\down\\vtemu_DfC_icon.ico"
+// IDI_VTEMU               ICON                    "d:\\daffin\\data\\down\\vtemu_DfC_icon.ico"
+IDI_VTEMU               ICON                    "vtemu.ico"
 
 IDI_NINTENDULATOR       ICON                    "Nintendulator.ICO"
 
@@ -2298,7 +2299,7 @@ END
 // PNG
 //
 
-IDB_PNG1                PNG                     "d:\\Daffin\\data\\pics\\vtemu.png"
+// IDB_PNG1                PNG                     "d:\\Daffin\\data\\pics\\vtemu.png"
 
 
 /////////////////////////////////////////////////////////////////////////////
