@@ -74,7 +74,7 @@
     <ClCompile>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;_CRT_NON_CONFORMING_SWPRINTFS;%(PreprocessorDefinitions);SPNG_USE_MINIZ</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AssemblerOutput>All</AssemblerOutput>
@@ -142,6 +142,7 @@
     <ClCompile Include="..\src\Hash.cpp" />
     <ClCompile Include="..\src\HeaderEdit.cpp" />
     <ClCompile Include="..\src\MapperInterface.cpp" />
+    <ClCompile Include="..\src\miniz.c" />
     <ClCompile Include="..\src\Movie.cpp" />
     <ClCompile Include="..\src\NES.cpp" />
     <ClCompile Include="..\src\Nintendulator.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="..\src\plugThruDevice_MiniDoctor.cpp" />
     <ClCompile Include="..\src\PPU.cpp" />
     <ClCompile Include="..\src\Settings.cpp" />
+    <ClCompile Include="..\src\spng.c" />
     <ClCompile Include="..\src\UM6578.cpp" />
     <ClCompile Include="..\src\simplefdc.cpp" />
     <ClCompile Include="..\src\Sound.cpp" />
@@ -222,6 +224,7 @@
     <ClInclude Include="..\src\Hash.h" />
     <ClInclude Include="..\src\HeaderEdit.h" />
     <ClInclude Include="..\src\MapperInterface.h" />
+    <ClInclude Include="..\src\miniz.h" />
     <ClInclude Include="..\src\Movie.h" />
     <ClInclude Include="..\src\NES.h" />
     <ClInclude Include="..\src\Nintendulator.h" />
@@ -235,6 +238,7 @@
     <ClInclude Include="..\src\plugThruDevice_SuperMagicCard_transfer.hpp" />
     <ClInclude Include="..\src\PPU.h" />
     <ClInclude Include="..\src\Settings.h" />
+    <ClInclude Include="..\src\spng.h" />
     <ClInclude Include="..\src\UM6578.h" />
     <ClInclude Include="..\src\simplefdc.hpp" />
     <ClInclude Include="..\src\Sound.h" />

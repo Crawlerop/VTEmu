@@ -302,6 +302,12 @@
     <ClCompile Include="..\src\c_e_goldenkey.cpp">
       <Filter>Source Files\Exp Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\miniz.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\spng.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\APU.h">
@@ -461,6 +467,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\ADPCM_VT1682.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\miniz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\spng.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -29,6 +29,7 @@ extern unsigned char RawPalette[8][64][3];
 extern unsigned long Palette32[PALETTE_END];
 extern BOOL Fullscreen;
 extern BOOL ScreenshotRequested;
+extern BOOL ScreenshotRequestedPNG;
 
 extern int FPSnum, FPSCnt;
 
@@ -48,6 +49,7 @@ void	SaveSettings (HKEY);
 void	LoadSettings (HKEY);
 void	DrawScreen (void);
 void	SaveScreenshot (void);
+void	SaveScreenshotPNG (void);
 void	Draw1x (int);
 void	Draw2x (int);
 void	Update (void);

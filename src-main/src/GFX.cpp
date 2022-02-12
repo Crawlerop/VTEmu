@@ -14,6 +14,8 @@
 #include "OneBus.h"
 #include "OneBus_VT369.h"
 #include <commctrl.h>
+#include "spng.h"
+#include "miniz.h"
 
 //#define SHOW_COLOR_NUM
 
@@ -53,6 +55,7 @@ Settings::PALETTE CurrentPalNum =Settings::PALETTE_MAX;
 char Depth;
 BOOL Fullscreen =FALSE;
 BOOL ScreenshotRequested =FALSE;
+BOOL ScreenshotRequestedPNG = FALSE;
 
 LARGE_INTEGER ClockFreq;
 LARGE_INTEGER LastClockVal;
@@ -499,6 +502,134 @@ void	SetFrameskip (int skip)
 	case 9:	CheckMenuRadioItem(hMenu, ID_PPU_FRAMESKIP_0, ID_PPU_FRAMESKIP_9, ID_PPU_FRAMESKIP_9, MF_BYCOMMAND);	break;
 	}
 }
+
+#define VTEMU_STR "VTEmu-0.1"
+void	SaveScreenshotPNG(void) {
+	if (PPU::PPU[0] == NULL) return;
+	TCHAR FileName[MAX_PATH] = { 0 };
+	OPENFILENAME ofn;
+	spng_ihdr ihdr;
+	spng_text vendors[2];	
+	unsigned char* dst = NULL;
+
+	int ok;
+	ZeroMemory(&ofn, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = hMainWnd;
+	ofn.hInstance = hInst;
+	ofn.lpstrFilter = _T("PNG File (*.PNG)\0") _T("*.PNG\0") _T("\0");
+	ofn.lpstrCustomFilter = NULL;
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFile = FileName;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrFileTitle = NULL;
+	ofn.nMaxFileTitle = 0;
+	ofn.lpstrInitialDir = Settings::Path_BMP;
+	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY;
+	ofn.lpstrDefExt = _T("PNG");
+	ofn.lCustData = 0;
+	ofn.lpfnHook = NULL;
+	ofn.lpTemplateName = NULL;
+
+	if (!GetSaveFileName(&ofn)) return;
+	_tcscpy(Settings::Path_BMP, FileName);
+	Settings::Path_BMP[ofn.nFileOffset - 1] = 0;
+
+	spng_ctx* png_context = spng_ctx_new(SPNG_CTX_ENCODER);
+	FILE* F = _tfopen(FileName, TEXT("wb"));
+	if (!F) {
+		MessageBox(hMainWnd, _T("File open failed!"), _T("Nintendulator"), MB_OK);
+		goto fail;
+	}
+	
+	spng_set_png_file(png_context, F);	
+	
+	ZeroMemory(&ihdr, sizeof(ihdr));
+	ihdr.width = SIZEX * 2;
+	ihdr.height = SIZEY * 2;
+	ihdr.bit_depth = 8;
+	ihdr.color_type = SPNG_COLOR_TYPE_TRUECOLOR;
+
+	ZeroMemory(&vendors[0], sizeof(vendors[0]));
+	strcpy(vendors[0].keyword, "Tool");
+	vendors[0].text = VTEMU_STR;
+	vendors[0].length = sizeof(VTEMU_STR);
+	vendors[0].type = SPNG_TEXT;
+
+	ZeroMemory(&vendors[1], sizeof(vendors[1]));
+	strcpy(vendors[1].keyword, "DisplayType");
+	vendors[1].text = "A";
+	vendors[1].length = 1;
+	vendors[1].type = SPNG_TEXT;
+
+	dst = (unsigned char*) malloc(ihdr.width * ihdr.height * 3);
+	if (!dst) {
+		MessageBox(hMainWnd, _T("Out of memory!"), _T("Nintendulator"), MB_OK);
+		goto fail;
+	}
+
+	//EI.DbgOut(_T("DisplayType: 0x%x"), reg2000[0x1C]);
+
+	if (RI.ConsoleType == CONSOLE_VT369 && reg2000[0x1C] & 0x04) {
+		uint16_t* srcEven = dynamic_cast<PPU::PPU_VT369*>(PPU::PPU[0])->DrawArrayEven + 341 * 2 * OFFSETY + 2 * OFFSETX;
+		uint16_t* srcOdd = dynamic_cast<PPU::PPU_VT369*>(PPU::PPU[0])->DrawArrayOdd + 341 * 2 * OFFSETY + 2 * OFFSETX;		
+		vendors[1].text = "B";
+
+		for (int y = 0; y < SIZEY * 2; y++) {
+			int bmpLine = ((SIZEX * 2) * y) * 3;
+			for (int x = 0; x < SIZEX * 2; x++) {
+				unsigned short* src = y & 1 ? srcOdd : srcEven;
+
+				int rgb = Palette32[src[y / 2 * 341 * 2 + x]];
+				dst[bmpLine + (x * 3 + 0)] = (rgb >> 16) & 0xFF;
+				dst[bmpLine + (x * 3 + 1)] = (rgb >> 8) & 0xFF;
+				dst[bmpLine + (x * 3 + 2)] = (rgb >> 0) & 0xFF;
+			}
+		}
+	}
+	else {
+		uint16_t* src = PPU::PPU[0]->DrawArray;
+
+		for (int y = 0; y < SIZEY; y++) {
+			int bmpLine = (SIZEX * y) * 3;
+			for (int x = 0; x < SIZEX; x++) {
+				int rgb = Palette32[src[(y + OFFSETY) * 341 + x + OFFSETX]];
+
+				dst[bmpLine + (x * 3 + 0)] = (rgb >> 16) & 0xFF;
+				dst[bmpLine + (x * 3 + 1)] = (rgb >> 8) & 0xFF;
+				dst[bmpLine + (x * 3 + 2)] = (rgb >> 0) & 0xFF;				
+			}
+		}
+
+		ihdr.width = SIZEX;
+		ihdr.height = SIZEY;
+	}
+	
+	ok = spng_set_ihdr(png_context, &ihdr);
+	if (ok) {
+		MessageBox(hMainWnd, _T("Failed to set IHDR properties!"), _T("Nintendulator"), MB_OK);
+		goto fail;
+	}
+
+	spng_set_text(png_context, vendors, 2);
+	spng_set_option(png_context, SPNG_IMG_COMPRESSION_LEVEL, Z_BEST_COMPRESSION);
+	ok = spng_encode_image(png_context, dst, (ihdr.width*ihdr.height*3), SPNG_FMT_PNG, SPNG_ENCODE_FINALIZE);
+
+	if (ok) {		
+		MessageBox(hMainWnd, _T("Failed to save PNG!"), _T("Nintendulator"), MB_OK);
+		goto fail;
+	}
+
+
+	//spng_get_png_buffer()
+	//EI.DbgOut(_T("IMG Offset 0x%x, 0x%x, 0x%x\n"), *dst, dst, &dst);
+	//MessageBox(hMainWnd, _T("Save is effective"), _T("Nintendulator"), MB_OK);
+
+fail:
+	free(dst);
+	spng_ctx_free(png_context);
+	if (F) fclose(F);
+};	
 
 void	SaveScreenshot (void) {
 static unsigned char   bmpData[(341*3*2 +1)*242*2 +0x36] = {
@@ -1109,6 +1240,11 @@ void	Repaint (void) {
 	if (ScreenshotRequested) { // Only set if Running==TRUE
 		ScreenshotRequested =FALSE;
 		GFX::SaveScreenshot();
+	}
+
+	if (ScreenshotRequestedPNG) { // Only set if Running==TRUE
+		ScreenshotRequestedPNG = FALSE;
+		GFX::SaveScreenshotPNG();
 	}
 
 	// ensure primary surface exists

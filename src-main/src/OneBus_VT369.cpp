@@ -104,6 +104,7 @@ void CPU_VT369::RunCycle (void) {
 		}
 	} else
 	if (reg4100[0x1C] &0x80) { // *3 speed of CPU
+		//EI.DbgOut(_T("3xOutput"));
 		PPU::PPU[which]->Run();
 		if (++prescale ==3) {
 			prescale =0;

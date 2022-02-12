@@ -1110,6 +1110,12 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			else
 				GFX::SaveScreenshot();
 			break;
+		case ID_MISC_SCREENSHOTPNG:
+			if (running)
+				GFX::ScreenshotRequestedPNG = TRUE;
+			else
+				GFX::SaveScreenshotPNG();
+			break;
 		case ID_VSDUAL_LEFT:
 			NES::Stop();
 			GFX::Stop();

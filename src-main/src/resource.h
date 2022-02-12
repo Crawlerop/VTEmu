@@ -509,6 +509,7 @@
 #define ID_FILE_RELOADROM               32914
 #define ID_FILE_EXPORTROMFROMMULTICART  32915
 #define ID_SOUND_SWAPALLDUTYCYCLES      32916
+#define ID_MISC_SAVEPNGSCREENSHOT       32917
 #define ID_PLUG_NONE                    40000
 #define ID_PLUG_GAME_GENIE              40001
 #define ID_PLUG_PRO_ACTION_REPLAY       40002
@@ -576,6 +577,7 @@
 #define ID_VTXXROMSYSTEMTYPE_MULTICARTD 60203
 #define ID_RELOADROM                    61000
 #define ID_SOUND_SWAPDUTYCYCLES_ALL     65110
+#define ID_MISC_SCREENSHOTPNG           65300
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -584,8 +586,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        166
-#define _APS_NEXT_COMMAND_VALUE         32917
+#define _APS_NEXT_COMMAND_VALUE         32918
 #define _APS_NEXT_CONTROL_VALUE         1296
-#define _APS_NEXT_SYMED_VALUE           113
+#define _APS_NEXT_SYMED_VALUE           114
 #endif
 #endif

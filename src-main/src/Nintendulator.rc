@@ -353,6 +353,7 @@ BEGIN
     POPUP "&Misc"
     BEGIN
         MENUITEM "Save &BMP Screenshot...\tF12", ID_MISC_SCREENSHOT
+        MENUITEM "Save PNG Screenshot",         ID_MISC_SCREENSHOTPNG
         MENUITEM "S&tart AVI Capture...",       ID_MISC_STARTAVICAPTURE
         MENUITEM "St&op AVI Capture",           ID_MISC_STOPAVICAPTURE
         MENUITEM "Run &CopyNES plugin...",      ID_MISC_COPYNES
@@ -2262,8 +2263,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,9,7,5
- PRODUCTVERSION 0,9,7,5
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -2279,12 +2280,12 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "FileDescription", "An emulator for VTxx based systems."
-            VALUE "FileVersion", "0, 9, 7, 5"
+            VALUE "FileVersion", "1.0.0.0"
             VALUE "InternalName", "VTEmu"
-            VALUE "LegalCopyright", "Copyright ? 2022 Wrapper, 2002-2016 QMT Productions"
+            VALUE "LegalCopyright", "Copyright © 2022 Wrapper, 2002-2016 QMT Productions"
             VALUE "OriginalFilename", "Nintendulator.exe"
             VALUE "ProductName", "VTEmu"
-            VALUE "ProductVersion", "0, 9, 7, 5"
+            VALUE "ProductVersion", "1.0.0.0"
         END
     END
     BLOCK "VarFileInfo"
