@@ -33,15 +33,15 @@ extern Settings::Region CurRegion;
 // Maximum supported data sizes, since it's far easier than dynamically allocating them
 
 // 128 MiB PRG ROM
-#define	MAX_PRGROM_SIZE	0x8000
+#define	MAX_PRGROM_SIZE	0x10000
 #define	MAX_PRGROM_MASK	(MAX_PRGROM_SIZE - 1)
 
 // 4 MiB PRG RAM
-#define	MAX_PRGRAM_SIZE	0x400
+#define	MAX_PRGRAM_SIZE	0x800
 #define	MAX_PRGRAM_MASK	(MAX_PRGRAM_SIZE - 1)
 
 // 4096KB CHR ROM
-#define	MAX_CHRROM_SIZE	0x1000
+#define	MAX_CHRROM_SIZE	0x2000
 #define	MAX_CHRROM_MASK	(MAX_CHRROM_SIZE - 1)
 
 // 256KB CHR RAM

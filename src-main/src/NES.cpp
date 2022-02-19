@@ -1222,7 +1222,9 @@ BOOL	OpenFileUNIF (FILE *in) {
 	if (!strcmp(RI.UNIF_BoardName, "UNL-603-5052")) RI2.INES_MapperNum =238;
 	if (!strcmp(RI.UNIF_BoardName, "WAIXING-FW01")) { RI2.INES_MapperNum =227; }
 	if (!strcmp(RI.UNIF_BoardName, "UNL-43272")) RI2.INES_MapperNum =242;
-	if (!strcmp(RI.UNIF_BoardName, "BMC-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-DANCE")) { RI2.INES_MapperNum = 256; RI2.INES2_PRGRAM = 0x07; RI.ConsoleType = CONSOLE_VT03; RI2.ConsoleType = CONSOLE_VT03; }
+	if (!strcmp(RI.UNIF_BoardName, "BMC-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-DANCE")) { RI2.INES_MapperNum = 256; RI2.INES2_PRGRAM = 0x07; RI.ConsoleType = CONSOLE_VT03; RI2.ConsoleType = CONSOLE_VT03; }if (!strcmp(RI.UNIF_BoardName, "BMC-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-OneBus") || !strcmp(RI.UNIF_BoardName, "UNL-DANCE")) { RI2.INES_MapperNum = 256; RI2.INES2_PRGRAM = 0x07; RI.ConsoleType = CONSOLE_VT03; RI2.ConsoleType = CONSOLE_VT03; }
+	if (!strcmp(RI.UNIF_BoardName, "UNL-OneBus-JungleTac")) { RI2.INES_MapperNum = 256; RI2.INES2_SubMapper = 15; RI2.INES2_PRGRAM = 0x07; RI.ConsoleType = CONSOLE_VT03; RI2.ConsoleType = CONSOLE_VT03; }	
+	if (!strcmp(RI.UNIF_BoardName, "UNL-OneBus-VT09")) { RI2.INES_MapperNum = 256; RI2.INES2_PRGRAM = 0x07; RI.ConsoleType = CONSOLE_VT09; RI2.ConsoleType = CONSOLE_VT09; }
 	if (!strcmp(RI.UNIF_BoardName, "PEC-586")) { RI2.INES_MapperNum =257;  RI2.INES2_PRGRAM=0x07; }
 	if (!strcmp(RI.UNIF_BoardName, "UNL-158B")) { RI2.INES_MapperNum =258; }
 	if (!strcmp(RI.UNIF_BoardName, "BMC-F-15")) { RI2.INES_MapperNum =259; }
@@ -1986,7 +1988,7 @@ BOOL	OpenFileBIN (FILE *in) {
 
 	RI.INES_PRGSize = (WORD) (fileSize >>14) + ((fileSize &16383)? 1: 0);
 	RI.INES_CHRSize = 0;
-	if (RI.INES_PRGSize >=64*1024*1024/16384) RI.INES_PRGSize =64*1024*1024/16384; // Use only first 64 MiB
+	if (Settings::VTxx_Rom_Type != 6 && RI.INES_PRGSize >=64*1024*1024/16384) RI.INES_PRGSize =64*1024*1024/16384; // Use only first 64 MiB
 
 	RI.ROMType = ROM_INES;
 	RI.INES_Version = 2; // For CorrectHeader
