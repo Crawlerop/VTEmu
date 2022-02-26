@@ -91,7 +91,7 @@ void	MAPINT	write4 (int bank, int addr, int val) {
 }
 
 BOOL	MAPINT	load (void) {
-	MMC1::load(sync, MMC1B);
+	MMC1::load(sync, MMC1A);
 	Latch::load(sync, false);
 	OneBus::load(sync);
 	return TRUE;

@@ -4,7 +4,6 @@
 namespace MMC1 {
 #define MMC1A 0
 #define MMC1B 1
-#define MMC1C 2
 
 extern FSync	sync;
 extern int	revision;

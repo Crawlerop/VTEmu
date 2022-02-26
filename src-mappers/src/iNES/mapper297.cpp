@@ -37,7 +37,7 @@ void	MAPINT	writeLatch (int bank, int addr, int val) {
 }
 
 BOOL	MAPINT	load (void) {
-	MMC1::load(sync, MMC1B);
+	MMC1::load(sync, MMC1A);
 	return TRUE;
 }
 

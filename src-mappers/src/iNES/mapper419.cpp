@@ -2,7 +2,6 @@
 #include	"..\Hardware\h_OneBus.h"
 #include	"..\Hardware\Sound\Butterworth.h"
 #include	"..\Hardware\Sound\s_ADPCM3Bit.h"
-// #define DISABLE_LPF
 
 namespace {
 ADPCM3Bit 	adpcm;
@@ -135,11 +134,7 @@ int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
 }
 
 int	MAPINT	mapperSound (int cycles) {
-#ifndef DISABLE_LPF
 	return lowPassFilter.output(adpcm.getOutput()*256 +1e-15);
-#else
-	return adpcm.getOutput() * 256 + 1e-15;
-#endif
 }
 
 uint16_t mapperNum =419;

@@ -49,6 +49,11 @@ void	sync (void) {
 	}
 }
 
+void	MAPINT	writeVRC4 (int bank, int addr, int val) {
+	if (addr &0x800) addr =(addr &4? 8: 0) | (addr &8? 4: 0) | addr &~0xC;
+	VRC4::write(bank, addr, val);
+}
+
 void	applyMode (void) {
 	switch(mapper) {
 		case M_MMC1:
@@ -68,16 +73,13 @@ void	applyMode (void) {
 			break;
 		case M_VRC4:
 			EMU->SetIRQ(1);
-			EMU->SetCPUWriteHandler(0x8, VRC4::writePRG);
-			EMU->SetCPUWriteHandler(0x9, VRC4::writeMisc);
-			EMU->SetCPUWriteHandler(0xA, VRC4::writePRG);
-			EMU->SetCPUWriteHandler(0xB, VRC4::writeCHR);
-			EMU->SetCPUWriteHandler(0xC, VRC4::writeCHR);
-			EMU->SetCPUWriteHandler(0xD, VRC4::writeCHR);
-			EMU->SetCPUWriteHandler(0xE, VRC4::writeCHR);
-			EMU->SetCPUWriteHandler(0xF, VRC4::writeIRQ);
+			for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUWriteHandler(bank, writeVRC4);
 			break;
 	}
+}
+
+int	MAPINT	readDIP (int bank, int addr) {
+	return ROM->dipValue &7 |*EMU->OpenBus &~7;
 }
 
 void	MAPINT	writeReg (int bank, int addr, int val) {
@@ -88,7 +90,7 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 
 BOOL	MAPINT	load (void) {
 	VRC4::load(sync, 0x04, 0x08, NULL, true, 0);
-	MMC1::load(sync, MMC1B);
+	MMC1::load(sync, MMC1A);
 	MMC3::load(sync);
 	return TRUE;
 }
@@ -98,6 +100,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 	MMC1::reset(RESET_HARD);
 	MMC3::reset(RESET_HARD);
 	VRC4::reset(RESET_HARD);
+	EMU->SetCPUReadHandler(0x5, readDIP);
 	EMU->SetCPUWriteHandler(0x5, writeReg);
 	applyMode();
 	sync();

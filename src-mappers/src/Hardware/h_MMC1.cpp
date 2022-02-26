@@ -1,5 +1,11 @@
 #include	"h_MMC1.h"
 
+#define prg16K    !!(reg[0] &0x08)
+#define fixedLast !!(reg[0] &0x04)
+#define chr4K     !!(reg[0] &0x10)
+#define prg         (reg[3])
+#define wram        (reg[3] &0x10)
+
 namespace MMC1 {
 FSync		sync;
 int		revision;
@@ -28,33 +34,29 @@ void	MAPINT	write (int bank, int addr, int val) {
 	}
 }
 
-#define prg16K !!(reg[0] &0x08)
-#define unrom  !!(reg[0] &0x04)
 int	getPRGBank (int bank) {
 	int result;
 
-	if (bank &0x01)
-		result =reg[3] |  !prg16K*0x01  |  prg16K* unrom*0x0F ;
+	if (prg16K)
+		result =fixedLast? (prg |bank*0xF): (prg &bank*0xF);
 	else
-		result =reg[3] &~(!prg16K*0x01) &~(prg16K*!unrom*0x0F);
+		result =prg &~1 |bank;
 	
-	if (revision ==MMC1A && reg[3] &0x10) // MMC1A in 16 KiB WRAM mode
-		return result &0x07 | reg[3] &0x08;
+	if (revision ==MMC1A && wram) // MMC1A in 16 KiB WRAM mode
+		return result &0x07 | prg &0x08;
 	else
 		return result &0x0F;
 }
-#undef prg16K
-#undef unrom
 
 int	getCHRBank (int bank) {
-	if (reg[0] &0x10) // 4 KiB mode
+	if (chr4K)
 		return reg[1 +bank];
-	else              // 8 KiB mode
-		return reg[1] &~1 | bank;
+	else
+		return reg[1] &~1 |bank;
 }
 
 void	syncWRAM (int bank) {
-	if (revision >=MMC1B && reg[3] &0x10) { // PRG-RAM /CE on MMC1B+
+	if (revision >=MMC1B && wram) {
 		EMU->SetPRG_OB4(0x6);
 		EMU->SetPRG_OB4(0x7);
 	} else
@@ -104,7 +106,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 		reg[0] =0x0C;
 		reg[1] =0x00;
 		reg[2] =0x00;
-		reg[3] =revision ==MMC1C? 0x10: 0x00; // MMC1A: PRG-RAM always enabled, MMC1B: PRG-RAM enabled by default, MMC1C: PRG-RAM disabled by default
+		reg[3] =0x00;
 	}
 	for (int bank =0x8; bank<=0xF; bank++) EMU->SetCPUWriteHandler(bank, write);
 	sync();

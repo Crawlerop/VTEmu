@@ -1475,7 +1475,7 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SETCURSOR:
 		CursorOnOutput =false;
-		if (LOWORD(lParam) == HTCLIENT || GFX::Fullscreen) {
+		if (LOWORD(lParam) == HTCLIENT && GFX::Fullscreen) {
 			CursorOnOutput =true;
 			SetCursor(*CurrentCursor);
 			if (MaskMouse && Controllers::scrollLock)

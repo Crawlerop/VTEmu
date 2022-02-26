@@ -1122,7 +1122,8 @@ int	MAPINT	ReadPRG (int Bank, int Addr) {
 	if (CPU::CPU[Bank >>4]->Readable[Bank &0xF])
 		return CPU::CPU[Bank >>4]->PRGPointer[Bank &0xF][Addr];
 	else	
-		return CPU::CPU[Bank >>4]->LastRead; //-1;
+		// return CPU::CPU[Bank >>4]->LastRead; //-1;
+		return Bank << 4 | Addr >> 8;
 }
 
 void	MAPINT	WritePRG (int Bank, int Addr, int Val) {

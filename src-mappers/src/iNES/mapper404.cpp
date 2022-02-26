@@ -24,7 +24,7 @@ void	MAPINT	writereg (int bank, int addr, int val) {
 }
 
 BOOL	MAPINT	load (void) {
-	MMC1::load(sync, MMC1B);
+	MMC1::load(sync, MMC1A);
 	iNES_SetSRAM();
 	return TRUE;
 }

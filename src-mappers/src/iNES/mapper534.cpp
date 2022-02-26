@@ -8,6 +8,7 @@ FCPURead	readCart;
 void	sync (void) {
 	int prgAND = reg[0] &0x40? 0x0F: 0x1F;
 	int prgOR  =(reg[0] <<4 &0x70 | reg[0] <<3 &0x180) &~prgAND;
+	if (ROM->INES2_SubMapper ==1) prgOR |=prgOR >>1 &0x80;
 	switch(reg[3] &3) {
 		case 0: MMC3::syncPRG(prgAND, prgOR); break;
 		case 1:

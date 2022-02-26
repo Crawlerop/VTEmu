@@ -11,6 +11,7 @@
 	3 - JX9003B
 	4 - GameStar Smart Genius Deluxe
 	5 - HST-162 (500-in-1)
+	6 - FZZC3Y
 	
 	Verified on real hardware:
 	"Legend of Kage" sets CNROM latch 1 and switches between CHR bank 0 and 1 using 5FF2, causing the wrong bank (1 instead of 0) during gameplay.
@@ -20,7 +21,7 @@
 	- 256 KiB PRG+128 KiB CHR => Submapper 1
 	- 128 KiB PRG+64 KiB CHR  => Submapper 1
 	- A001.5 ever set         => Submapper 2
-	- 5FF5/5FF6 written-to    => Submapper 3	
+	- 5FF5/5FF6 written-to    => Submapper 3
 */
 
 namespace {
@@ -46,10 +47,10 @@ bool		enableIRQ;
 #define		prgMode     (fk23reg[0] &7)
 
 #define		chrMixed  !!(wram &0x04)
-#define		chrNROM  (!!(fk23reg[0] &0x40) || ROM->CHRROMSize ==0 && ROM->CHRRAMSize ==8192)
+#define		chrNROM  (!!(fk23reg[0] &0x60) || ROM->CHRROMSize ==0 && ROM->CHRRAMSize ==8192)
 #define		chrCNROM ( !(fk23reg[0] &0x20) && (ROM->INES2_SubMapper ==1 || ROM->INES2_SubMapper ==5))
 #define		chrSmall  !!(fk23reg[0] &0x10)
-#define		chrRAM   (!!(fk23reg[0] &0x20) && ROM->CHRRAMSize >0 || ROM->CHRROMSize ==0)
+#define		chrRAM   (!!(fk23reg[0] &0x20) && !(fk23reg[0] &0x40) && ROM->CHRRAMSize >0 || ROM->CHRROMSize ==0)
 
 #define		wramEnabled   !!(wram &0x80)
 #define		wramProtected !!(wram &0x40)
@@ -258,6 +259,9 @@ BOOL	MAPINT	load (void) {
 		case 5:
 			MapperInfo_176.Description =_T("HST-162");
 			break;
+		case 6:
+			MapperInfo_176.Description =_T("FZZC3Y");
+			break;
 	}
 	return TRUE;
 }
@@ -287,6 +291,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {	// Cart detects soft reset, so always
 	static const uint8_t initialReg[12] = { 0x00, 0x02, 0x04, 0x05, 0x06, 0x07, 0x00, 0x01, 0xFE, 0xFF, 0x01, 0x03 };
 	for (int i =0; i <12; i++) mmc3reg[i] = initialReg[i];
 	for (auto& r: fk23reg) r =0x00;
+	if (ROM->INES2_SubMapper ==6) fk23reg[1] =0xFF;
 	
 	if (ROM->INES_MapperNum ==523) 
 		mirroring =(ROM->INES_Flags &1) ^1;

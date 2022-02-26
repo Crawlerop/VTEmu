@@ -1,10 +1,10 @@
 ﻿#include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_MMC3.h"
 
-#define prgAND ~reg[3] &0x3F
-#define chrAND  0xFF >>(~reg[2] &0xF)
-//#define prgOR   reg[1] | reg[2] <<2 &0x300
-#define chrOR   reg[0] | reg[2] <<4 &0xF00
+#define prgAND (~reg[3] &0x3F)
+#define chrAND (0xFF >>(~reg[2] &0xF))
+//#define prgOR  (reg[1] | reg[2] <<2 &0x300)
+#define chrOR  (reg[0] | reg[2] <<4 &0xF00)
 #define locked (reg[3] &0x40)
 
 /*	Menu selection in (10MG-D) 18-in-1:
@@ -52,7 +52,7 @@ void	sync (void) {
 	MMC3::syncPRG(prgAND, prgOR);
 
 	if (ROM->CHRROMSize || ROM->CHRRAMSize >8192)
-		MMC3::syncCHR(chrAND, chrOR);
+		MMC3::syncCHR(chrAND, chrOR &~chrAND);
 	else
 		EMU->SetCHR_RAM8(0x0, 0);
 	MMC3::syncMirror();
@@ -73,7 +73,7 @@ int	MAPINT	readDIP (int bank, int addr) {
 
 void	MAPINT	writeReg (int bank, int addr, int val) {
 	MMC3::wramWrite(bank, addr, val);
-	if (!locked) {
+	if (!locked) {		
 		reg[index++ &3] =val;
 		sync();
 	}

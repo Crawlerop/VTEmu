@@ -18,10 +18,6 @@ void	sync (void) {
 		EMU->Mirror_V();
 }
 
-int	MAPINT	readOB (int bank, int addr) {
-	return 0x60; // For TetrisA
-}
-
 void	MAPINT	writeReg (int bank, int addr, int val) {
 	if (bank ==0x4) writeAPU(bank, addr, val);
 	if (addr &0x100) {
@@ -42,8 +38,6 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 	sync();
 
 	writeAPU =EMU->GetCPUWriteHandler(0x4);
-	for (int bank =0x6; bank <=0x7; bank++) EMU->SetCPUReadHandler(bank, readOB);
-	for (int bank =0x6; bank <=0x7; bank++) EMU->SetCPUReadHandlerDebug(bank, readOB);
 	for (int bank =0x4; bank <=0x5; bank++) EMU->SetCPUWriteHandler(bank, writeReg);
 	for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUWriteHandler(bank, writeCHR);
 }

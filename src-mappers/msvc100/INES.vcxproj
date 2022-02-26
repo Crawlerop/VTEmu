@@ -67,7 +67,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+	<AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
@@ -548,6 +548,11 @@
     <ClCompile Include="..\src\iNES\mapper456.cpp" />
     <ClCompile Include="..\src\iNES\mapper457.cpp" />
     <ClCompile Include="..\src\iNES\mapper458.cpp" />
+    <ClCompile Include="..\src\iNES\mapper459.cpp" />
+    <ClCompile Include="..\src\iNES\mapper460.cpp" />
+    <ClCompile Include="..\src\iNES\mapper461.cpp" />
+    <ClCompile Include="..\src\iNES\mapper462.cpp" />
+    <ClCompile Include="..\src\iNES\mapper463.cpp" />
     <ClCompile Include="..\src\iNES\mapper500.cpp" />
     <ClCompile Include="..\src\iNES\mapper501.cpp" />
     <ClCompile Include="..\src\iNES\mapper502.cpp" />

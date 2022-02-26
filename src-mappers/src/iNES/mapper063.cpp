@@ -1,10 +1,11 @@
 #include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_Latch.h"
 
-#define prg                (Latch::addr >>2 &0xFF)
-#define	horizontalMirroring Latch::addr &0x0001
-#define	nrom256             Latch::addr &0x0002
-#define	protectCHR          Latch::addr &0x0400
+#define prg          (Latch::addr >>2 &(ROM->INES2_SubMapper ==1? 0x7F: 0xFF))
+#define	mirrorH    !!(Latch::addr &0x0001)
+#define	nrom256    !!(Latch::addr &0x0002)
+#define	protectCHR !!(Latch::addr &0x0400 && ROM->INES2_SubMapper==0 || Latch::addr &0x0200 && ROM->INES2_SubMapper==1)
+
 namespace {
 void	sync (void) {
 	if (nrom256)
@@ -18,7 +19,7 @@ void	sync (void) {
 	EMU->SetCHR_RAM8(0x0, 0);
 	if (protectCHR) for (int bank =0; bank <8; bank++) EMU->SetCHR_Ptr1(bank, EMU->GetCHR_Ptr1(bank), FALSE);
 	
-	if (horizontalMirroring)
+	if (mirrorH)
 		EMU->Mirror_H();
 	else	
 		EMU->Mirror_V();
