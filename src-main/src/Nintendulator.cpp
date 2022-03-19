@@ -950,7 +950,7 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			Settings::ApplySettingsToMenu();
 			break;
 		case ID_RELOADROM:			
-			if (!NES::Running) break;
+			//if (!NES::Running) break;
 			if (!NES::unload28()) break;
 			memcpy(CurrentFilename, NES::CurrentFilename, sizeof(CurrentFilename));
 			NES::Stop();
@@ -1147,7 +1147,7 @@ LRESULT CALLBACK	WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			if (running) NES::Start(FALSE);
 			break;
 		case ID_SAVE_FROM_MULTI:
-			if (!EI.multiCanSave || !NES::Running) break;
+			if (!EI.multiCanSave) break;
 			FileName[0] = 0;
 			ZeroMemory(&ofn, sizeof(ofn));
 			ofn.lStructSize = sizeof(ofn);
