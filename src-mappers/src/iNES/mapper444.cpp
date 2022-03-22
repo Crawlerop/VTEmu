@@ -4,7 +4,7 @@
 namespace {
 #define chrA17_MMC3 !!(ROM->INES2_SubMapper &1)
 #define chrA18_D4   !!(ROM->INES2_SubMapper &2)
-#define prgAND         0x0F
+#define prgAND        (ROM->INES2_SubMapper &4 && reg &0x02? 0x1F: 0x0F)
 #define chrAND        (chrA17_MMC3? 0xFF: 0x7F)
 #define prgOR         (reg <<4)
 #define chrOR         (reg <<7 &(chrA17_MMC3? 0x000: 0x080) | reg <<(chrA18_D4? 4: 7) &0x100)

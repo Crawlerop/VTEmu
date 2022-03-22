@@ -70,7 +70,7 @@ void	applyMode () {
 
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
-	MMC1::load(sync, MMC1B);
+	MMC1::load(sync, MMC1Type::MMC1B);
 	return TRUE;
 }
 
@@ -113,7 +113,7 @@ uint16_t mapperNum =446;
 
 MapperInfo MapperInfo_446 ={
 	&mapperNum,
-	_T("SMD172B"),
+	_T("SMD172B_FPGA"),
 	COMPAT_FULL,
 	load,
 	reset,

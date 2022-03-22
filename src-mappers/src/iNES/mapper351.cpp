@@ -7,8 +7,9 @@
 #define M_MMC3   0x00
 #define M_MMC1   0x02
 #define M_VRC4   0x03
-#define nrom   !!(reg[2] &0x80)
+#define nrom   !!(reg[2] &0x10)
 #define prg128 !!(reg[2] &0x04)
+#define chrram !!(reg[2] &0x01)
 #define chr8   !!(reg[2] &0x40)
 #define chr128 !!(reg[2] &0x20)
 #define chr32  !!(reg[2] &0x10)
@@ -31,6 +32,9 @@ void	sync (void) {
 		case M_VRC4: VRC4::syncPRG(prgAND, reg[1] >>1 &~prgAND); break;
 	}
 	
+	if (chrram)
+		EMU->SetCHR_RAM8(0x0, 0);
+	else
 	if (chr8)
 		EMU->SetCHR_ROM8(0x0, reg[0] >>2);
 	else
@@ -89,8 +93,13 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 }
 
 BOOL	MAPINT	load (void) {
+	if (ROM->CHRROMSize) { /* Apparently, this mapper can access CHR ROM as PRG ROM? */
+		size_t oldPRGROMSize =ROM->PRGROMSize;
+		EMU->SetPRGROMSize(ROM->PRGROMSize +ROM->CHRROMSize);
+		for (int i =0; i <ROM->CHRROMSize; i++) ROM->PRGROMData[oldPRGROMSize +i] =ROM->CHRROMData[i];
+	}
 	VRC4::load(sync, 0x04, 0x08, NULL, true, 0);
-	MMC1::load(sync, MMC1A);
+	MMC1::load(sync, MMC1Type::MMC1A);
 	MMC3::load(sync);
 	return TRUE;
 }

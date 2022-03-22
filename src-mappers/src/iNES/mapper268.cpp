@@ -13,13 +13,34 @@ void	sync (void) {
 	                    | (reg[0] &0x40? 0x00: 0x10) // 128 KiB ^=PRG A17
 	                    | (reg[1] &0x80? 0x00: 0x20) // 256 KiB ^=PRG A18
 			    | (reg[1] &0x40? 0x40: 0x00) // 512 KiB ^=PRG A19
-			    | (reg[1] &0x20? 0x80: 0x00);// 1 MiB   ^=PRG A20
-	int prgMaskGNROM    = (reg[3] &0x10? (reg[1] &0x02? 0x03: 0x01): 0x00);
-	int prgOffset       = (reg[3] &0x0E)
-	                    |((reg[0] &0x07) <<4)
-			    | (reg[1] &0x10? 0x80: 0x00)
-			    |((reg[1] &0x0C) <<6)
-			    |((reg[0] &0x30) <<6);
+			    | (reg[1] &0x20? 0x80: 0x00) // 1 MiB   ^=PRG A20
+	;
+	int prgMaskGNROM;
+	int prgOffset;
+	switch (ROM->INES2_SubMapper &~1) {
+		case 2:
+			prgMaskGNROM    = (reg[3] &0x10? (reg[1] &0x10? 0x01: 0x03): 0x00);
+			prgOffset       = (reg[3] &0x0E)
+					|((reg[0] &0x07) <<4)
+					| (reg[1] &0x08? 0x80: 0x00)
+					|((reg[1] &0x06) <<7)
+					|((reg[0] &0x30) <<6);
+			break;
+		case 4:
+			prgMaskGNROM    = (reg[3] &0x10? (reg[1] &0x10? 0x01: 0x03): 0x00);
+			prgOffset       = (reg[3] &0x0E)
+					|((reg[0] &0x07) <<4)
+					|((reg[0] &0x30) <<3);
+			break;
+		default:
+			prgMaskGNROM    = (reg[3] &0x10? (reg[1] &0x02? 0x03: 0x01): 0x00);
+			prgOffset       = (reg[3] &0x0E)
+					|((reg[0] &0x07) <<4)
+					| (reg[1] &0x10? 0x80: 0x00)
+					|((reg[1] &0x0C) <<6)
+					|((reg[0] &0x30) <<6);
+			break;
+	}
 	int maskedPRGOffset = prgOffset &~(prgMaskMMC3 | prgMaskGNROM);
 	for (int bank =0; bank <4; bank++) EMU->SetPRG_ROM8(0x8 +bank*2, MMC3::getPRGBank(bank) &prgMaskMMC3 | maskedPRGOffset | bank&prgMaskGNROM);
 	
@@ -64,6 +85,14 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
 	MMC3::load(sync);
+	if (ROM->INES_MapperNum ==268) switch(ROM->INES2_SubMapper) {
+		default:
+		case 0: MapperInfo_268.Description =_T("Coolboy"); break;
+		case 1: MapperInfo_268.Description =_T("Mindkids"); break;
+		case 2:
+		case 3: MapperInfo_268.Description =_T("Mindkids SMD172C-L1"); break;
+		case 4: MapperInfo_268.Description =_T("LD622D"); break;
+	} 
 	return TRUE;
 }
 

@@ -12,7 +12,7 @@ void	Sync (void) {
 }
 
 BOOL	MAPINT	Load (void) {
-	MMC3::load(Sync); // For Mickey's Safari in Letterland
+	MMC3::load(Sync);
 	return TRUE;
 }
 

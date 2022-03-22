@@ -2,7 +2,7 @@
 #include	"..\Hardware\h_Latch.h"
 
 namespace {
-void	Sync (void) {
+void	sync (void) {
 	EMU->SetPRG_ROM32(0x8, Latch::addr >>8);
 	EMU->SetCHR_ROM8(0, Latch::addr >>8);
 	if (Latch::addr &0x200)
@@ -11,12 +11,9 @@ void	Sync (void) {
 		EMU->Mirror_V();
 }
 
-BOOL	MAPINT	Load (void) {
-	Latch::load(Sync, TRUE);
+BOOL	MAPINT	load (void) {
+	Latch::load(sync, false);
 	return TRUE;
-}
-void	MAPINT	Reset (RESET_TYPE ResetType) {
-	Latch::reset(ResetType);
 }
 
 uint16_t MapperNum =341;
@@ -26,8 +23,8 @@ MapperInfo MapperInfo_341 = {
 	&MapperNum,
 	_T("TJ-03"),
 	COMPAT_FULL,
-	Load,
-	Reset,
+	load,
+	Latch::resetHard,
 	NULL,
 	NULL,
 	NULL,

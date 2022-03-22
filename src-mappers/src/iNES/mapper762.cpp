@@ -33,7 +33,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 uint16_t MapperNum =762;
 } // namespace
 
-MapperInfo MapperInfo_762 ={
+MapperInfo MapperInfo_762 ={ /* PRELIMINARY mapper number */
 	&MapperNum,
 	_T("90-in-1"),
 	COMPAT_FULL,

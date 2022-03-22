@@ -1317,7 +1317,7 @@ void	__fastcall	PPU_RP2C02::Write6 (int Val)
 
 void	__fastcall	PPU_RP2C02::Write7 (int Val) {
 	register unsigned char Addr;
-	if ((VRAMAddr &0x3F00) ==0x3F00) {
+	if ((VRAMAddr &0x3F00) ==0x3F00 && !IsRendering) {
 		Val &=0x3F;
 		Addr =(unsigned char) VRAMAddr &0x1F;
 		Palette[Addr] =(unsigned char)Val;

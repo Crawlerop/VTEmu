@@ -7,7 +7,7 @@ FCPURead readCart;
 void	Sync (void) {
 	EMU->SetPRG_ROM16(0x8, Latch::addr);
 	EMU->SetPRG_ROM16(0xC, Latch::addr);
-	iNES_SetCHR_Auto8(0, Latch::addr);
+	iNES_SetCHR_Auto8(0, 0);
 	if (Latch::addr &0x08)
 		EMU->Mirror_H();
 	else

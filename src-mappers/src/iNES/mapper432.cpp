@@ -2,56 +2,71 @@
 #include	"..\Hardware\h_MMC3.h"
 
 namespace {
-uint8_t	Reg;
+FCPURead	readCart;
+uint8_t		reg[2];
 
-void	Sync (void) {
-	if (Reg &0x04) {
-		MMC3::syncPRG(0x0F, Reg <<4 &0x10 | Reg <<1 &0x20);
-		MMC3::syncCHR(0x7F, Reg <<7 &0x80 | Reg <<5 &0x100);
-	} else {
-		MMC3::syncPRG(0x1F,                 Reg <<1 &0x20);
-		MMC3::syncCHR(0xFF, Reg <<5 &0x100);
-	}
+int	MAPINT	readPad (int, int);
+void	sync (void) {
+	int prgAND =reg[1] &0x02? 0x0F: 0x1F;
+	int prgOR  =reg[1] <<4 &0x10 | reg[1] <<1 &0x20;
+	int chrAND =reg[1] &0x04? 0x7F: 0xFF;
+	int chrOR  =reg[1] <<7 &0x80 | reg[1] <<5 &0x100;
+	bool pad     =!!(reg[0] &0x01 || reg[1] &0x20);
+	bool nrom    =!!(reg[1] &0x40);
+	bool nrom256 =!!(reg[1] &0x80);
+
+	if (nrom)
+		MMC3::syncPRG_GNROM_67(nrom256? 2: 0, prgAND, prgOR &~prgAND);
+	else
+		MMC3::syncPRG(prgAND, prgOR &~prgAND);
+	MMC3::syncCHR(chrAND, chrOR &~chrAND);
 	MMC3::syncWRAM();
 	MMC3::syncMirror();
+	for (int bank =0x8; bank <0xF; bank++) EMU->SetCPUReadHandler(bank, pad? readPad: readCart);
 }
 
-void	MAPINT	WriteReg (int Bank, int Addr, int Val) {
-	Reg =Val &0xFF;
-	Sync();
+int	MAPINT	readPad (int bank, int addr) {
+	return ROM->dipValue;
 }
 
-BOOL	MAPINT	Load (void) {
-	MMC3::load(Sync);
+void	MAPINT	writeReg (int bank, int addr, int val) {
+	reg[addr &1] =val &0xFF;
+	if (~addr &1 && ~val &1) reg[1] &=~0x20;
+	sync();
+}
+
+BOOL	MAPINT	load (void) {
+	MMC3::load(sync);
 	return TRUE;
 }
 
-void	MAPINT	Reset (RESET_TYPE ResetType) {
-	Reg =0;
-	MMC3::reset(ResetType);
-	MMC3::setWRAMCallback(NULL, WriteReg);
+void	MAPINT	reset (RESET_TYPE resetType) {
+	readCart =EMU->GetCPUReadHandler(0x8);
+	for (auto& c: reg) c =0;
+	MMC3::reset(resetType);
+	MMC3::setWRAMCallback(NULL, writeReg);
 }
 
-int	MAPINT	SaveLoad (STATE_TYPE mode, int offset, unsigned char *data) {
-	offset = MMC3::saveLoad(mode, offset, data);
-	SAVELOAD_BYTE(mode, offset, data, Reg);
-	if (mode ==STATE_LOAD) Sync();
+int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
+	offset =MMC3::saveLoad(stateMode, offset, data);
+	for (auto& c: reg) SAVELOAD_BYTE(stateMode, offset, data, c);
+	if (stateMode ==STATE_LOAD) sync();
 	return offset;
 }
 
-uint16_t MapperNum =432;
+uint16_t mapperNum =432;
 } // namespace
 
 MapperInfo MapperInfo_432 = {
-	&MapperNum,
-	_T("Realtec 8090"),
+	&mapperNum,
+	_T("Realtec 8023/8090"),
 	COMPAT_FULL,
-	Load,
-	Reset,
+	load,
+	reset,
 	NULL,
 	MMC3::cpuCycle,
 	MMC3::ppuCycle,
-	SaveLoad,
+	saveLoad,
 	NULL,
 	NULL
 };

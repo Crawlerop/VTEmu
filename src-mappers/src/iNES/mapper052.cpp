@@ -3,16 +3,16 @@
 
 namespace {
 uint8_t		reg;
-#define	locked  !!(reg &0x80)
-#define	prgOR     (reg <<4 &0x70)
-#define	chrOR     (reg <<3 &0x180 | reg <<7 &0x200)
-#define	prgAND    (reg &0x08? 0x0F: 0x1F)
-#define	chrAND    (reg &0x40? 0x7F: 0xFF)
+void	sync (void) {	
+	int  prgOR =reg <<4 &0x70;
+	int  chrOR =ROM->INES2_SubMapper ==13 && ROM->CHRROMSize ==1024*1024? (reg <<3 &0x080 | reg <<7 &0x300): (reg <<3 &0x180 | reg <<7 &0x200);
+	int  prgAND =reg &0x08? 0x0F: 0x1F;
+	int  chrAND =reg &0x40? 0x7F: 0xFF;
+	bool chrram =ROM->INES2_SubMapper ==13? (ROM->CHRROMSize ==1024*1024? !!(reg &0x20): ((reg &0x3) ==0x3)): false;
 
-void	sync (void) {
 	MMC3::syncWRAM();
 	MMC3::syncPRG(prgAND, prgOR &~prgAND);
-	if (ROM->INES2_SubMapper ==13 && reg ==0x8B)
+	if (chrram)
 		EMU->SetCHR_RAM8(0x0, 0);
 	else
 		MMC3::syncCHR(chrAND, chrOR &~chrAND);
@@ -20,7 +20,7 @@ void	sync (void) {
 }
 
 void	MAPINT	writeReg (int bank, int addr, int val) {
-	if (!locked) {
+	if (~reg &0x80) {
 		reg =val;
 		sync();
 	} else

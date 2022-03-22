@@ -5,7 +5,7 @@ namespace TxROM {
 void	sync (void) {
 	MMC3::syncWRAM();
 
-	MMC3::syncPRG(0xFF, 0x00); // Should be 0x3F is we were really strict.
+	MMC3::syncPRG(0xFF, 0x00); // Should be 0x3F if we were really strict.
 	MMC3::syncCHR(0xFF, 0x00);
 	
 	if (ROM->INES2_SubMapper ==2) // TFROM with fixed mirroring.

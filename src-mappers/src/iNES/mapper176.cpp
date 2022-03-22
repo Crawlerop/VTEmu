@@ -103,7 +103,7 @@ int	getPRGBank (int bank) {
 int	getCHRBank (int bank) {
 	int chrOR  =fk23reg[2] <<3;
 	int chrAND =chrSmall? 0x7F: 0xFF;
-	if (ROM->INES2_SubMapper ==3) chrOR || fk23reg[6] <<11; // Super Mario 160 Funny Time: Enhanced variant with extra MSB register
+	if (ROM->INES2_SubMapper ==3) chrOR |=fk23reg[6] <<11; // Super Mario 160 Funny Time: Enhanced variant with extra MSB register
 	
 	if (chrRAM)
 		*EMU->multiCHRStart =ROM->CHRRAMData +((chrOR *1024) &(ROM->CHRRAMSize -1));

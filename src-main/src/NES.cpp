@@ -498,6 +498,7 @@ void	SaveSRAM (void) {
 		if (!SRAM_Size) return;
 		switch (RI.INES_MapperNum) {
 			case 16:	// Normal FCG with 256 byte EPROM
+			case 529:	// YY0807
 				if (SRAM_Size ==8192) SRAM_Size =256;
 				Extension =_T("epr");
 				break;
@@ -514,6 +515,10 @@ void	SaveSRAM (void) {
 				break;
 			case 405:	// UMC UM6578 with EEPROM
 				if (SRAM_Size <=512) Extension =_T("epr");
+				break;
+			case 164:	// Yancheng with 512 byte EEPROM
+			case 558:
+				if (SRAM_Size <= 512) Extension = _T("epr");
 				break;
 			default:
 				Extension =_T("sav");
@@ -581,6 +586,7 @@ void	LoadSRAM (void) {
 		if (!SRAM_Size) return;
 		switch (RI.INES_MapperNum) {
 			case 16:	// Normal FCG with 256 byte EPROM
+			case 529:	// YY0807
 				if (SRAM_Size ==8192) SRAM_Size =256;
 				Extension =_T("epr");
 				break;
@@ -597,6 +603,10 @@ void	LoadSRAM (void) {
 				break;
 			case 405:	// UMC UM6578 with EEPROM
 				if (SRAM_Size <=512) Extension =_T("epr");
+				break;
+			case 164:	// Yancheng with 512 byte EEPROM
+			case 558:
+				if (SRAM_Size <= 512) Extension = _T("epr");
 				break;
 			default:
 				Extension =_T("sav");

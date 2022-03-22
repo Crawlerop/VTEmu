@@ -32,7 +32,7 @@ uint16_t mapperNum =62;
 
 MapperInfo MapperInfo_062 ={
 	&mapperNum,
-	_T("N-190B"),
+	_T("K-1016/N-190B"),
 	COMPAT_FULL,
 	load,
 	Latch::resetHard,

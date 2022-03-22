@@ -12,7 +12,7 @@ void	sync (void) {
 
 BOOL	MAPINT	load (void) {
 	VS::Load();
-	MMC1::load(sync, false);
+	MMC1::load(sync, MMC1Type::MMC1B);
 	iNES_SetSRAM();
 	return TRUE;
 }

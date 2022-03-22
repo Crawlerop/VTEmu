@@ -2,7 +2,8 @@
 #include	"..\Hardware\h_Latch.h"
 
 namespace {
-#define prg       (Latch::data &0x1F)
+//#define prg       (Latch::data &0x1F)
+#define prg       (Latch::data >>1 &0x18 | Latch::data &0x07)
 #define mirrorH !!(Latch::data &0x20)
 #define nrom256 !!(Latch::data &0x40)
 #define aorom   !!(Latch::data &0x80)

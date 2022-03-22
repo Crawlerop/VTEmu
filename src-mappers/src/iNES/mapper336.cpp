@@ -8,13 +8,21 @@ void	Sync (void) {
 	EMU->SetCHR_RAM8(0, 0);
 }
 
+void	MAPINT	writeLatch (int bank, int _addr, int val) {
+	val |=EMU->GetCPUReadHandler(bank)(bank, _addr);
+	Latch::data =val;
+	Latch::addr =bank <<12 |_addr;
+	Sync();
+}
+
 BOOL	MAPINT	Load (void) {
-	Latch::load(Sync, TRUE);
+	Latch::load(Sync, FALSE);
 	return TRUE;
 }
 void	MAPINT	Reset (RESET_TYPE ResetType) {
 	iNES_SetMirroring();
-	Latch::reset(ResetType);
+	Latch::reset(RESET_HARD);
+	for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUWriteHandler(bank, writeLatch);
 }
 
 uint16_t MapperNum =336;

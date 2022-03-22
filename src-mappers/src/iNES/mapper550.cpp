@@ -34,7 +34,7 @@ void	MAPINT	writeLatch (int bank, int addr, int val) {
 
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
-	MMC1::load(sync, MMC1A);
+	MMC1::load(sync, MMC1Type::MMC1A);
 	return TRUE;
 }
 

@@ -40,7 +40,7 @@ uint16_t MapperNum = 229;
 MapperInfo MapperInfo_229 =
 {
 	&MapperNum,
-	_T("31-in-1"),
+	_T("SC 0892"),
 	COMPAT_FULL,
 	Load,
 	Reset,

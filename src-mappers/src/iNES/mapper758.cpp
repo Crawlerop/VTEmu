@@ -3,24 +3,21 @@
 
 namespace {
 uint8_t		reg;
+FCPURead	readCart;
+
+int	MAPINT	readPad (int bank, int addr) {
+	return readCart(bank, addr &~0x0F | ROM->dipValue &0x0F);
+}
 
 void	sync (void) {
-	if (reg &0x80 && ROM->dipValue &1)
-		for (int bank =0x8; bank <=0xF; bank++) EMU->SetPRG_OB4(bank);
+	if (reg &0x02)
+		MMC3::syncPRG_GNROM_66(reg &0x01? 2: 0, 0x0F, reg <<1 &0x70);
 	else
-	if (reg &0x20)
-		MMC3::syncPRG_GNROM_67(reg &0x10? 2: 0, 0x0F, reg <<4);
-	else
-		MMC3::syncPRG(0x0F, reg <<4);
+		MMC3::syncPRG(reg &0x20? 0x1F: 0x0F, reg <<1 &0x70);
 	
-	if (reg &0x04) {
-		EMU->SetCHR_ROM2(0x0, MMC3::getCHRBank(0));
-		EMU->SetCHR_ROM2(0x2, MMC3::getCHRBank(1));
-		EMU->SetCHR_ROM2(0x4, MMC3::getCHRBank(4));
-		EMU->SetCHR_ROM2(0x6, MMC3::getCHRBank(7));
-	} else
-		EMU->SetCHR_RAM8(0x0, 0);
+	MMC3::syncCHR(0xFF, reg <<4 &0x380);
 	MMC3::syncMirror();
+	for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUReadHandler(bank, reg &0x40? readPad: readCart);
 }
 
 BOOL	MAPINT	load (void) {
@@ -34,6 +31,7 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 }
 
 void	MAPINT	reset (RESET_TYPE resetType) {
+	readCart =EMU->GetCPUReadHandler(0x8);
 	reg =0;
 	MMC3::reset(resetType);	
 	MMC3::setWRAMCallback(NULL, writeReg);
@@ -46,12 +44,12 @@ int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
 	return offset;
 }
 
-uint16_t mapperNum =460;
+uint16_t mapperNum =758;
 } // namespace
 
-MapperInfo MapperInfo_460 ={
+MapperInfo MapperInfo_758 ={
 	&mapperNum,
-	_T("FC-29-40/K-3101"),
+	_T("T-227"),
 	COMPAT_FULL,
 	load,
 	reset,

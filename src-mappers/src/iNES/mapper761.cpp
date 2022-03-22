@@ -143,7 +143,7 @@ int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
 	return offset;
 }
 
-uint16_t MapperNum =761;
+uint16_t MapperNum =761; /* PRELIMINARY mapper number */
 } // namespace
 
 MapperInfo MapperInfo_761 ={

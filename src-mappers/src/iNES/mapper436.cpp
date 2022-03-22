@@ -1,55 +1,31 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_MMC3.h"
+#include	"..\Hardware\h_OneBus.h"
 
 namespace {
-uint8_t		reg;
-
-void	sync (void) {
-	if (reg &1)
-		MMC3::syncPRG(0x0F, reg >>2 &0x30);
-	else
-		EMU->SetPRG_ROM32(0x8, reg >>4);
-	
-	MMC3::syncCHR_ROM(0x7F, reg <<1 &0x180);
-	MMC3::syncMirror();
-}
-
-void	MAPINT	writeReg (int bank, int addr, int val) {
-	reg =addr &0xFF;
-	sync();
+void	sync () { 
+	OneBus::syncPRG(0xF3FF, (OneBus::reg4100[0x0F] &0x20? 0x0400: 0x0000) | (OneBus::reg4100[0x00] &0x40? 0x0800:0x000));
+	OneBus::syncCHR(0x9FFF, (OneBus::reg4100[0x0F] &0x20? 0x2000: 0x0000) | (OneBus::reg4100[0x00] &0x04? 0x4000:0x000));
+	OneBus::syncMirror();
 }
 
 BOOL	MAPINT	load (void) {
-	MMC3::load(sync);
+	OneBus::load(sync);
 	return TRUE;
-}
-
-void	MAPINT	reset (RESET_TYPE resetType) {
-	reg =0;
-	MMC3::reset(RESET_HARD);
-	MMC3::setWRAMCallback(NULL, writeReg);
-}
-
-int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
-	offset =MMC3::saveLoad(stateMode, offset, data);
-	SAVELOAD_BYTE(stateMode, offset, data, reg);
-	if (stateMode ==STATE_LOAD) sync();
-	return offset;
 }
 
 uint16_t mapperNum =436;
 } // namespace
 
-MapperInfo MapperInfo_436 = {
+MapperInfo MapperInfo_436 ={
 	&mapperNum,
-	_T("820401/T-217"),
+	_T("ZLX-08"),
 	COMPAT_FULL,
 	load,
-	reset,
-	NULL,
-	MMC3::cpuCycle,
-	MMC3::ppuCycle,
-	saveLoad,
+	OneBus::reset,
+	OneBus::unload,
+	OneBus::cpuCycle,
+	OneBus::ppuCycle,
+	OneBus::saveLoad,
 	NULL,
 	NULL
 };

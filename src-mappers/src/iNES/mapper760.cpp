@@ -18,7 +18,7 @@ BOOL	MAPINT	load (void) {
 	return TRUE;
 }
 
-uint16_t mapperNum =760;
+uint16_t mapperNum =760; /* PRELIMINARY mapper number */
 } // namespace
 MapperInfo MapperInfo_760 ={
 	&mapperNum,

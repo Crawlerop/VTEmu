@@ -78,7 +78,7 @@ void	MAPINT	writeMode (int bank, int addr, int val) {
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
 	VRC2::load(sync, 0x01, 0x02);
-	MMC1::load(sync, MMC1A);
+	MMC1::load(sync, MMC1Type::MMC1A);
 	MMC3::load(sync);
 	game =ROM->INES2_SubMapper ==3? 4: 0;
 	switch (ROM->INES2_SubMapper) {

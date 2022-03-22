@@ -2,17 +2,20 @@
 #include	"..\Hardware\h_Latch.h"
 
 namespace {
-#define cpuA14  !!(Latch::addr &0x001)
-#define mirrorH !!(Latch::addr &0x002)
-#define nrom    !!(Latch::addr &0x080)
-#define last    !!(Latch::addr &0x200)
-#define dip     !!(Latch::addr &0x400 && ROM->dipValueSet)
-#define prg       (Latch::addr >>2 &0x1F | Latch::addr >>3 &0x20) 
-
 FCPURead	readCart;
-int	MAPINT	readDIP (int bank, int addr);
+
+int	MAPINT	readDIP (int bank, int addr) {
+	return readCart(bank, addr | ROM->dipValue);
+}
 
 void	sync (void) {
+	bool cpuA14  =!!(Latch::addr &0x001);
+	bool mirrorH =!!(Latch::addr &0x002);
+	bool nrom    =!!(Latch::addr &0x080);
+	bool last    =!!(Latch::addr &0x200);
+	bool dip     =!!(Latch::addr &0x400);
+	int  prg     =Latch::addr >>2 &0x1F | Latch::addr >>3 &0x20; 
+
 	EMU->SetPRG_RAM8(0x6, 0);
 	EMU->SetPRG_ROM16(0x8, prg &~cpuA14);
 	EMU->SetPRG_ROM16(0xC,(prg | cpuA14) &~(7*!nrom*!last) |7*!nrom*last);
@@ -26,10 +29,6 @@ void	sync (void) {
 		EMU->Mirror_V();
 	
 	for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUReadHandler(bank, dip? readDIP: readCart);
-}
-
-int	MAPINT	readDIP (int bank, int addr) {
-	return readCart(bank, addr | ROM->dipValue);
 }
 
 BOOL	MAPINT	load (void) {

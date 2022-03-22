@@ -5,10 +5,10 @@ namespace {
 uint8_t		reg;
 
 void	sync (void) {
-	if (reg &1)
+	if (reg &0x01)
 		MMC3::syncPRG(0x0F, reg >>2 &~0x0F);
 	else	
-		EMU->SetPRG_ROM32(0x8, reg >>4 &3);
+		EMU->SetPRG_ROM32(0x8, reg >>4);
 	MMC3::syncCHR_ROM(0x7F, reg <<1 &0x180);
 	MMC3::syncMirror();
 }
@@ -24,7 +24,7 @@ BOOL	MAPINT	load (void) {
 }
 
 void	MAPINT	reset (RESET_TYPE resetType) {
-	reg =0x01 | ROM->INES2_SubMapper <<6;
+	reg =0x00;
 	MMC3::reset(RESET_HARD);
 	MMC3::setWRAMCallback(NULL, writeReg);
 }
@@ -41,7 +41,7 @@ uint16_t mapperNum =49;
 
 MapperInfo MapperInfo_049 ={
 	&mapperNum,
-	_T("1993 Super HiK 4-in-1 (MMC3)"),
+	_T("820401/T-217"),
 	COMPAT_FULL,
 	load,
 	reset,

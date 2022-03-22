@@ -1,6 +1,6 @@
 ﻿#include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_Latch.h"
-#include	"..\Hardware\h_EEPROM_93C66.h"
+#include	"..\Hardware\h_EEPROM_93Cx6.h"
 
 #define useA15A16 !!(reg[3] &0x04)
 #define swapBits  !!(reg[3] &0x02)
@@ -11,7 +11,7 @@ namespace {
 uint8_t		reg[8];
 bool		pa09;
 bool		pa13;
-EEPROM_93C66A*	EEPROM;
+EEPROM_93Cx6*	EEPROM;
 uint8_t*	WRAM;
 
 FPPURead	readPPU;
@@ -83,7 +83,7 @@ BOOL	MAPINT	load (void) {
 	size_t sizeSave =(ROM->INES2_PRGRAM &0xF0)? (64 <<(ROM->INES2_PRGRAM >> 4)): 0;
 	
 	if (sizeSave ==512) {
-		EEPROM =new EEPROM_93C66A(ROM->PRGRAMData);
+		EEPROM =new EEPROM_93Cx6(ROM->PRGRAMData, 512, 8);
 		WRAM =sizeTemp? ROM->PRGRAMData +sizeSave: NULL;
 	} else {
 		EEPROM =NULL;

@@ -1,9 +1,9 @@
 #include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_VRC4.h"
-#include	"..\Hardware\h_EEPROM.h"
+#include	"..\Hardware\h_EEPROM_93Cx6.h"
 
 namespace {
-EEPROM_I2C	*eeprom =NULL;
+EEPROM_93Cx6*	eeprom =NULL;
 
 void	sync (void) {
 	EMU->SetPRG_ROM16(0x8, VRC4::prg[1]);
@@ -13,13 +13,17 @@ void	sync (void) {
 }
 
 int	MAPINT	readEEPROM (int bank, int addr) {
-	return 0x01;
+	if (eeprom)
+		return eeprom->read()? 0x01: 0x00;
+	else
+		return 0x01;
 }
-
+// B24F: save
 void	MAPINT	writeReg (int bank, int addr, int val) {
 	if (addr &0x800) {
-		
-	} else switch(bank) {
+		if (eeprom) eeprom->write(!!(addr &0x04), !!(addr &0x02), !!(addr &0x01));
+	} else
+	switch(bank) {
 		case 0x8: case 0xA:
 			VRC4::writePRG(bank, addr, val);
 			break;
@@ -38,13 +42,11 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 BOOL	MAPINT	load (void) {
 	VRC4::load(sync, 0x04, 0x08, NULL, true, 0);
 	size_t sizeSave =(ROM->INES2_PRGRAM &0xF0)? (64 << (ROM->INES2_PRGRAM >> 4)): 0;
-	
 	if (sizeSave ==256) {
 		iNES_SetSRAM();
-		eeprom =new EEPROM_24C02(0, ROM->PRGRAMData);
-		MapperInfo_529.Description =ROM->CHRROMSize? _T("YY0807"): _T("J-2148");
-	} else
-		MapperInfo_529.Description =_T("T-230");
+		eeprom =new EEPROM_93Cx6(ROM->PRGRAMData, 256, 16);
+	}
+	MapperInfo_529.Description =ROM->CHRROMSize? _T("YY0807/J-2148"): _T("T-230");
 	return TRUE;
 }
 
@@ -79,3 +81,20 @@ MapperInfo MapperInfo_529 = {
 	NULL,
 	NULL
 };
+/*
+18	byte to be stored
+1B	address?
+FE2C	store byte
+	FFA0	Start Sequence
+	FEAC	Store two bits
+		FED3	Store X bits
+	FED1	Store 8 bits
+	
+	FEB5	read 16 bits
+	FEB9	read 8 bits
+	
+	FE4B	Store 16 bits?
+	
+	FE95	Write Misc Command
+	FE72	
+*/

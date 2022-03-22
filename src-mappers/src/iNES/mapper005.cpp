@@ -2,7 +2,6 @@
 #include	"..\Hardware\h_MMC5.h"
 
 namespace {
-
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
 	if (ROM->CHRROMSize ==0)

@@ -2,21 +2,6 @@
 #include	"smc5000.h"
 
 namespace {
-#define		prgMode1M     (mc1Mode >>5)
-#define		prgMode2M    !(mc2Mode &0x01)
-#define		prgMode4M   (!(mc2Mode &0x01) && !(mc2Mode &0x02))
-#define		chrMode1K   !!(smcMode &0x01)
-#define		protectPRG  !!(mc1Mode &0x02)
-#define		protectCHR  !!(prgMode1M ==4 && mirroring &1 || prgMode1M >4 || lockCHR)
-#define		ciramEnable !!(smcMode &0x02)
-#define		chrModeMMC4 (!(smcMode &0x04) &&!!(smcMode &0x01))
-#define		smcUsePA12  !!(smcMode &0x08)
-#define		mirroring     (mc1Mode &0x11)
-#define		mirrorS0       0x00
-#define		mirrorS1       0x10
-#define		mirrorV        0x01
-#define		mirrorH        0x11
-
 FCPURead	readAPU;
 FPPURead	readCHR;
 FCPUWrite	writeAPU;
@@ -48,10 +33,10 @@ void	MAPINT	interceptCHRWrite (int, int, int);
 void	sync (void) {
 	EMU->SetPRG_Ptr4(0x5, scratchRAM, TRUE);
 	EMU->SetPRG_RAM8(0x6, 0);
-	if (prgMode2M || prgMode4M)
+	if (~mc2Mode &0x03) /* 2M or 4M PRG mode */
 		for (int bank =0; bank <4; bank++) EMU->SetPRG_ROM8(0x8 +bank*2, prg8K[bank]);
-	else
-	switch(prgMode1M) {
+	else                /* 1M PRG mode */
+	switch(mc1Mode >>5) {
 		case 0:	EMU->SetPRG_ROM16(0x8, latch &7);
 			EMU->SetPRG_ROM16(0xC, 7);
 			break;
@@ -73,15 +58,17 @@ void	sync (void) {
 		case 7:	EMU->SetPRG_ROM32(0x8, 3);
 			break;
 	}
-	if (!protectPRG) for (int bank =0x8; bank<=0xF; bank++) EMU->SetPRG_Ptr4(bank, (EMU->GetPRG_Ptr4(bank)), TRUE);
+	/* Write-enable PRG DRAM if the PRG write-protect bit is not set */
+	if (~mc1Mode &0x02) for (int bank =0x8; bank<=0xF; bank++) EMU->SetPRG_Ptr4(bank, (EMU->GetPRG_Ptr4(bank)), TRUE);
 
-	if (chrModeMMC4)
-		for (int bank =0; bank <8; bank +=4) EMU->SetCHR_RAM4(bank, chr1K[bank | latchMMC4[bank >>2]] >>2);
-	else
-	if (chrMode1K)
-		for (int bank =0; bank <8; bank++) EMU->SetCHR_RAM1(bank, chr1K[bank]);
-	else
-	switch(prgMode1M) {
+	/* Mode-specific CHR-RAM banking */
+	if (smcMode &0x01) { /* Super Magic Card CHR mode */
+		if (smcMode &0x04) /* 1 KiB CHR mode */
+			for (int bank =0; bank <8; bank++) EMU->SetCHR_RAM1(bank, chr1K[bank]);
+		else               /* MMC4-like CHR mode */
+			for (int bank =0; bank <8; bank +=4) EMU->SetCHR_RAM4(bank, chr1K[bank | latchMMC4[bank >>2]] >>2);
+	} else               /* 1M-mode-specific CHR banking */
+	switch(mc1Mode >>5) {
 		case 0: case 2:
 			EMU->SetCHR_RAM8(0x0, 0);
 			break;
@@ -98,20 +85,24 @@ void	sync (void) {
 			EMU->SetCHR_RAM8(0x0, 3);
 			break;
 	}
-	if (protectCHR) protectCHRRAM();
+	/* CHR-RAM is write-protected ...
+	   - ... if 1M mode GNROM with two-screen mirroring is active;
+	   - ... if 1M mode (C)NROM is active;
+	   - ... if CHR-RAM has been locked before. */
+	if ((mc1Mode &0xE1) >=0x81 || lockCHR) protectCHRRAM();
 
-	if (ciramEnable) switch(mirroring) {
-		case mirrorS0: EMU->Mirror_S0(); break;
-		case mirrorS1: EMU->Mirror_S1(); break;
-		case mirrorV:  EMU->Mirror_V (); break;
-		case mirrorH:  EMU->Mirror_H (); break;
-	} else
+	if (smcMode &0x02) switch(mc1Mode &0x11) { /* CIRAM nametables */
+		case 0x00: EMU->Mirror_S0(); break;
+		case 0x10: EMU->Mirror_S1(); break;
+		case 0x01: EMU->Mirror_V (); break;
+		case 0x11: EMU->Mirror_H (); break;
+	} else                                    /* CHR-RAM nametables */
 		for (int bank =8; bank <16; bank++) iNES_SetCHR_Auto1(bank, chr1K[bank &~4]);
 
 	for (int bank =0; bank <8; bank++) {
-		EMU->SetPPUReadHandler(bank, chrModeMMC4? readCHR_MMC4: readCHR);
+		EMU->SetPPUReadHandler(bank, (smcMode &0x05) ==0x01? readCHR_MMC4: readCHR);
 		EMU->SetPPUReadHandlerDebug(bank, readCHR);
-		EMU->SetPPUWriteHandler(bank, prgMode1M >=5 && ~mirroring &1? interceptCHRWrite: writeCHR);
+		EMU->SetPPUWriteHandler(bank, mc1Mode >=0xA0 && ~mc1Mode &1? interceptCHRWrite: writeCHR); /* In modes 5-7 with single-screen mirroring, PPU writes lock CHR-RAM. */
 	}
 }
 
@@ -148,7 +139,7 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 			break;
 		case 0x2FC: case 0x2FD: case 0x2FE: case 0x2FF:
 			mc1Mode =val &0xF0 | addr &0x03;
-			if (prgMode1M >=4) lockCHR =false;
+			if (mc1Mode >=0x80) lockCHR =false; /* Setting modes 4-7 releases the CHR-RAM lock */
 			sync();
 			break;
 		case 0x3FC: case 0x3FD: case 0x3FE: case 0x3FF:
@@ -174,7 +165,7 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 			EMU->SetIRQ(1);
 			break;
 		case 0x504: case 0x505: case 0x506: case 0x507:
-			if (!prgMode4M) val >>=2;
+			if (mc2Mode &0x03) val >>=2; /* The two bottom bits are unused when 4M mode is not active */
 			prg8K[addr &3] =val;
 			sync();
 			break;
@@ -186,17 +177,17 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 }
 
 void	MAPINT	writeLatch (int bank, int addr, int val) {
-	if (protectPRG) {
+	if (mc1Mode &0x02) {
 		latch =val;
-		if (!prgMode4M) prg8K[bank >>1 &3] =val >>2;
+		if (mc2Mode &0x03) prg8K[bank >>1 &3] =val >>2; /* The two bottom bits are unused when 4M mode is not active */
 		sync();
 	} else
 		writeCart(bank, addr, val);
 }
 
 void	MAPINT	interceptCHRWrite (int bank, int addr, int val) {
-	/* Writing anything to CHR memory during modes 5-7 with one-screen mirroring locks (CIRAM page 1) or unlocks (CIRAM page 0) CHR memory in modes 0-3. Needed for (F4040) Karnov). */
-	lockCHR =!!(mirroring &0x10);
+	/* Writing anything to CHR-RAM during modes 5-7 with one-screen mirroring locks (CIRAM page 1) or unlocks (CIRAM page 0) CHR memory in modes 0-3. Needed for (F4040) Karnov). */
+	lockCHR =!!(mc1Mode &0x10);
 	writeCHR(bank, addr, val);
 }
 
@@ -321,11 +312,11 @@ void	MAPINT	cpuCycle (void) {
 		fdsCounter -=448;
 	}
 
-	if (!smcUsePA12) clockSMCCounter();
+	if (~smcMode &0x08) clockSMCCounter();
 }
 
 void	MAPINT	ppuCycle (int addr, int scanline, int cycle, int isRendering) {
-	if (smcUsePA12 && addr &0x1000 && ~smcPrevPA &0x1000) clockSMCCounter();
+	if (smcMode &0x08 && addr &0x1000 && ~smcPrevPA &0x1000) clockSMCCounter();
 	smcPrevPA =addr;
 }
 

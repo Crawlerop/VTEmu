@@ -96,7 +96,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Hardware\Hash.cpp" />
     <ClCompile Include="..\src\Hardware\h_EEPROM.cpp" />
-    <ClCompile Include="..\src\Hardware\h_EEPROM_93C66.cpp" />
+    <ClCompile Include="..\src\Hardware\h_EEPROM_93Cx6.cpp" />
     <ClCompile Include="..\src\Hardware\h_FCG.cpp" />
     <ClCompile Include="..\src\Hardware\h_FME7.cpp" />
     <ClCompile Include="..\src\Hardware\h_JV001.cpp" />
@@ -553,6 +553,9 @@
     <ClCompile Include="..\src\iNES\mapper461.cpp" />
     <ClCompile Include="..\src\iNES\mapper462.cpp" />
     <ClCompile Include="..\src\iNES\mapper463.cpp" />
+    <ClCompile Include="..\src\iNES\mapper464.cpp" />
+    <ClCompile Include="..\src\iNES\mapper465.cpp" />
+    <ClCompile Include="..\src\iNES\mapper466.cpp" />
     <ClCompile Include="..\src\iNES\mapper500.cpp" />
     <ClCompile Include="..\src\iNES\mapper501.cpp" />
     <ClCompile Include="..\src\iNES\mapper502.cpp" />
@@ -608,13 +611,17 @@
     <ClCompile Include="..\src\iNES\mapper561.cpp" />
     <ClCompile Include="..\src\iNES\mapper562.cpp" />
     <ClCompile Include="..\src\iNES\mapper563.cpp" />
-    <ClCompile Include="..\src\iNES\mapper759.cpp" />
+    <ClCompile Include="..\src\iNES\mapper755.cpp" />
+    <ClCompile Include="..\src\iNES\mapper756.cpp" />
+    <ClCompile Include="..\src\iNES\mapper758.cpp" />
+    <ClCompile Include="..\src\iNES\mapper467.cpp" />
     <ClCompile Include="..\src\iNES\mapper760.cpp" />
     <ClCompile Include="..\src\iNES\mapper761.cpp" />
     <ClCompile Include="..\src\iNES\mapper381.cpp" />
     <ClCompile Include="..\src\iNES\mapper762.cpp" />
     <ClCompile Include="..\src\iNES\mapper404.cpp" />
     <ClCompile Include="..\src\iNES\mapper452.cpp" />
+    <ClCompile Include="..\src\iNES\mapper763.cpp" />
     <ClCompile Include="..\src\iNES\mapper767.cpp" />
     <ClCompile Include="..\src\iNES\unimplemented.cpp" />
     <ClCompile Include="..\src\DLL\d_iNES.cpp" />
@@ -623,7 +630,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\Hardware\Hash.h" />
     <ClInclude Include="..\src\Hardware\h_EEPROM.h" />
-    <ClInclude Include="..\src\Hardware\h_EEPROM_93C66.h" />
+    <ClInclude Include="..\src\Hardware\h_EEPROM_93Cx6.h" />
     <ClInclude Include="..\src\Hardware\h_FCG.h" />
     <ClInclude Include="..\src\Hardware\h_JV001.h" />
     <ClInclude Include="..\src\Hardware\h_JY.h" />

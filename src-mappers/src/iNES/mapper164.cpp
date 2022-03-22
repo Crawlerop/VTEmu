@@ -1,19 +1,18 @@
 ﻿#include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_EEPROM_93C66.h"
+#include	"..\Hardware\h_EEPROM_93Cx6.h"
 
-#define mode1bpp           !!(reg[0] &0x80)
-#define prgLow               (reg[0] &0x0F | reg[0] >>1 &0x10)
-#define prgHigh              (reg[1] <<5)
-#define mode                 (reg[0] >>5 &2 | reg[0] >>4 &1)
-#define fixedMirroring     !!(reg[3] &0x80)
-#define horizontalMirroring  (!fixedMirroring && reg[0] &0x10)
+#define mode1bpp !!(reg[0] &0x80)
+#define prgLow     (reg[0] &0x0F | reg[0] >>1 &0x10)
+#define prgHigh    (reg[1] <<5)
+#define mode       (reg[0] >>5 &2 | reg[0] >>4 &1)
+#define mirrorH  !!(reg[0] &0x10 && ~reg[3] &0x80)
 
 namespace {
 uint8_t		reg[8];
 bool		pa00;
 bool		pa09;
 bool		pa13;
-EEPROM_93C66A*	EEPROM;
+EEPROM_93Cx6*	EEPROM;
 uint8_t*	WRAM;
 
 FPPURead	readPPU;
@@ -51,7 +50,7 @@ void	sync (void) {
 	
 	EMU->SetCHR_RAM8(0x0, 0);
 	
-	if (horizontalMirroring)
+	if (mirrorH)
 		EMU->Mirror_H();
 	else
 		EMU->Mirror_V();
@@ -105,7 +104,7 @@ BOOL	MAPINT	load (void) {
 	size_t sizeSave =(ROM->INES2_PRGRAM &0xF0)? (64 <<(ROM->INES2_PRGRAM >> 4)): 0;
 	
 	if (sizeSave ==512) {
-		EEPROM =new EEPROM_93C66A(ROM->PRGRAMData);
+		EEPROM =new EEPROM_93Cx6(ROM->PRGRAMData, 512, 8);
 		WRAM =sizeTemp? ROM->PRGRAMData +sizeSave: NULL;
 	} else {
 		EEPROM =NULL;

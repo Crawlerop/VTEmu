@@ -21,7 +21,7 @@ void	sync (void) {
 }
 
 BOOL	MAPINT	load (void) {
-	MMC1::load(sync, MMC1B);
+	MMC1::load(sync, MMC1Type::MMC1B);
 	return TRUE;
 }
 

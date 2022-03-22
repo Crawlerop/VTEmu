@@ -1,12 +1,15 @@
 #pragma once
 #include	"..\interface.h"
 
+enum struct MMC1Type {
+	MMC1A,
+	MMC1B
+};
+
 namespace MMC1 {
-#define MMC1A 0
-#define MMC1B 1
 
 extern FSync	sync;
-extern int	revision;
+extern MMC1Type	revision;
 extern uint8_t	reg[4];
 extern uint8_t	shift;
 extern uint8_t	bits;
@@ -22,7 +25,7 @@ void		syncCHR_ROM	(int, int);
 void		syncCHR_RAM	(int, int);
 void		syncMirror	(void);
 
-void	MAPINT	load		(FSync, int);
+void	MAPINT	load		(FSync, MMC1Type);
 void	MAPINT	reset		(RESET_TYPE);
 void	MAPINT	cpuCycle	(void);
 int	MAPINT	saveLoad	(STATE_TYPE, int, unsigned char *);

@@ -18,7 +18,7 @@ void	MAPINT	Write67 (int Bank, int Addr, int Val) {
 };
 
 BOOL	MAPINT	Load (void) {
-	MMC1::load(Sync, MMC1B);
+	MMC1::load(Sync, MMC1Type::MMC1B);
 	return TRUE;
 }
 

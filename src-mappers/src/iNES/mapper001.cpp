@@ -1,37 +1,39 @@
 #include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_MMC1.h"
 
-#define isMMC1A !!(ROM->INES_MapperNum ==155 || ROM->INES2_SubMapper ==3)
-#define is32K   !!(ROM->INES2_SubMapper ==5)
-
 namespace {
-void	sync (void) {	
-	switch (ROM->INES2_PRGRAM) {
-		case 0x77: // SOROM (CHR-RAM)/SZROM (CHR-ROM)
-			MMC1::syncWRAM( MMC1::getCHRBank(0) &(ROM->CHRROMSize? 0x10: 0x08)? 0: 1);
-			break;
-		case 0x09:
-		case 0x90:
-			MMC1::syncWRAM((MMC1::getCHRBank(0) &0x0C) >>2);
-			break;
-		default:
-			MMC1::syncWRAM(isMMC1A? MMC1::getPRGBank(0) >>3 &1: 0);
-	}
+bool	isMMC1A;
 	
-	if (is32K) // SEROM/SHROM/SH1ROM
-		EMU->SetPRG_ROM32(0x8, 0);
+void	sync (void) {
+	if (ROM->INES2_SubMapper ==5)
+		EMU->SetPRG_ROM32(0x8, 0); // SEROM/SHROM/SH1ROM
 	else
-		MMC1::syncPRG(0x0F, MMC1::getCHRBank(0) &0x10);
+		MMC1::syncPRG(0x0F, MMC1::getCHRBank(0) &0x10); // SUROM and SXROM, which are the only circuit boards supporting more than 256 KiB PRG ROM, take PRG A18 from CHR A16
+	
+	int wramBank =0;
+	if (ROM->PRGRAMSize ==16384) {
+		if (ROM->INES_CHRSize)
+			wramBank =~MMC1::getCHRBank(0) >>4 &1; // SZROM has CHR ROM and takes WRAM A13 from CHR A16. Bank 1 is the battery-backed bank, so invert the bit to make the battery-backed bank appear first.
+		else
+			wramBank =~MMC1::getCHRBank(0) >>3 &1; // SOROM has CHR RAM and takes WRAM A13 from CHR A15. Bank 1 is the battery-backed bank, so invert the bit to make the battery-backed bank appear first.
+	} else		
+	if (ROM->PRGRAMSize ==32768)
+		wramBank =MMC1::getCHRBank(0) >>2 &3; // SXROM has CHR RAM and takes WRAM A13-A14 from CHR A14-A15.
+	else
+	if (isMMC1A)
+		wramBank =MMC1::getPRGBank(0) >>3 &1; // A hypothetical MMC1A circuit board with 16 KiB WRAM takes WRAM A13 from PRG A17.
+	MMC1::syncWRAM(wramBank);
 	
 	MMC1::syncCHR(0x1F, 0x00);
 	
-	if (CART_VRAM) // For Vs. Hogan's Alley conversion
+	if (CART_VRAM)
 		EMU->Mirror_4();
 	else
 		MMC1::syncMirror();
 }
 
 BOOL	MAPINT	load (void) {
+	isMMC1A =ROM->INES_MapperNum ==155 || ROM->INES2_SubMapper ==3;
 	iNES_SetSRAM();
 	TCHAR** Description =(ROM->INES_MapperNum ==155)? &MapperInfo_155.Description: &MapperInfo_001.Description;
 	if (ROM->INES_CHRSize ==0) {
@@ -109,7 +111,7 @@ BOOL	MAPINT	load (void) {
 			}
 		}
 	}
-	MMC1::load(sync, isMMC1A? MMC1A: MMC1B);
+	MMC1::load(sync, isMMC1A? MMC1Type::MMC1A: MMC1Type::MMC1B);
 	return TRUE;
 }
 
@@ -128,7 +130,7 @@ uint16_t mapperNum155 =155;
 
 MapperInfo MapperInfo_001 ={
 	&mapperNum001,
-	_T("Nintendo SxROM (MMC1B+)"),
+	_T("Nintendo SxROM (MMC1B)"),
 	COMPAT_FULL,
 	load,
 	reset,

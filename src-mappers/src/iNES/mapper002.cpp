@@ -2,8 +2,6 @@
 #include	"..\Hardware\h_Latch.h"
 
 namespace {
-FCPUWrite	writeAPU;
-
 void	sync (void) {
 	EMU->SetPRG_RAM8(0x6, 0); // For Alwa's Awakening
 	EMU->SetPRG_ROM16(0x8, Latch::data);

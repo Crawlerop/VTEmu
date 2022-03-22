@@ -1,14 +1,8 @@
 #include	"h_MMC1.h"
 
-#define prg16K    !!(reg[0] &0x08)
-#define fixedLast !!(reg[0] &0x04)
-#define chr4K     !!(reg[0] &0x10)
-#define prg         (reg[3])
-#define wram        (reg[3] &0x10)
-
 namespace MMC1 {
 FSync		sync;
-int		revision;
+MMC1Type	revision;
 
 uint8_t		reg[4];
 uint8_t		shift;
@@ -16,47 +10,54 @@ uint8_t		bits;
 uint8_t		filter;
 
 void	MAPINT	write (int bank, int addr, int val) {
+	if (val &0x80) {
+		reg[0] |=0x0C;
+		shift =0;
+		bits =0;
+	} else
 	if (!filter) {
-		if (val &0x80) {
-			reg[0] |=0x0C;
+		shift |=(val &1) <<bits++;
+		if (bits ==5) {
+			reg[(bank >>1) &3] =shift;
 			shift =0;
 			bits =0;
-		} else {
-			shift |=(val &1) <<bits++;
-			if (bits ==5) {
-				reg[(bank >>1) &3] =shift;
-				shift =0;
-				bits =0;
-				sync();
-			}
+			sync();
 		}
-		filter =2;
 	}
+	filter =2;
 }
 
 int	getPRGBank (int bank) {
-	int result;
+	bool mode16K  =!!(reg[0] &0x08);
+	bool lastBank =!!(reg[0] &0x04);
+	bool wram16K  =!!(reg[3] &0x10) && revision ==MMC1Type::MMC1A;
+	int  prg      =reg[3];
+	int  result;	
 
-	if (prg16K)
-		result =fixedLast? (prg |bank*0xF): (prg &bank*0xF);
+	if (mode16K)
+		result =lastBank? (prg |bank*0xF): (prg &bank*0xF);
 	else
 		result =prg &~1 |bank;
 	
-	if (revision ==MMC1A && wram) // MMC1A in 16 KiB WRAM mode
+	if (wram16K)
 		return result &0x07 | prg &0x08;
 	else
 		return result &0x0F;
 }
 
 int	getCHRBank (int bank) {
-	if (chr4K)
+	bool mode4K =!!(reg[0] &0x10);
+	
+	if (mode4K)
 		return reg[1 +bank];
 	else
 		return reg[1] &~1 |bank;
 }
 
 void	syncWRAM (int bank) {
-	if (revision >=MMC1B && wram) {
+	bool disableWRAM =!!(reg[3] &0x10) && revision ==MMC1Type::MMC1B;
+	
+	if (disableWRAM) {
 		EMU->SetPRG_OB4(0x6);
 		EMU->SetPRG_OB4(0x7);
 	} else
@@ -94,7 +95,7 @@ void	syncMirror (void) {
 	}
 }
 
-void	MAPINT	load (FSync _sync, int _revision) {
+void	MAPINT	load (FSync _sync, MMC1Type _revision) {
 	sync =_sync;
 	revision =_revision;
 }
