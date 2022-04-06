@@ -1,7 +1,7 @@
 #include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_MMC3.h"
 #include	"..\Hardware\h_MMC1.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 
 #define mapper   (reg[0] &0x03)
 #define M_MMC3   0x00
@@ -29,7 +29,7 @@ void	sync (void) {
 		case M_MMC1: MMC1::syncPRG(prgAND >>1, (reg[1] >>1 &~prgAND) >>1); break;
 		default:
 		case M_MMC3: MMC3::syncPRG(prgAND, reg[1] >>1 &~prgAND); break;
-		case M_VRC4: VRC4::syncPRG(prgAND, reg[1] >>1 &~prgAND); break;
+		case M_VRC4: VRC24::syncPRG(prgAND, reg[1] >>1 &~prgAND); break;
 	}
 	
 	if (chrram)
@@ -42,20 +42,20 @@ void	sync (void) {
 		case M_MMC1: MMC1::syncCHR_ROM(chrAND >>2, (reg[0] <<1 &~chrAND) >>2); break;
 		default:
 		case M_MMC3: MMC3::syncCHR_ROM(chrAND, reg[0] <<1 &~chrAND); break;
-		case M_VRC4: VRC4::syncCHR_ROM(chrAND, reg[0] <<1 &~chrAND); break;
+		case M_VRC4: VRC24::syncCHR_ROM(chrAND, reg[0] <<1 &~chrAND); break;
 	}
 	
 	switch(mapper) {
 		case M_MMC1: MMC1::syncMirror(); break;
 		default:
 		case M_MMC3: MMC3::syncMirror(); break;
-		case M_VRC4: VRC4::syncMirror(); break;
+		case M_VRC4: VRC24::syncMirror(); break;
 	}
 }
 
 void	MAPINT	writeVRC4 (int bank, int addr, int val) {
 	if (addr &0x800) addr =(addr &4? 8: 0) | (addr &8? 4: 0) | addr &~0xC;
-	VRC4::write(bank, addr, val);
+	VRC24::write(bank, addr, val);
 }
 
 void	applyMode (void) {
@@ -98,7 +98,7 @@ BOOL	MAPINT	load (void) {
 		EMU->SetPRGROMSize(ROM->PRGROMSize +ROM->CHRROMSize);
 		for (int i =0; i <ROM->CHRROMSize; i++) ROM->PRGROMData[oldPRGROMSize +i] =ROM->CHRROMData[i];
 	}
-	VRC4::load(sync, 0x04, 0x08, NULL, true, 0);
+	VRC24::load(sync, true, 0x04, 0x08, NULL, true, 0);
 	MMC1::load(sync, MMC1Type::MMC1A);
 	MMC3::load(sync);
 	return TRUE;
@@ -108,7 +108,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 	for (auto& c: reg) c =0;
 	MMC1::reset(RESET_HARD);
 	MMC3::reset(RESET_HARD);
-	VRC4::reset(RESET_HARD);
+	VRC24::reset(RESET_HARD);
 	EMU->SetCPUReadHandler(0x5, readDIP);
 	EMU->SetCPUWriteHandler(0x5, writeReg);
 	applyMode();
@@ -120,7 +120,7 @@ void	MAPINT	cpuCycle (void) {
 		case M_MMC1: MMC1::cpuCycle(); break;
 		default:
 		case M_MMC3: MMC3::cpuCycle(); break;
-		case M_VRC4: VRC4::cpuCycle(); break;
+		case M_VRC4: VRC24::cpuCycle(); break;
 	}
 }
 
@@ -131,7 +131,7 @@ void	MAPINT	ppuCycle (int addr, int scanline, int cycle, int isRendering) {
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
 	offset =MMC3::saveLoad(stateMode, offset, data);
 	offset =MMC1::saveLoad(stateMode, offset, data);
-	offset =VRC4::saveLoad(stateMode, offset, data);
+	offset =VRC24::saveLoad(stateMode, offset, data);
 	for (auto& c: reg) SAVELOAD_BYTE(stateMode, offset, data, c);
 	if (stateMode ==STATE_LOAD) {
 		applyMode();

@@ -1,14 +1,14 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {	
 int	CurrentCHRBank;
 FPPURead _ReadCHR;
 
 void	Sync (void) {
-	VRC4::syncPRG(0x1F, (VRC4::chr[CurrentCHRBank] &8) <<2);
-	VRC4::syncCHR_RAM(0x07, 0x00);
-	VRC4::syncMirror();
+	VRC24::syncPRG(0x1F, (VRC24::chr[CurrentCHRBank] &8) <<2);
+	VRC24::syncCHR_RAM(0x07, 0x00);
+	VRC24::syncMirror();
 }
 
 int	MAPINT	ReadCHR (int Bank, int Addr) {
@@ -19,12 +19,12 @@ int	MAPINT	ReadCHR (int Bank, int Addr) {
 
 BOOL	MAPINT	Load (void) {
 	iNES_SetSRAM();
-	VRC4::load(Sync, 0x04, 0x08, NULL, true, 0);
+	VRC24::load(Sync, true, 0x04, 0x08, NULL, true, 0);
 	return TRUE;
 }
 
 void	MAPINT	Reset (RESET_TYPE ResetType) {
-	VRC4::reset(ResetType);
+	VRC24::reset(ResetType);
 	_ReadCHR =EMU->GetPPUReadHandler(0);
 	for (int i =0; i <8; i++) EMU->SetPPUReadHandler(i, ReadCHR);
 }
@@ -39,9 +39,9 @@ MapperInfo MapperInfo_520 = {
 	Load,
 	Reset,
 	NULL,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
-	VRC4::saveLoad,
+	VRC24::saveLoad,
 	NULL,
 	NULL
 };

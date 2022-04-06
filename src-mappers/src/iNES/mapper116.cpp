@@ -1,7 +1,7 @@
 ﻿#include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_MMC1.h"
 #include	"..\Hardware\h_MMC3.h"
-#include	"..\Hardware\h_VRC2.h"
+#include	"..\Hardware\h_VRC24.h"
 
 #define	modeMMC3 mode &1
 #define	modeMMC1 mode &2
@@ -33,9 +33,9 @@ void	sync (void) {
 		MMC3::syncPRG(prgAND, prgOR);
 		MMC3::syncCHR_ROM(chrAND, chrOR | chrA18);
 	} else {
-		VRC2::syncPRG(prgAND, prgOR);
-		VRC2::syncCHR_ROM(chrAND, chrOR | chrA18);
-		VRC2::syncMirror();
+		VRC24::syncPRG(prgAND, prgOR);
+		VRC24::syncCHR_ROM(chrAND, chrOR | chrA18);
+		VRC24::syncMirror();
 	}
 }
 
@@ -55,13 +55,13 @@ void	applyMode (void) {
 		EMU->SetCPUWriteHandler(0xF, MMC3::writeIRQEnable);
 	} else {
 		EMU->SetIRQ(1);
-		EMU->SetCPUWriteHandler(0x8, VRC2::writePRG);
-		EMU->SetCPUWriteHandler(0x9, VRC2::writeMirroring);
-		EMU->SetCPUWriteHandler(0xA, VRC2::writePRG);
-		EMU->SetCPUWriteHandler(0xB, VRC2::writeCHR);
-		EMU->SetCPUWriteHandler(0xC, VRC2::writeCHR);
-		EMU->SetCPUWriteHandler(0xD, VRC2::writeCHR);
-		EMU->SetCPUWriteHandler(0xE, VRC2::writeCHR);
+		EMU->SetCPUWriteHandler(0x8, VRC24::writePRG);
+		EMU->SetCPUWriteHandler(0x9, VRC24::writeMisc);
+		EMU->SetCPUWriteHandler(0xA, VRC24::writePRG);
+		EMU->SetCPUWriteHandler(0xB, VRC24::writeCHR);
+		EMU->SetCPUWriteHandler(0xC, VRC24::writeCHR);
+		EMU->SetCPUWriteHandler(0xD, VRC24::writeCHR);
+		EMU->SetCPUWriteHandler(0xE, VRC24::writeCHR);
 		EMU->SetCPUWriteHandler(0xF, writeNothing);
 	}
 }
@@ -77,7 +77,7 @@ void	MAPINT	writeMode (int bank, int addr, int val) {
 
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
-	VRC2::load(sync, 0x01, 0x02);
+	VRC24::load(sync, false, 0x01, 0x02, NULL, true, 0);
 	MMC1::load(sync, MMC1Type::MMC1A);
 	MMC3::load(sync);
 	game =ROM->INES2_SubMapper ==3? 4: 0;
@@ -102,16 +102,16 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 	writeNothing =EMU->GetCPUWriteHandler(0xF);
 	MMC1::reset(resetType);
 	MMC3::reset(resetType);
-	VRC2::reset(resetType); // Must be done before VRC2::chr[] are initialized
+	VRC24::reset(resetType); // Must be done before VRC24::chr[] are initialized
 	if (resetType ==RESET_HARD) {
 		// Game increases in power cycle
 		if (ROM->INES2_SubMapper ==3) if (++game >4) game =0;
 		mode =1; // Always start in MMC3 mode
 		applyMode();
-		VRC2::chr[0] =0xFF;
-		VRC2::chr[1] =0xFF;
-		VRC2::chr[2] =0xFF;
-		VRC2::chr[3] =0xFF;
+		VRC24::chr[0] =0xFF;
+		VRC24::chr[1] =0xFF;
+		VRC24::chr[2] =0xFF;
+		VRC24::chr[3] =0xFF;
 	}
 	sync();
 	
@@ -133,7 +133,7 @@ void	MAPINT	ppuCycle (int addr, int scanline, int cycle, int isRendering) {
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
 	SAVELOAD_BYTE(stateMode, offset, data, mode);
-	offset =VRC2::saveLoad(stateMode, offset, data);
+	offset =VRC24::saveLoad(stateMode, offset, data);
 	offset =MMC3::saveLoad(stateMode, offset, data);
 	offset =MMC1::saveLoad(stateMode, offset, data);
 	if (ROM->INES2_SubMapper ==3) SAVELOAD_BYTE(stateMode, offset, data, game);

@@ -1,27 +1,18 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC2.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 void	Sync (void) {
-	VRC2::syncPRG(0x1F, 0x00);
-	VRC2::syncCHR_ROM(0xFFF, 0x000);
-	VRC2::syncMirror();
-	EMU->Mirror_Custom(VRC2::chr[0] >> 7, VRC2::chr[0] >> 7, VRC2::chr[1] >> 7, VRC2::chr[1] >> 7);
+	VRC24::syncPRG(0x1F, 0x00);
+	VRC24::syncCHR_ROM(0xFFF, 0x000);
+	VRC24::syncMirror();
+	EMU->Mirror_Custom(VRC24::chr[0] >> 7, VRC24::chr[0] >> 7, VRC24::chr[1] >> 7, VRC24::chr[1] >> 7);
 }
 
 BOOL	MAPINT	Load (void) {
 	iNES_SetSRAM();
-	VRC2::load(Sync, 0x01, 0x02);
+	VRC24::load(Sync, false, 0x01, 0x02, NULL, true, 0);
 	return TRUE;
-}
-
-void	MAPINT	Reset (RESET_TYPE ResetType) {
-	VRC2::reset(ResetType);
-}
-
-int	MAPINT	SaveLoad (STATE_TYPE mode, int offset, unsigned char *data) {
-	offset =VRC2::saveLoad(mode, offset, data);
-	return offset;
 }
 
 uint16_t MapperNum =527;
@@ -32,11 +23,11 @@ MapperInfo MapperInfo_527 = {
 	_T("AX-40G"),
 	COMPAT_FULL,
 	Load,
-	Reset,
+	VRC24::reset,
 	NULL,
 	NULL,
 	NULL,
-	VRC2::saveLoad,
+	VRC24::saveLoad,
 	NULL,
 	NULL
 };

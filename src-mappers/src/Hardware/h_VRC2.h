@@ -1,9 +1,11 @@
 #include	"..\interface.h"
 
 namespace VRC2 {
+extern	int		A0, A1;
 extern	uint16_t	chr[8];
 
 void	MAPINT	syncPRG (int, int);
+void	MAPINT	syncCHR (int, int);
 void	MAPINT	syncCHR_ROM (int, int);
 void	MAPINT	syncCHR_ROM (int, int, int, int, int);
 void	MAPINT	syncCHR_RAM (int, int);

@@ -1,28 +1,28 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC2.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 void	Sync (void) {
 	EMU->SetPRG_ROM8 (0xA, 0x0D);
 	EMU->SetPRG_ROM16(0xC, 0x07);
 	EMU->SetCHR_RAM8(0, 0);
-	VRC2::syncMirror();
+	VRC24::syncMirror();
 }
 
 int	MAPINT	Read (int Bank, int Addr) {
 	int index= ((Bank -6) <<1) | ((Addr &0x800)? 1: 0);
 	index ^=4;
-	return ROM->PRGROMData[(VRC2::chr[index] <<11) | (Addr &0x7FF)];
+	return ROM->PRGROMData[(VRC24::chr[index] <<11) | (Addr &0x7FF)];
 	
 }
 
 BOOL	MAPINT	Load (void) {
-	VRC2::load(Sync, 0x01, 0x02);
+	VRC24::load(Sync, false, 0x01, 0x02, NULL, true, 0);
 	return TRUE;
 }
 
 void	MAPINT	Reset (RESET_TYPE ResetType) {
-	VRC2::reset(ResetType);
+	VRC24::reset(ResetType);
 
 	for (int i =0x6; i<=0x9; i++) EMU->SetCPUReadHandler(i, Read);
 	for (int i =0x6; i<=0x9; i++) EMU->SetCPUReadHandlerDebug(i, Read);
@@ -38,9 +38,9 @@ MapperInfo MapperInfo_302 = {
 	Load,
 	Reset,
 	NULL,
+	VRC24::cpuCycle,
 	NULL,
-	NULL,
-	VRC2::saveLoad,
+	VRC24::saveLoad,
 	NULL,
 	NULL
 };

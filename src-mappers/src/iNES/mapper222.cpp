@@ -1,5 +1,5 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC2.h"
+#include	"..\Hardware\h_VRC24.h"
 
 /*
 	222.1: Dragon Ninja: CTC-31: Normal VRC2, with strangely-wired 76'161 creating an IRQ counter
@@ -12,15 +12,15 @@ uint8_t		counter1, counter2;
 uint8_t		prescaler;
 
 void	sync (void) {
-	VRC2::syncPRG(0x1F, 0x00);
-	VRC2::syncCHR_ROM(0xFFF, 0x000);
-	VRC2::syncMirror();
+	VRC24::syncPRG(0x1F, 0x00);
+	VRC24::syncCHR_ROM(0xFFF, 0x000);
+	VRC24::syncMirror();
 }
 
 void	MAPINT	trapCHRWrite (int bank, int addr, int val) {
 	if (~addr &1) {
-		VRC2::writeCHR(bank, addr,    val);
-		VRC2::writeCHR(bank, addr |1, val >>4);
+		VRC24::writeCHR(bank, addr,    val);
+		VRC24::writeCHR(bank, addr |1, val >>4);
 	}
 }
 
@@ -41,7 +41,7 @@ void	MAPINT	writeIRQ (int bank, int addr, int val) {
 
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
-	VRC2::load(sync, 0x01, 0x02);
+	VRC24::load(sync, false, 0x01, 0x02, NULL, true, 0);
 	return TRUE;
 }
 
@@ -50,7 +50,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 	counter1 =0;
 	counter2 =0;
 	prescaler =0;
-	VRC2::reset(resetType);
+	VRC24::reset(resetType);
 	for (int bank =0xB; bank<=0xE; bank++) EMU->SetCPUWriteHandler(bank, trapCHRWrite);
 	EMU->SetCPUWriteHandler(0xF, writeIRQ);
 }
@@ -71,7 +71,7 @@ void	MAPINT	cpuCycle (void) {
 }
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
-	offset =VRC2::saveLoad(stateMode, offset, data);
+	offset =VRC24::saveLoad(stateMode, offset, data);
 	SAVELOAD_BOOL(stateMode, offset, data, clockMode);
 	SAVELOAD_BYTE(stateMode, offset, data, counter1);
 	SAVELOAD_BYTE(stateMode, offset, data, counter2);

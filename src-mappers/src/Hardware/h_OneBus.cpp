@@ -337,13 +337,9 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 	reg4100[0x09] =0xFE; // PQ2
 	reg4100[0x0A] =0x00;
 	reg4100[0x0B] =0x00;
-	reg4100[0x0F] =0xff;
+	reg4100[0x0F] =0xFF;
 	reg4100[0x60] =0x00; // Reset VT369 relative bank upon reset
 	reg4100[0x61] =0x00; // Reset VT369 relative bank upon reset
-	/*
-	reg4100[0x1F] =0x00; // Disable Half-Speed CPU upon reset
-	reg4100[0x1C] =0x00; // Disable 3x CPU speed upon reset
-	*/
 	counter =0;
 	reloadValue =0;
 	enableIRQ =false;

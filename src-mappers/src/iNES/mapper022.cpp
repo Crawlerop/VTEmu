@@ -1,16 +1,16 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC2.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 void	sync (void) {
-	VRC2::syncPRG(0x1F, 0x00);
-	for (int i =0; i <8; i++) EMU->SetCHR_ROM1(i, VRC2::chr[i] >>1);
-	VRC2::syncMirror();
+	VRC24::syncPRG(0x1F, 0x00);
+	for (int i =0; i <8; i++) EMU->SetCHR_ROM1(i, VRC24::chr[i] >>1);
+	VRC24::syncMirror();
 }
 
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
-	VRC2::load(sync, 0x02, 0x01);
+	VRC24::load(sync, false, 0x02, 0x01, NULL, true, 0);
 	return TRUE;
 }
 
@@ -22,11 +22,11 @@ MapperInfo MapperInfo_022 = {
 	_T("Konami 351618"),
 	COMPAT_FULL,
 	load,
-	VRC2::reset,
+	VRC24::reset,
 	NULL,
+	VRC24::cpuCycle,
 	NULL,
-	NULL,
-	VRC2::saveLoad,
+	VRC24::saveLoad,
 	NULL,
 	NULL
 };

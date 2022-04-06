@@ -1,15 +1,15 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 #include	"..\Hardware\h_EEPROM_93Cx6.h"
 
 namespace {
 EEPROM_93Cx6*	eeprom =NULL;
 
 void	sync (void) {
-	EMU->SetPRG_ROM16(0x8, VRC4::prg[1]);
+	EMU->SetPRG_ROM16(0x8, VRC24::prg[1]);
 	EMU->SetPRG_ROM16(0xC, 0xFF);
-	VRC4::syncCHR(0x1FF, 0x00);
-	VRC4::syncMirror();
+	VRC24::syncCHR(0x1FF, 0x00);
+	VRC24::syncMirror();
 }
 
 int	MAPINT	readEEPROM (int bank, int addr) {
@@ -25,22 +25,22 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 	} else
 	switch(bank) {
 		case 0x8: case 0xA:
-			VRC4::writePRG(bank, addr, val);
+			VRC24::writePRG(bank, addr, val);
 			break;
 		case 0x9:
-			VRC4::writeMisc(bank, addr, val);
+			VRC24::writeMisc(bank, addr, val);
 			break;
 		case 0xB: case 0xC: case 0xD: case 0xE:
-			VRC4::writeCHR(bank, addr, val);
+			VRC24::writeCHR(bank, addr, val);
 			break;
 		case 0xF:
-			VRC4::writeIRQ(bank, addr, val);
+			VRC24::writeIRQ(bank, addr, val);
 			break;
 	}
 }
 
 BOOL	MAPINT	load (void) {
-	VRC4::load(sync, 0x04, 0x08, NULL, true, 0);
+	VRC24::load(sync, true, 0x04, 0x08, NULL, true, 0);
 	size_t sizeSave =(ROM->INES2_PRGRAM &0xF0)? (64 << (ROM->INES2_PRGRAM >> 4)): 0;
 	if (sizeSave ==256) {
 		iNES_SetSRAM();
@@ -51,7 +51,7 @@ BOOL	MAPINT	load (void) {
 }
 
 void	MAPINT	reset (RESET_TYPE resetType) {
-	VRC4::reset(resetType);
+	VRC24::reset(resetType);
 	if (eeprom) {
 		EMU->SetCPUReadHandler(0x5, readEEPROM);
 		for (int bank =0x8; bank<=0xF; bank++) EMU->SetCPUWriteHandler(bank, writeReg);
@@ -75,9 +75,9 @@ MapperInfo MapperInfo_529 = {
 	load,
 	reset,
 	unload,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
-	VRC4::saveLoad,
+	VRC24::saveLoad,
 	NULL,
 	NULL
 };

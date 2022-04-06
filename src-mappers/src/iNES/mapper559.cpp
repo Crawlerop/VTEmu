@@ -1,13 +1,13 @@
 ﻿#include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 uint8_t		nt[4];
 uint8_t		cpuC;
 
 void	sync (void) {
-	VRC4::syncPRG(0x01F, 0x00);
-	VRC4::syncCHR(0x1FF, 0x00);
+	VRC24::syncPRG(0x01F, 0x00);
+	VRC24::syncCHR(0x1FF, 0x00);
 	EMU->SetPRG_ROM8(0xC, cpuC);
 	
 	for (int bank =0x8; bank<=0xF; bank++) EMU->SetCHR_NT1(bank, nt[bank &3]);
@@ -24,14 +24,14 @@ void	MAPINT	writeExtra (int bank, int addr, int val) {
 void	MAPINT	writeNibblize (int bank, int addr, int val) {
 	if (addr &0x400) val >>=4;
 	if (bank ==0xF)
-		VRC4::writeIRQ(bank, addr, val);
+		VRC24::writeIRQ(bank, addr, val);
 	else
-		VRC4::writeCHR(bank, addr, val);
+		VRC24::writeCHR(bank, addr, val);
 }
 
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
-	VRC4::load(sync, 0x400, 0x800, writeExtra, true, 1);
+	VRC24::load(sync, true, 0x400, 0x800, writeExtra, true, 1);
 	return TRUE;
 }
 
@@ -43,7 +43,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 		nt[3] =0xE1;
 		cpuC =0xFE;
 	}
-	VRC4::reset(resetType);
+	VRC24::reset(resetType);
 	EMU->SetCPUWriteHandler(0xB, writeNibblize);
 	EMU->SetCPUWriteHandler(0xC, writeNibblize);
 	EMU->SetCPUWriteHandler(0xD, writeNibblize);
@@ -52,7 +52,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 }
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
-	offset =VRC4::saveLoad(stateMode, offset, data);
+	offset =VRC24::saveLoad(stateMode, offset, data);
 	SAVELOAD_BYTE(stateMode, offset, data, cpuC);
 	for (auto& c: nt) SAVELOAD_BYTE(stateMode, offset, data, c);
 	if (stateMode ==STATE_LOAD) sync();
@@ -69,7 +69,7 @@ MapperInfo MapperInfo_559 ={
 	load,
 	reset,
 	NULL,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
 	saveLoad,
 	NULL,

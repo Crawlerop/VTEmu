@@ -2,38 +2,35 @@
 #include	"..\Hardware\h_Latch.h"
 
 namespace {
-void	Sync (void) {
+void	sync (void) {
 	if (Latch::addr &0x20) {
-		EMU->SetPRG_ROM16(0x8, Latch::addr);
-		EMU->SetPRG_ROM16(0xC, Latch::addr);
+		EMU->SetPRG_ROM16(0x8, Latch::addr >>2 &0x20 | Latch::addr &0x1F);
+		EMU->SetPRG_ROM16(0xC, Latch::addr >>2 &0x20 | Latch::addr &0x1F);
 	} else {
-		EMU->SetPRG_ROM16(0x8, Latch::addr | Latch::data);
-		EMU->SetPRG_ROM16(0xC, Latch::addr | 7);
+		EMU->SetPRG_ROM16(0x8, Latch::addr >>2 &0x20 | Latch::addr | Latch::data);
+		EMU->SetPRG_ROM16(0xC, Latch::addr >>2 &0x20 | Latch::addr | 7);
 	}
 	EMU->SetCHR_RAM8(0, 0);
-	if ((Latch::addr &0x25) ==0x25)
+	if (Latch::addr &0x40 || Latch::addr &0x20 && Latch::addr &0x04)
 		EMU->Mirror_H();
 	else
 		EMU->Mirror_V();
 }
 
-BOOL	MAPINT	Load (void) {
-	Latch::load(Sync, TRUE);
+BOOL	MAPINT	load (void) {
+	Latch::load(sync, true);
 	return TRUE;
 }
-void	MAPINT	Reset (RESET_TYPE ResetType) {
-	Latch::reset(ResetType);
-}
 
-uint16_t MapperNum =340;
+uint16_t mapperNum =340;
 } // namespace
 
 MapperInfo MapperInfo_340 = {
-	&MapperNum,
+	&mapperNum,
 	_T("K-3036"),
 	COMPAT_FULL,
-	Load,
-	Reset,
+	load,
+	Latch::resetHard,
 	NULL,
 	NULL,
 	NULL,

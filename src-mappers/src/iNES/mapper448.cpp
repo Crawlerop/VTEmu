@@ -1,5 +1,5 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 #include	"..\Hardware\h_Latch.h"
 
 /*
@@ -28,20 +28,20 @@ void	sync (void) {
 		for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUWriteHandler(bank, Latch::write);
 	} else {
 		if (uorom) {
-			EMU->SetPRG_ROM16(0x8, VRC4::prg[0] &0x0F | outer <<3 &~8);
-			EMU->SetPRG_ROM16(0xC,               0x0F | outer <<3 &~8);
+			EMU->SetPRG_ROM16(0x8, VRC24::prg[0] &0x0F | outer <<3 &~8);
+			EMU->SetPRG_ROM16(0xC,                0x0F | outer <<3 &~8);
 		} else {
-			EMU->SetPRG_ROM16(0x8, VRC4::prg[0] &0x07 | outer <<3);
-			EMU->SetPRG_ROM16(0xC,               0x07 | outer <<3);
+			EMU->SetPRG_ROM16(0x8, VRC24::prg[0] &0x07 | outer <<3);
+			EMU->SetPRG_ROM16(0xC,                0x07 | outer <<3);
 		}
-		VRC4::syncMirror();
-		for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUWriteHandler(bank, VRC4::write);
+		VRC24::syncMirror();
+		for (int bank =0x8; bank <=0xF; bank++) EMU->SetCPUWriteHandler(bank, VRC24::write);
 	}
 	EMU->SetCHR_RAM8(0x0, 0);
 }
 
 void	MAPINT	writeReg (int bank, int addr, int val) {
-	if (VRC4::wramEnable) reg =addr &0xFF;
+	if (VRC24::wramEnable) reg =addr &0xFF;
 	writeWRAM(bank, addr, val);
 	sync();
 }
@@ -49,7 +49,7 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
 	Latch::load(sync, false);
-	VRC4::load(sync, 0x04, 0x08, NULL, true, 0);
+	VRC24::load(sync, true, 0x04, 0x08, NULL, true, 0);
 	return TRUE;
 }
 
@@ -57,7 +57,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 
 	reg =0;
 	Latch::reset(RESET_HARD);
-	VRC4::reset(resetType);
+	VRC24::reset(resetType);
 	writeWRAM =EMU->GetCPUWriteHandler(0x6);
 	sync();
 	
@@ -74,9 +74,9 @@ MapperInfo MapperInfo_448 = {
 	load,
 	reset,
 	NULL,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
-	VRC4::saveLoad,
+	VRC24::saveLoad,
 	NULL,
 	NULL
 };

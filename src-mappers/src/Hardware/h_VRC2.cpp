@@ -16,6 +16,13 @@ void	MAPINT	syncPRG (int AND, int OR) {
 	EMU->SetPRG_ROM8(0xE, 0xFF   &AND |OR);
 }
 
+void	MAPINT	syncCHR (int AND, int OR) {
+	if (ROM->CHRROMSize)
+		syncCHR_ROM(AND, OR);
+	else
+		syncCHR_RAM(AND, OR);
+}
+
 void	MAPINT	syncCHR_ROM (int AND, int OR) {
 	for (int bank =0; bank <8; bank++) EMU->SetCHR_ROM1(bank, chr[bank] &AND |OR);
 }

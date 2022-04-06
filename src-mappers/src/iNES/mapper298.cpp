@@ -1,17 +1,17 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 
 void	Sync (void) {
-	VRC4::syncPRG(0x1F, 0x00);
-	VRC4::syncCHR(0x1FF, 0x00);
-	VRC4::syncMirror();
+	VRC24::syncPRG(0x1F, 0x00);
+	VRC24::syncCHR(0x1FF, 0x00);
+	VRC24::syncMirror();
 }
 
 BOOL	MAPINT	Load (void) {
 	iNES_SetSRAM();
-	VRC4::load(Sync, 0x02, 0x01, NULL, false, 0);
+	VRC24::load(Sync, true, 0x02, 0x01, NULL, false, 0);
 	return TRUE;
 }
 
@@ -23,11 +23,11 @@ MapperInfo MapperInfo_298 = {
 	_T("NTDEC 1201"),
 	COMPAT_FULL,
 	Load,
-	VRC4::reset,
+	VRC24::reset,
 	NULL,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
-	VRC4::saveLoad,
+	VRC24::saveLoad,
 	NULL,
 	NULL
 };

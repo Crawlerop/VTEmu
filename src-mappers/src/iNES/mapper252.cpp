@@ -1,5 +1,5 @@
 ﻿#include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 FPPUWrite	writeCHR;
@@ -7,20 +7,20 @@ uint8_t		maskCHRBank;
 uint8_t		maskCompare;
 
 void	sync (void) {
-	VRC4::syncPRG(0x1F, 0x00);
+	VRC24::syncPRG(0x1F, 0x00);
 	
 	for (int bank =0x0; bank <0x8; bank++) {
-		int val =VRC4::chr[bank];
+		int val =VRC24::chr[bank];
 		if ((val &maskCHRBank) ==maskCompare)
 			EMU->SetCHR_RAM1(bank, val);
 		else
 			EMU->SetCHR_ROM1(bank, val);
 	}
-	VRC4::syncMirror();
+	VRC24::syncMirror();
 }
 
 void	MAPINT	interceptCHRWrite (int bank, int addr, int val) {
-	switch(VRC4::chr[bank]) {
+	switch(VRC24::chr[bank]) {
 		case 0x88: maskCHRBank =0xFC; maskCompare =0x4C; break;
 		case 0xC2: maskCHRBank =0xFE; maskCompare =0x7C; break;
 		case 0xC8: maskCHRBank =0xFE; maskCompare =0x04; break;
@@ -30,7 +30,7 @@ void	MAPINT	interceptCHRWrite (int bank, int addr, int val) {
 
 BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
-	VRC4::load(sync, 0x4, 0x8, NULL, true, 1);
+	VRC24::load(sync, true, 0x4, 0x8, NULL, true, 1);
 	return TRUE;
 }
 
@@ -44,13 +44,13 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 			maskCompare =0x04;
 		}
 	}
-	VRC4::reset(resetType);
+	VRC24::reset(resetType);
 	writeCHR =EMU->GetPPUWriteHandler(0x0);
 	for (int bank =0x0; bank<=0x7; bank++) EMU->SetPPUWriteHandler(bank, interceptCHRWrite);
 }
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
-	offset =VRC4::saveLoad(stateMode, offset, data);
+	offset =VRC24::saveLoad(stateMode, offset, data);
 	SAVELOAD_BYTE(stateMode, offset, data, maskCHRBank);
 	SAVELOAD_BYTE(stateMode, offset, data, maskCompare);
 	if (stateMode ==STATE_LOAD) sync();
@@ -68,7 +68,7 @@ MapperInfo MapperInfo_252 ={
 	load,
 	reset,
 	NULL,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
 	saveLoad,
 	NULL,
@@ -81,7 +81,7 @@ MapperInfo MapperInfo_253 ={
 	load,
 	reset,
 	NULL,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
 	saveLoad,
 	NULL,

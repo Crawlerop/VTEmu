@@ -1,6 +1,6 @@
 #include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_MMC3.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 int	regNum;
@@ -11,9 +11,9 @@ bool	locked;
 
 void	sync (void) {
 	if (vrc4mode) {
-		VRC4::syncPRG(prgAND, prgOR);
-		VRC4::syncCHR(chrAND, chrOR);
-		VRC4::syncMirror();
+		VRC24::syncPRG(prgAND, prgOR);
+		VRC24::syncCHR(chrAND, chrOR);
+		VRC24::syncMirror();
 	} else {
 		MMC3::syncWRAM();
 		MMC3::syncPRG(prgAND, prgOR);
@@ -40,7 +40,7 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 		case 2:	chrAND =0xFF >>(~val &0xF);
 			chrOR =chrOR &~0x0F00 | ((val &0xF0) <<4);
 			vrc4mode =!!(val &0x80);
-			for (int i =0x8; i<=0xF; i++) EMU->SetCPUWriteHandler(i, vrc4mode? VRC4::write: MMC3::write);
+			for (int i =0x8; i<=0xF; i++) EMU->SetCPUWriteHandler(i, vrc4mode? VRC24::write: MMC3::write);
 			break;
 		case 3:	prgAND =~val &0x3F;
 			prgOR =prgOR &~0x0100 | ((val &0x40) <<2);
@@ -55,7 +55,7 @@ void	MAPINT	writeReg (int bank, int addr, int val) {
 
 BOOL	MAPINT	load (void) {
 	MMC3::load(sync);
-	VRC4::load(sync, 0x05, 0x0A, NULL, true, 0);
+	VRC24::load(sync, true, 0x05, 0x0A, NULL, true, 0);
 	return TRUE;
 }
 
@@ -65,14 +65,14 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 	prgAND =0x3F; prgOR =0x00;
 	chrAND =0xFF; chrOR =0x00;
 	locked =false;
-	VRC4::reset(resetType);
+	VRC24::reset(resetType);
 	MMC3::reset(resetType);
 	EMU->SetCPUWriteHandler(0x5, writeReg);
 }
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
 	offset =MMC3::saveLoad(stateMode, offset, data);
-	offset =VRC4::saveLoad(stateMode, offset, data);
+	offset =VRC24::saveLoad(stateMode, offset, data);
 	SAVELOAD_LONG(stateMode, offset, data, regNum);
 	SAVELOAD_LONG(stateMode, offset, data, prgAND);
 	SAVELOAD_LONG(stateMode, offset, data, prgOR);
@@ -80,14 +80,14 @@ int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
 	SAVELOAD_LONG(stateMode, offset, data, chrOR);
 	SAVELOAD_BOOL(stateMode, offset, data, locked);
 	SAVELOAD_BOOL(stateMode, offset, data, vrc4mode);
-	for (int bank =0x8; bank<=0xF; bank++) EMU->SetCPUWriteHandler(bank, vrc4mode? VRC4::write: MMC3::write);
+	for (int bank =0x8; bank<=0xF; bank++) EMU->SetCPUWriteHandler(bank, vrc4mode? VRC24::write: MMC3::write);
 	if (stateMode ==STATE_LOAD) sync();
 	return offset;
 }
 
 void	MAPINT	cpuCycle () {
 	if (vrc4mode)
-		VRC4::cpuCycle();
+		VRC24::cpuCycle();
 	else
 		MMC3::cpuCycle();
 }

@@ -1,5 +1,5 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC2.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 uint8_t	IRQEnabled;
@@ -7,9 +7,9 @@ uint16_t IRQCounterLow;
 uint8_t	IRQCounterHigh;
 
 void	Sync (void) {
-	VRC2::syncPRG(0x1F, 0x00);
-	VRC2::syncCHR_ROM(0xFF, 0x00);
-	VRC2::syncMirror();
+	VRC24::syncPRG(0x1F, 0x00);
+	VRC24::syncCHR_ROM(0xFF, 0x00);
+	VRC24::syncMirror();
 }
 
 void	MAPINT	WriteIRQ (int Bank, int Addr, int Val) {
@@ -27,11 +27,11 @@ void	MAPINT	WriteIRQ (int Bank, int Addr, int Val) {
 }
 
 BOOL	MAPINT	Load (void) {
-	VRC2::load(Sync, 0x01, 0x02);
+	VRC24::load(Sync, false, 0x01, 0x02, NULL, true, 0);
 	return TRUE;
 }
 void	MAPINT	Reset (RESET_TYPE ResetType) {
-	VRC2::reset(ResetType);
+	VRC24::reset(ResetType);
 	EMU->SetCPUWriteHandler(0xF, WriteIRQ);
 }
 
@@ -46,7 +46,7 @@ int	MAPINT	SaveLoad (STATE_TYPE mode, int offset, unsigned char *data) {
 	SAVELOAD_BYTE(mode, offset, data, IRQEnabled);
 	SAVELOAD_WORD(mode, offset, data, IRQCounterLow);
 	SAVELOAD_BYTE(mode, offset, data, IRQCounterHigh);
-	offset = VRC2::saveLoad(mode, offset, data);
+	offset = VRC24::saveLoad(mode, offset, data);
 	return offset;
 }
 

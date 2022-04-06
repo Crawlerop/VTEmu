@@ -119,6 +119,7 @@
     <ClCompile Include="..\src\Hardware\h_SerialDevice.cpp" />
     <ClCompile Include="..\src\Hardware\h_TXCLatch.cpp" />
     <ClCompile Include="..\src\Hardware\h_VRC2.cpp" />
+    <ClCompile Include="..\src\Hardware\h_VRC24.cpp" />
     <ClCompile Include="..\src\Hardware\h_VRC4.cpp" />
     <ClCompile Include="..\src\Hardware\h_VRC6.cpp" />
     <ClCompile Include="..\src\Hardware\h_VRC7.cpp" />
@@ -556,6 +557,7 @@
     <ClCompile Include="..\src\iNES\mapper464.cpp" />
     <ClCompile Include="..\src\iNES\mapper465.cpp" />
     <ClCompile Include="..\src\iNES\mapper466.cpp" />
+    <ClCompile Include="..\src\iNES\mapper468.cpp" />
     <ClCompile Include="..\src\iNES\mapper500.cpp" />
     <ClCompile Include="..\src\iNES\mapper501.cpp" />
     <ClCompile Include="..\src\iNES\mapper502.cpp" />
@@ -611,10 +613,12 @@
     <ClCompile Include="..\src\iNES\mapper561.cpp" />
     <ClCompile Include="..\src\iNES\mapper562.cpp" />
     <ClCompile Include="..\src\iNES\mapper563.cpp" />
+    <ClCompile Include="..\src\iNES\mapper754.cpp" />
     <ClCompile Include="..\src\iNES\mapper755.cpp" />
     <ClCompile Include="..\src\iNES\mapper756.cpp" />
     <ClCompile Include="..\src\iNES\mapper758.cpp" />
     <ClCompile Include="..\src\iNES\mapper467.cpp" />
+    <ClCompile Include="..\src\iNES\mapper759.cpp" />
     <ClCompile Include="..\src\iNES\mapper760.cpp" />
     <ClCompile Include="..\src\iNES\mapper761.cpp" />
     <ClCompile Include="..\src\iNES\mapper381.cpp" />
@@ -622,6 +626,8 @@
     <ClCompile Include="..\src\iNES\mapper404.cpp" />
     <ClCompile Include="..\src\iNES\mapper452.cpp" />
     <ClCompile Include="..\src\iNES\mapper763.cpp" />
+    <ClCompile Include="..\src\iNES\mapper764.cpp" />
+    <ClCompile Include="..\src\iNES\mapper765.cpp" />
     <ClCompile Include="..\src\iNES\mapper767.cpp" />
     <ClCompile Include="..\src\iNES\unimplemented.cpp" />
     <ClCompile Include="..\src\DLL\d_iNES.cpp" />
@@ -644,6 +650,7 @@
     <ClInclude Include="..\src\Hardware\h_SerialDevice.h" />
     <ClInclude Include="..\src\Hardware\h_TXCLatch.h" />
     <ClInclude Include="..\src\Hardware\h_VRC2.h" />
+    <ClInclude Include="..\src\Hardware\h_VRC24.h" />
     <ClInclude Include="..\src\Hardware\h_VRC4.h" />
     <ClInclude Include="..\src\Hardware\h_VRC6.h" />
     <ClInclude Include="..\src\Hardware\h_VRC7.h" />

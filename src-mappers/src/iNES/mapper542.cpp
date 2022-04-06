@@ -1,15 +1,15 @@
 ﻿#include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_VRC4.h"
+#include	"..\Hardware\h_VRC24.h"
 
 namespace {
 bool		mapCIRAM;
 
 void	sync (void) {
-	VRC4::syncPRG(0x1F, 0x00);
-	VRC4::syncCHR_ROM(0x1FF, 0x000);
+	VRC24::syncPRG(0x1F, 0x00);
+	VRC24::syncCHR_ROM(0x1FF, 0x000);
 	EMU->SetPRG_ROM8(0x6, 0x0F);
 
-	VRC4::syncMirror();
+	VRC24::syncMirror();
 	if (mapCIRAM) EMU->SetCHR_NT1(0x3, 1);
 }
 
@@ -18,22 +18,22 @@ void	MAPINT	writeCIRAMSwitch (int bank, int addr, int val) {
 		mapCIRAM =!!(bank &1);
 		sync();
 	} else
-		VRC4::writeCHR(bank, addr, val);
+		VRC24::writeCHR(bank, addr, val);
 }
 
 BOOL	MAPINT	load (void) {
-	VRC4::load(sync, 0x01, 0x02, NULL, true, 0);
+	VRC24::load(sync, true, 0x01, 0x02, NULL, true, 0);
 	return TRUE;
 }
 
 void	MAPINT	reset (RESET_TYPE resetType) {
-	VRC4::reset(resetType);
+	VRC24::reset(resetType);
 	EMU->SetCPUWriteHandler(0xD, writeCIRAMSwitch);
 	EMU->SetCPUWriteHandler(0xE, writeCIRAMSwitch);
 }
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
-	offset =VRC4::saveLoad(stateMode, offset, data);
+	offset =VRC24::saveLoad(stateMode, offset, data);
 	SAVELOAD_BOOL(stateMode, offset, data, mapCIRAM);
 	if (stateMode ==STATE_LOAD) sync();
 	return offset;
@@ -49,7 +49,7 @@ MapperInfo MapperInfo_542 = {
 	load,
 	reset,
 	NULL,
-	VRC4::cpuCycle,
+	VRC24::cpuCycle,
 	NULL,
 	saveLoad,
 	NULL,

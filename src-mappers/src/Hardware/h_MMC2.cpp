@@ -1,4 +1,5 @@
 #include	"h_MMC2.h"
+#include	"../Dll/d_iNES.h"
 
 namespace MMC2 {
 uint8_t		prg;
@@ -16,8 +17,8 @@ void	syncPRG (int AND, int OR) {
 }
 
 void	syncCHR (int AND, int OR) {
-	EMU->SetCHR_ROM4(0, chr[state[0] |0] &AND |OR);
-	EMU->SetCHR_ROM4(4, chr[state[1] |2] &AND |OR);
+	iNES_SetCHR_Auto4(0, chr[state[0] |0] &AND |OR);
+	iNES_SetCHR_Auto4(4, chr[state[1] |2] &AND |OR);
 }
 
 void	syncMirror (void) {

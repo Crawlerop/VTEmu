@@ -63,7 +63,7 @@ int	getPRGBank (int bank) {
 	int prgOR  =fk23reg[1] &0x07F;
 	switch (ROM->INES2_SubMapper) {
 		case 1: // FK-xxx
-			if (prgMode ==0 || prgMode ==7) prgAND =0xFF; // 2 MiB MMC3
+			if (prgMode ==7 || mmc3Extended) prgAND =0xFF; // 2 MiB MMC3
 			break;
 		case 2: // Waixing FS005
 			prgOR |=fk23reg[0] <<4 &0x080 |
@@ -73,7 +73,7 @@ int	getPRGBank (int bank) {
 			break;
 		case 3: // Super Mario 160 Funny Time: Enhanced variant with extra MSB register
 			prgOR |=fk23reg[5] <<7;
-			if (prgMode ==0) prgAND =0xFF; // 2 MiB MMC3
+			if (prgMode ==7) prgAND =0xFF; // 2 MiB MMC3
 			break;
 		case 4: // GameStar Smart Genius Deluxe
 			prgOR |=fk23reg[2] &0x080;
@@ -291,7 +291,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {	// Cart detects soft reset, so always
 	static const uint8_t initialReg[12] = { 0x00, 0x02, 0x04, 0x05, 0x06, 0x07, 0x00, 0x01, 0xFE, 0xFF, 0x01, 0x03 };
 	for (int i =0; i <12; i++) mmc3reg[i] = initialReg[i];
 	for (auto& r: fk23reg) r =0x00;
-	if (ROM->INES2_SubMapper ==6) fk23reg[1] =0xFF;
+	if (ROM->INES2_SubMapper ==1 || ROM->INES2_SubMapper==3) fk23reg[0] =0x07;
 	
 	if (ROM->INES_MapperNum ==523) 
 		mirroring =(ROM->INES_Flags &1) ^1;

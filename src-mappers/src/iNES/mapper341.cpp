@@ -5,7 +5,7 @@ namespace {
 void	sync (void) {
 	EMU->SetPRG_ROM32(0x8, Latch::addr >>8);
 	EMU->SetCHR_ROM8(0, Latch::addr >>8);
-	if (Latch::addr &0x200)
+	if (Latch::addr &(ROM->PRGROMSize &0x40000? 0x800: 0x200))
 		EMU->Mirror_H();
 	else
 		EMU->Mirror_V();
