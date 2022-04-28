@@ -11,6 +11,7 @@ extern	uint8_t		counter;
 extern	uint8_t 	latch;
 extern	int16_t		cycles;
 extern	bool		wramEnable;
+extern	uint8_t 	wires; /* $01=DI, $02=CLK, $04=CS, $08=DO */
 void	MAPINT		syncPRG (int, int);
 void	MAPINT		syncCHR (int, int);
 void	MAPINT		syncCHR_ROM (int, int);

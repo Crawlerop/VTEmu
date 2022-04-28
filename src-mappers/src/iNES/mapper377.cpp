@@ -48,7 +48,7 @@ MapperInfo MapperInfo_377 ={
 	reset,
 	NULL,
 	MMC3::cpuCycle,
-	MMC3::ppuCycle_MC_ACC,
+	MMC3::ppuCycle,
 	saveLoad,
 	NULL,
 	NULL

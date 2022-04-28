@@ -105,7 +105,7 @@ void	MAPINT	writeASIC (int bank, int addr, int val) {
 }
 
 BOOL	MAPINT	load (void) {
-	MMC3::load(sync);
+	MMC3::load(sync, MMC3Type::NEC);
 	if (ROM->INES_Version <2 && ROM->PRGROMSize >=2048*1024) ROM->INES2_SubMapper =1;
 	MapperInfo_215.Description =(ROM->INES2_SubMapper ==1)? _T("Realtec 8237A"): _T("Realtec 823x");
 	return TRUE;
@@ -165,7 +165,7 @@ MapperInfo MapperInfo_215 ={
 	reset,
 	NULL,
 	MMC3::cpuCycle,
-	MMC3::ppuCycle_MMC3A,
+	MMC3::ppuCycle,
 	saveLoad,
 	NULL,
 	NULL
@@ -178,7 +178,7 @@ MapperInfo MapperInfo_258 ={
 	reset,
 	NULL,
 	MMC3::cpuCycle,
-	MMC3::ppuCycle_MMC3A,
+	MMC3::ppuCycle,
 	saveLoad,
 	NULL,
 	NULL

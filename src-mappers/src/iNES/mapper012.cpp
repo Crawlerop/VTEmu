@@ -1,7 +1,7 @@
 ﻿#include	"..\DLL\d_iNES.h"
 #include	"..\Hardware\h_MMC3.h"
 
-extern	MapperInfo MapperInfo_012_1;
+extern	MapperInfo MapperInfo_012_1;	// in mapper006.cpp
 extern	MapperInfo MapperInfo_SL5020B;
 
 namespace {
@@ -16,7 +16,7 @@ void	sync (void) {
 }
 
 int	MAPINT	readDIP (int bank, int addr) {
-	return (addr &0x100)? ROM->dipValue: readAPU(bank, addr);
+	return addr &0x100? ROM->dipValue: readAPU(bank, addr);
 }
 
 void	MAPINT	writeCHRA18 (int bank, int addr, int val) {
@@ -36,7 +36,7 @@ BOOL	MAPINT	load (void) {
 }
 
 BOOL	MAPINT	loadSL5020B (void) {
-	MMC3::load(sync);
+	MMC3::load(sync, MMC3Type::NEC);
 	return TRUE;
 }
 
@@ -81,7 +81,7 @@ MapperInfo MapperInfo_SL5020B ={
 	reset,
 	NULL,
 	MMC3::cpuCycle,
-	MMC3::ppuCycle_MMC3A,
+	MMC3::ppuCycle,
 	saveLoad,
 	NULL,
 	NULL

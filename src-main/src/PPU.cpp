@@ -748,7 +748,8 @@ __inline void	PPU_RP2C02::RunNoSkip (int NumTicks) {
 				RenderAddr =0x2000 | (VRAMAddr &0xFFF);
 			case 337:	case 339:
 				break;
-			case 340:
+			case 340:		
+				RenderAddr = PatAddr; /* Needed for MMC3 with BG at PPU $1000 */
 				break;
 			}
 			if (!(Clockticks &1)) {

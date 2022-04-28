@@ -28,36 +28,29 @@ void	MAPINT	write (int bank, int addr, int val) {
 }
 
 int	getPRGBank (int bank) {
-	bool mode16K  =!!(reg[0] &0x08);
-	bool lastBank =!!(reg[0] &0x04);
-	bool wram16K  =!!(reg[3] &0x10) && revision ==MMC1Type::MMC1A;
 	int  prg      =reg[3];
 	int  result;	
 
-	if (mode16K)
-		result =lastBank? (prg |bank*0xF): (prg &bank*0xF);
+	if (reg[0] &0x08)
+		result =reg[0] &0x04? (prg |bank*0xF): (prg &bank*0xF);
 	else
 		result =prg &~1 |bank;
 	
-	if (wram16K)
+	if (reg[3] &0x10 && revision ==MMC1Type::MMC1A)
 		return result &0x07 | prg &0x08;
 	else
 		return result &0x0F;
 }
 
 int	getCHRBank (int bank) {
-	bool mode4K =!!(reg[0] &0x10);
-	
-	if (mode4K)
+	if (reg[0] &0x10)
 		return reg[1 +bank];
 	else
 		return reg[1] &~1 |bank;
 }
 
 void	syncWRAM (int bank) {
-	bool disableWRAM =!!(reg[3] &0x10) && revision ==MMC1Type::MMC1B;
-	
-	if (disableWRAM) {
+	if (reg[3] &0x10 && revision ==MMC1Type::MMC1B) {
 		EMU->SetPRG_OB4(0x6);
 		EMU->SetPRG_OB4(0x7);
 	} else

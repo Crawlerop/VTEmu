@@ -1,4 +1,5 @@
 ﻿#include	"h_VRC6.h"
+#include	"../Dll/d_iNES.h"
 
 namespace VRC6 {
 FSync		sync;
@@ -22,9 +23,9 @@ int16_t		irqCycles;
 
 void	MAPINT	setCHR1K (int bank, int val) {
 	if (INES_CHR_4MBIT)	// 512 KiB CHR-ROM-bearing circuit boards connect VRC6's A10-A17 to CHR-ROM's A11-A18 and PPU's A10 to CHR-ROM's A10
-		EMU->SetCHR_ROM1(bank, val <<1 | bank &1);
+		iNES_SetCHR_Auto1(bank, val <<1 | bank &1);
 	else			// All others connect VRC6's A10-A17 to CHR-ROM's A10-A17
-		EMU->SetCHR_ROM1(bank, val);
+		iNES_SetCHR_Auto1(bank, val);
 }
 
 void	MAPINT	setNametable (int screen, int val) {

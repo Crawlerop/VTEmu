@@ -1,60 +1,47 @@
 #include	"..\DLL\d_iNES.h"
-#include	"..\Hardware\h_Latch.h"
 
 namespace {
-FCPUWrite	writeAPU;
+uint8_t		shift;
 uint8_t		reg;
 
 void	sync (void) {
-	EMU->SetPRG_ROM16(0x8, Latch::data &7 | reg <<3);
-	EMU->SetPRG_ROM16(0xC,              7 | reg <<3);
+	EMU->SetPRG_RAM8(0x6, 0);
+	EMU->SetPRG_ROM16(0x8, reg);
+	EMU->SetPRG_ROM16(0xC, 0xFF);
 	iNES_SetCHR_Auto8(0x0, 0);
-	if (reg &0x10)
-		EMU->Mirror_H();
-	else
-		EMU->Mirror_V();
+	iNES_SetMirroring();
 }
 
 void	MAPINT	writeReg (int bank, int addr, int val) {
-	if (bank ==0x4) writeAPU(bank, addr, val);
-	if (addr &0x100) {
-		reg =val;
-		sync();
+	if (addr ==0) {
+		if (~shift &4 && val &4) {
+			reg =reg >>1 | val <<2 &4;
+			reg &=7;
+			sync();
+		}
+		shift =val;
 	}
-}
-
-BOOL	MAPINT	load (void) {
-	Latch::load(sync, false);
-	return TRUE;
 }
 
 void	MAPINT	reset (RESET_TYPE resetType) {
 	reg =0;
-	Latch::reset(RESET_HARD);
-	writeAPU =EMU->GetCPUWriteHandler(0x4);
-	for (int bank =0x4; bank <=0x5; bank++) EMU->SetCPUWriteHandler(bank, writeReg);
-}
-
-int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {
-	offset =Latch::saveLoad_D(stateMode, offset, data);
-	SAVELOAD_BYTE(stateMode, offset, data, reg);
-	if (stateMode ==STATE_LOAD) sync();
-	return offset;
+	EMU->SetCPUWriteHandler(0xC, writeReg);
+	sync();
 }
 
 uint16_t mapperNum =756;
 } // namespace
 
-MapperInfo MapperInfo_756 ={
+MapperInfo MapperInfo_756={
 	&mapperNum,
-	_T("63-1601"),
+	_T("Pro Action Rocky"),
 	COMPAT_FULL,
-	load,
+	NULL,
 	reset,
 	NULL,
 	NULL,
 	NULL,
-	saveLoad,
+	NULL,
 	NULL,
 	NULL
 };

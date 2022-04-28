@@ -2502,6 +2502,12 @@ void	InitHandlers (void) {
 		}
 	}
 	PlugThruDevice::initHandlers();
+	EI.ReadPRG = EI.GetCPUReadHandler(0x8);
+	EI.WritePRG = EI.GetCPUWriteHandler(0x8);
+	EI.ReadCHR = EI.GetPPUReadHandler(0x0);
+	EI.WriteCHR = EI.GetPPUWriteHandler(0x0);
+	EI.ReadAPU = EI.GetCPUReadHandler(0x4);
+	EI.WriteAPU = EI.GetCPUWriteHandler(0x4);
 }
 
 int	NewPC;

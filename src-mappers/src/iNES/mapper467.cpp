@@ -8,7 +8,7 @@ void	sync (void) {
 	MMC3::pointer &=0x3F;
 	if (reg &0x20) {
 		int prgAND =reg &0x40? 0x0F: 0x03;
-		int prgOR  =reg <<1 &0x3C | 0x40;
+		int prgOR  =reg <<1;
 		MMC3::syncPRG(prgAND, prgOR &~prgAND);
 	} else {
 		EMU->SetPRG_ROM16(0x8, reg &0x1F);

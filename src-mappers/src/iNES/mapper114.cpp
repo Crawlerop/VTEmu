@@ -61,7 +61,7 @@ void	MAPINT	writeASIC (int bank, int addr, int val) {
 }
 
 BOOL	MAPINT	load (void) {
-	MMC3::load(sync);
+	MMC3::load(sync, MMC3Type::NEC);
 	return TRUE;
 }
 
@@ -101,7 +101,7 @@ MapperInfo MapperInfo_114 ={
 	reset,
 	NULL,
 	MMC3::cpuCycle,
-	MMC3::ppuCycle_MMC3A,
+	MMC3::ppuCycle,
 	saveLoad,
 	NULL,
 	NULL
@@ -114,7 +114,7 @@ MapperInfo MapperInfo_182 ={
 	reset,
 	NULL,
 	MMC3::cpuCycle,
-	MMC3::ppuCycle_MMC3A,
+	MMC3::ppuCycle,
 	saveLoad,
 	NULL,
 	NULL

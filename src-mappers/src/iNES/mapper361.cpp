@@ -45,7 +45,7 @@ MapperInfo MapperInfo_361 ={
 	Reset,
 	NULL,
 	MMC3::cpuCycle,
-	MMC3::ppuCycle_MC_ACC,
+	MMC3::ppuCycle,
 	SaveLoad,
 	NULL,
 	NULL

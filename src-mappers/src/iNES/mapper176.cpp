@@ -59,7 +59,8 @@ bool		enableIRQ;
 #define		mmc3Extended (!!(fk23reg[3] &0x02) && (ROM->INES2_SubMapper ==1 || ROM->INES2_SubMapper ==2 || ROM->INES_MapperNum ==523))
 
 int	getPRGBank (int bank) {
-	int prgAND =0x3F >>prgMode;
+	const static int prgModeAND[8] ={ 0x3F, 0x1F, 0x0F, 0x00, 0x00, 0x00, 0x7F, 0xFF};
+	int prgAND =mmc3Extended? 0xFF: prgModeAND[prgMode];
 	int prgOR  =fk23reg[1] &0x07F;
 	switch (ROM->INES2_SubMapper) {
 		case 1: // FK-xxx

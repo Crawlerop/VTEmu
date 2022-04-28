@@ -21,12 +21,10 @@ BOOL	MAPINT	load (void) {
 	iNES_SetSRAM();
 	// Determine ASIC-specific PPU cycle handler
 	switch (ROM->INES2_SubMapper) {
-		case 3:	MapperInfo_004.PPUCycle =MMC3::ppuCycle_MC_ACC;	break;
-		case 4:	MapperInfo_004.PPUCycle =MMC3::ppuCycle_MMC3A;	break;
-		case 5:	MapperInfo_004.PPUCycle =MMC3::ppuCycle_HBlank; break;
-		default:MapperInfo_004.PPUCycle =MMC3::ppuCycle;	break;
+		case 3:  MMC3::load(sync, MMC3Type::Acclaim); break;
+		case 4:  MMC3::load(sync, MMC3Type::NEC);     break;
+		default: MMC3::load(sync, MMC3Type::Sharp);   break;
 	}
-	MMC3::load(sync);	
 	
 	// Identify board name based on submapper and RAM/ROM sizes
 	if (ROM->INES2_SubMapper ==3) {

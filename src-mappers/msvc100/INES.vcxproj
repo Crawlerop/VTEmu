@@ -615,6 +615,7 @@
     <ClCompile Include="..\src\iNES\mapper563.cpp" />
     <ClCompile Include="..\src\iNES\mapper754.cpp" />
     <ClCompile Include="..\src\iNES\mapper755.cpp" />
+    <ClCompile Include="..\src\iNES\mapper294.cpp" />
     <ClCompile Include="..\src\iNES\mapper756.cpp" />
     <ClCompile Include="..\src\iNES\mapper758.cpp" />
     <ClCompile Include="..\src\iNES\mapper467.cpp" />
@@ -627,7 +628,7 @@
     <ClCompile Include="..\src\iNES\mapper452.cpp" />
     <ClCompile Include="..\src\iNES\mapper763.cpp" />
     <ClCompile Include="..\src\iNES\mapper764.cpp" />
-    <ClCompile Include="..\src\iNES\mapper765.cpp" />
+    <ClCompile Include="..\src\iNES\mapper310.cpp" />
     <ClCompile Include="..\src\iNES\mapper767.cpp" />
     <ClCompile Include="..\src\iNES\unimplemented.cpp" />
     <ClCompile Include="..\src\DLL\d_iNES.cpp" />

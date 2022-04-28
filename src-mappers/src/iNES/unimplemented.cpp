@@ -301,7 +301,7 @@
 //MapperInfo MapperInfo_291 = { NULL, _T("Mapper 291"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_292 = { NULL, _T("Mapper 292"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_293 = { NULL, _T("Mapper 293"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
-  MapperInfo MapperInfo_294 = { NULL, _T("Mapper 294"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+//MapperInfo MapperInfo_294 = { NULL, _T("Mapper 294"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_295 = { NULL, _T("Mapper 295"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_296 = { NULL, _T("Mapper 296"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_297 = { NULL, _T("Mapper 297"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
@@ -317,7 +317,7 @@
 //MapperInfo MapperInfo_307 = { NULL, _T("Mapper 307"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_308 = { NULL, _T("Mapper 308"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_309 = { NULL, _T("Mapper 309"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
-  MapperInfo MapperInfo_310 = { NULL, _T("Mapper 310"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+//MapperInfo MapperInfo_310 = { NULL, _T("Mapper 310"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_311 = { NULL, _T("Mapper 311"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_312 = { NULL, _T("Mapper 312"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_313 = { NULL, _T("Mapper 313"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
@@ -772,6 +772,6 @@
 //MapperInfo MapperInfo_762 = { NULL, _T("Mapper 762"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_763 = { NULL, _T("Mapper 763"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_764 = { NULL, _T("Mapper 764"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
-//MapperInfo MapperInfo_765 = { NULL, _T("Mapper 765"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
+  MapperInfo MapperInfo_765 = { NULL, _T("Mapper 765"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
   MapperInfo MapperInfo_766 = { NULL, _T("Mapper 766"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 //MapperInfo MapperInfo_767 = { NULL, _T("Mapper 767"), COMPAT_NONE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };

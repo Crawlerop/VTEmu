@@ -1,6 +1,7 @@
 #include	"h_MMC3.h"
 
 namespace MMC3 {
+MMC3Type	mmc3Type;
 uint8_t		pointer;
 uint8_t		reg[8];
 uint8_t		mirroring;
@@ -13,6 +14,7 @@ bool		reload;
 bool		enableIRQ;
 uint8_t		pa12Filter;
 uint16_t	prevAddr;
+bool		counterUnderflow;
 
 FSync		sync;
 FCPURead	wramRead, wramReadCallback;
@@ -176,8 +178,13 @@ void	MAPINT	writeIRQEnable (int bank, int addr, int val) {
 	if (!enableIRQ) EMU->SetIRQ(1);
 }
 
-void	MAPINT	load (FSync cSync) {
-	sync =cSync;
+void	MAPINT	load (FSync _sync) {
+	load (_sync, MMC3Type::Sharp);
+}
+
+void	MAPINT	load (FSync _sync, MMC3Type _mmc3Type) {
+	sync =_sync;
+	mmc3Type =_mmc3Type;
 }
 
 void	setWRAMCallback (FCPURead theWRAMReadCallback, FCPUWrite theWRAMWriteCallback) {
@@ -221,18 +228,30 @@ void	MAPINT	cpuCycle (void) {
 	if (pa12Filter) pa12Filter--;
 }
 
-void	MAPINT	ppuCycle (int addr, int scanline, int cycle, int isRendering) {		// Standard MMC3B/C behavior
-	if (addr &0x1000) {
-		if (!pa12Filter) {
-			counter =!counter? reloadValue: --counter;
-			if (!counter && enableIRQ) EMU->SetIRQ(0);
-			reload =false;
-		}
-		pa12Filter =5;
+void	MAPINT	ppuCycle (int addr, int scanline, int cycle, int isRendering) {
+	switch (mmc3Type) {
+		default:
+		case MMC3Type::NEC:
+		case MMC3Type::Sharp:
+			ppuCycle_Nintendo (addr, scanline, cycle, isRendering);
+			break;
+		case MMC3Type::Acclaim:
+			ppuCycle_Acclaim (addr, scanline, cycle, isRendering);
+			break;
 	}
 }
 
-void	MAPINT	ppuCycle_MC_ACC (int addr, int scanline, int cycle, int isRendering) {
+void	MAPINT	ppuCycle_Nintendo (int addr, int scanline, int cycle, int isRendering) {
+	if (addr &0x1000) {
+		if (!pa12Filter) {
+			if ((!!counter || reload || mmc3Type ==MMC3Type::Sharp) && !(counter =counter? --counter: reloadValue) && enableIRQ) EMU->SetIRQ(0);
+			reload =false;
+		}
+		pa12Filter =3;
+	}
+}
+
+void	MAPINT	ppuCycle_Acclaim (int addr, int scanline, int cycle, int isRendering) {
 	if (~prevAddr &0x1000 && addr &0x1000) {
 		if (!(prescaler++ &7)) {
 			counter =!counter? reloadValue: --counter;
@@ -241,28 +260,6 @@ void	MAPINT	ppuCycle_MC_ACC (int addr, int scanline, int cycle, int isRendering)
 		}
 	}
 	prevAddr =addr;
-}
-
-void	MAPINT	ppuCycle_MMC3A (int addr, int scanline, int cycle, int isRendering) {
-	if (addr &0x1000) {
-		if (!pa12Filter) {
-			if (!counter) {
-				counter =reloadValue;
-				if (!counter && reload && enableIRQ) EMU->SetIRQ(0);
-			} else
-				if (!--counter && enableIRQ) EMU->SetIRQ(0);
-			reload =false;
-		}
-		pa12Filter =5;
-	}
-}
-
-void	MAPINT	ppuCycle_HBlank (int addr, int scanline, int cycle, int isRendering) {
-	if (isRendering && cycle ==256) {
-		counter =!counter? reloadValue: --counter;
-		if (!counter && enableIRQ) EMU->SetIRQ(0);
-		reload =false;
-	}
 }
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {

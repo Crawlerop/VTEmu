@@ -1165,9 +1165,6 @@
     <ClCompile Include="..\src\iNES\mapper360.cpp">
       <Filter>Source Files\Mapper Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Hardware\h_EEPROM_93C66.cpp">
-      <Filter>Source Files\Hardware Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\iNES\mapper361.cpp">
       <Filter>Source Files\Mapper Source Files</Filter>
     </ClCompile>
@@ -1618,6 +1615,51 @@
     <ClCompile Include="..\src\iNES\mapper463.cpp">
       <Filter>Source Files\Mapper Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_VRC24.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Hardware\h_EEPROM_93Cx6.cpp">
+      <Filter>Source Files\Hardware Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper464.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper465.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper466.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper467.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper468.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper754.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper755.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper756.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper758.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper763.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper764.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper294.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\iNES\mapper310.cpp">
+      <Filter>Source Files\Mapper Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\interface.h">
@@ -1722,9 +1764,6 @@
     <ClInclude Include="..\src\Hardware\h_TXCLatch.h">
       <Filter>Header Files\Hardware Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Hardware\h_EEPROM_93C66.h">
-      <Filter>Header Files\Hardware Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Hardware\h_KS202.h">
       <Filter>Header Files\Hardware Header Files</Filter>
     </ClInclude>
@@ -1744,6 +1783,12 @@
       <Filter>Header Files\Hardware Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Hardware\h_OneBus_GPIO.hpp">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_EEPROM_93Cx6.h">
+      <Filter>Header Files\Hardware Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Hardware\h_VRC24.h">
       <Filter>Header Files\Hardware Header Files</Filter>
     </ClInclude>
   </ItemGroup>

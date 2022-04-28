@@ -3,6 +3,7 @@
 
 namespace {
 void	sync (void) {
+	VRC24::wires =VRC24::wires &~8 | VRC24::wires <<3 &8; // DO simply connected to DI
 	VRC24::syncPRG(0x1F, 0x00);
 	VRC24::syncCHR(0x1FF, 0x000);
 	VRC24::syncMirror();

@@ -30,7 +30,7 @@ void	MAPINT	writeLatch (int bank, int addr, int val) {
 }
 
 BOOL	MAPINT	load (void) {
-	VRC24::load(sync, true, 0x01, 0x02, NULL, false, 0);
+	VRC24::load(sync, true, 0x01, 0x02, NULL, true, 0);
 	return TRUE;
 }
 

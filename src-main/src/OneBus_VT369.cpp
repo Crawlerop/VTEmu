@@ -1317,7 +1317,8 @@ void	PPU_VT369::RunNoSkipEnhanced (int NumTicks) {
 				// END SPRITES
 			case 336:	case 338:
 			case 337:	case 339:
-			case 340:
+			case 340:				
+				RenderAddr = PatAddr; /* Needed for MMC3 with BG at PPU $1000 */
 				break;
 			}
 			if (~Clockticks &1) {

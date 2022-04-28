@@ -413,7 +413,7 @@ unsigned char Decrypt(unsigned char raw) {
 	if (RI.ConsoleType ==CONSOLE_VT32 && dynamic_cast<CPU::CPU_VT32*>(CPU::CPU[which])->EncryptionStatus)
 		return raw ^0xA1;
 	else
-	if (which ==0 && RI.ConsoleType >=CONSOLE_VT02 && RI.ConsoleType <=CONSOLE_VT369 && RI.INES2_SubMapper >=13)
+	if (which ==0 && RI.ConsoleType >=CONSOLE_VT02 && RI.ConsoleType <=CONSOLE_VT369 && RI.INES2_SubMapper >= 12)
 		return dynamic_cast<CPU::CPU_OneBus*>(CPU::CPU[which])->Unscramble(raw);
 	else
 		return raw;

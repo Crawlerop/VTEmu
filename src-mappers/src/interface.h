@@ -327,6 +327,14 @@ struct	EmulatorInterface
 	uint16_t	*multiMapper;
 	uint8_t		*multiSubmapper;
 	uint8_t		*multiMirroring;
+	
+	/* Default handlers */
+	FCPURead	ReadPRG;
+	FCPUWrite	WritePRG;
+	FPPURead	ReadCHR;
+	FPPUWrite	WriteCHR;
+	FCPURead	ReadAPU;
+	FCPUWrite	WriteAPU;
 };
 
 enum COMPAT_TYPE	{ COMPAT_NONE, COMPAT_PARTIAL, COMPAT_NEARLY, COMPAT_FULL, COMPAT_NUMTYPES };

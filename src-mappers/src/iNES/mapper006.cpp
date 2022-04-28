@@ -311,7 +311,6 @@ void	MAPINT	cpuCycle (void) {
 		EMU->SetIRQ(0); // If the SMC IRQ is enabled, the FDS IRQ is blocked (->Rolling Thunder)
 		fdsCounter -=448;
 	}
-
 	if (~smcMode &0x08) clockSMCCounter();
 }
 
@@ -359,7 +358,6 @@ MapperInfo MapperInfo_006 ={
 	NULL,
 	NULL
 };
-
 MapperInfo MapperInfo_012_1 ={
 	&mapperNum12,
 	_T("Front Fareast Magic Card 4M"),
@@ -373,7 +371,6 @@ MapperInfo MapperInfo_012_1 ={
 	NULL,
 	NULL
 };
-
 MapperInfo MapperInfo_017 ={
 	&mapperNum17,
 	_T("Front Fareast Super Magic Card"),

@@ -1,6 +1,12 @@
 #pragma once
 #include	"..\interface.h"
 
+enum struct MMC3Type {
+	NEC,
+	Sharp,
+	Acclaim
+};
+
 namespace MMC3 {
 extern	uint8_t		pointer;
 extern	uint8_t		reg[8];
@@ -19,6 +25,7 @@ extern	FSync		sync;
 extern	FCPURead	wramRead, wramReadCallback;
 extern	FCPUWrite	wramWrite, wramWriteCallback;
 void	MAPINT	load			(FSync);
+void	MAPINT	load			(FSync, MMC3Type);
 void	MAPINT	reset			(RESET_TYPE);
 void		setWRAMCallback		(FCPURead, FCPUWrite);
 void		syncMirror		(void);
@@ -45,8 +52,8 @@ void	MAPINT	writeIRQConfig		(int,int,int);
 void	MAPINT	writeIRQEnable		(int,int,int);
 void	MAPINT	cpuCycle		(void);
 void	MAPINT	ppuCycle		(int,int,int,int);
-void	MAPINT	ppuCycle_MMC3A		(int,int,int,int);
-void	MAPINT	ppuCycle_MC_ACC		(int,int,int,int);
+void	MAPINT	ppuCycle_Nintendo	(int,int,int,int);
+void	MAPINT	ppuCycle_Acclaim	(int,int,int,int);
 void	MAPINT	ppuCycle_HBlank		(int,int,int,int);
 int	MAPINT	saveLoad		(STATE_TYPE,int,unsigned char *);
 } // namespace MMC3

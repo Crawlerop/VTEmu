@@ -3,6 +3,7 @@
 #include "Nintendulator.h"
 #include "MapperInterface.h"
 #include "plugThruDevice.hpp"
+#include "CPU.h"
 #include "PPU.h"
 
 namespace PlugThruDevice {
@@ -25,7 +26,14 @@ int	MAPINT	cpuRead_game (int bank, int addr) {
 	int value =adCPURead[bank](bank, addr);
 	for (auto& code: codes) {
 		if (code.enable && code.addr ==((bank <<12) |addr)) {
-			if (!code.compare || value ==code.compareValue) value =code.replaceValue;
+			if (!code.compare || value ==code.compareValue) {
+				value =code.replaceValue;
+				/* When a cartridge has something mapped at $4020-$7FFF (WRAM, PRG ROM) and a code for region $C020-$FFFF is added,
+				   the Game Genie will hold the slave cartridge's /ROMSEL at 1 when reading from that location.
+				   But then, the cartridge logic will see this read cycle as something below $8000, enabling the chip that is mapped here,
+				   causing bus conflict at this location and resulting in invalid data being returned to the CPU. */
+				if ((bank >=0xC && addr >=0x020 || bank >0xC) && CPU::CPU[bank >>4]->Readable[bank &0x7]) value &=(EI.GetCPUReadHandler(bank &7))(bank &7, addr);
+			}
 		}
 	}
 	return value;

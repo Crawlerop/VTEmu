@@ -1,9 +1,6 @@
 #include	"..\DLL\d_iNES.h"
 
-#define irqEnabled irq &1
-#define irqReset   irq &2
 namespace {
-FCPUWrite	writeAPU;
 uint8_t		prg;
 uint8_t		irq;
 uint16_t	counter;
@@ -25,21 +22,21 @@ int	MAPINT	readPRG2 (int bank, int addr) {
 }
 
 void	MAPINT	writePRG_IRQ (int bank, int addr, int val) {
-	writeAPU(bank, addr, val);
+	EMU->WriteAPU(bank, addr, val);
 	if (addr ==0x022) {
 		prg =val;
 		sync();
 	} else
 	if (addr ==0x122) {
 		irq =val;
-		if (irqReset) counter =0;
+		if (val &2) counter =0;
 	}
 }
 
 void	MAPINT	writeIRQhacked (int bank, int addr, int val) {
 	if (addr ==0x122) {
 		irq =val;
-		if (irqReset) counter =0;
+		if (val &2) counter =0;
 	}
 }
 
@@ -50,7 +47,6 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 		counter =0;
 	}
 	sync();
-	writeAPU =EMU->GetCPUWriteHandler(0x4);
 	EMU->SetCPUWriteHandler(0x4, writePRG_IRQ);
 	EMU->SetCPUWriteHandler(0x8, writeIRQhacked);
 
@@ -63,7 +59,7 @@ void	MAPINT	reset (RESET_TYPE resetType) {
 }
 
 void	MAPINT	cpuCycle (void) {
-	EMU->SetIRQ(++counter &0x1000 && irqEnabled? 0: 1);
+	EMU->SetIRQ(++counter &0x1000 && irq &1? 0: 1);
 }
 
 int	MAPINT	saveLoad (STATE_TYPE stateMode, int offset, unsigned char *data) {

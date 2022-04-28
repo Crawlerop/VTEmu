@@ -36,7 +36,7 @@ void	CPU_OneBus::PowerOn (void) {
 
 void	CPU_OneBus::Reset (void) {
 	CPU_RP2A03::Reset();
-	EncryptionStatus =(RI.INES2_SubMapper >=13)? true: false;
+	EncryptionStatus =(RI.INES2_SubMapper >=12)? true: false;
 	reg4100[0x1F] = 0x00;
 	reg4100[0x1C] = 0x00;
 }
@@ -49,6 +49,13 @@ uint8_t	CPU_OneBus::GetOpcode(void) {
 uint8_t CPU_OneBus::Unscramble(uint8_t opcode) {
 	int result =opcode;
 	if (EncryptionStatus) {
+		if (RI.INES2_SubMapper == 12) {
+			result &= ~0xC6;
+			result |= (opcode & 0x40) ? 0x80 : 0x00;
+			result |= (opcode & 0x80) ? 0x40 : 0x00;
+			result |= (opcode & 0x02) ? 0x04 : 0x00;
+			result |= (opcode & 0x04) ? 0x02 : 0x00;
+		} else
 		if (RI.INES2_SubMapper ==13) {
 			result &=~0x12;
 			result |=(opcode &0x10)? 0x02: 0x00;
@@ -249,7 +256,7 @@ void	APU_OneBus::IntWrite (int Bank, int Addr, int Val) {
 			triangle2.Write(4, Val & 0x4);
 			noise2.Write(4, Val & 0x8);
 			break;
-	case 0x11C:	if (RI.INES2_SubMapper ==14) dynamic_cast<CPU::CPU_OneBus*>(CPU::CPU[which])->EncryptionStatus =(Val &0x40)? true: false;
+	case 0x11C:	if (RI.INES2_SubMapper == 12 || RI.INES2_SubMapper == 14) dynamic_cast<CPU::CPU_OneBus*>(CPU::CPU[which])->EncryptionStatus = (Val & 0x40) ? true : false;
 			break;
 	case 0x169:	if (RI.INES2_SubMapper ==13 || RI.INES2_SubMapper ==15)
 				dynamic_cast<CPU::CPU_OneBus*>(CPU::CPU[which])->EncryptionStatus =(Val &1)? false: true;

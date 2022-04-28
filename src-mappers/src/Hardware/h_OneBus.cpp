@@ -5,7 +5,7 @@
 #define SP16EN   !!(reg2000[0x10] &0x04)
 #define SPEXTEN  !!(reg2000[0x10] &0x08)
 #define BKEXTEN  !!(reg2000[0x10] &0x10)
-#define V16BEN   !!(reg2000[0x10] &0x40) //&& ROM->ConsoleType ==CONSOLE_VT09
+#define V16BEN   !!(reg2000[0x10] &0x40 || reg4100[0x2B] ==0x61) //&& ROM->ConsoleType ==CONSOLE_VT09
 #define VRWB       (reg2000[0x18] &0x07)
 #define BKPAGE   !!(reg2000[0x18] &0x08)
 #define VA18       (reg2000[0x18] >>4 &7)
@@ -408,7 +408,7 @@ void	MAPINT	ppuCycle (int addr, int scanline, int cycle, int isRendering) {
 	} else {
 		if (addr &0x1000) {
 			if (!pa12Filter) clockScanlineCounter(isRendering);
-			pa12Filter =5;
+			pa12Filter =3;
 		}
 	}
 }	
